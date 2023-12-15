@@ -1,0 +1,33 @@
+
+var model = new Dentist()
+var Dentist = require('../models/dentist.model')
+
+exports.getList = async function(req, res){
+    model.getAll(function(err, data) {
+        res.send({result : data, error: err})
+    })
+}
+
+exports.getBySdt = function(req, res){
+    model.getOne(req.params.sdtns, function(err, data) {
+        res.send({result : data, error: err})
+    })
+}
+
+exports.addNew = function(req, res){
+    model.create(req.body, function(err, data){
+        res.send({result : data, error: err})
+    })
+}
+
+exports.update = function(req, res){
+    model.update(function(err, data) {
+        res.send({result : data, error: err})
+    })
+}
+
+exports.delete = async function(req, res){
+    model.delete(req.params.sdtns, function(err, data) {
+        res.send({result : data, error: err})
+    })
+}

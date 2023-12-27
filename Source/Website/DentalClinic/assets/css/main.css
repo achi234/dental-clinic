@@ -1,0 +1,115 @@
+/* authen */
+.modal {
+    position: relative;
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center !important;
+}
+.authen-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 460px; */
+    width: 32%;
+    min-width: 0;
+    word-wrap: break-word;
+    border: 1px solid rgba(0, 0, 0, .05);
+    border-radius: 10px;
+    background-color: var(--white-color);
+    background-clip: border-box;
+    padding: 20px 30px;
+}
+
+.authen-form__header {
+    min-height: 60px;
+    padding-top: 60px;
+}
+
+.authen-form__header {
+    position: relative;
+    display: flex;
+}
+
+.authen-header__logo {
+    height: 120px;
+}
+.authen-header__name {
+    font-size: 3.2rem;
+    margin: auto;
+}
+.authen-form__form {
+    width: 100%;
+}
+.authen-form__title {
+    font-size: 1.6rem;
+    color: rgba(24, 25, 69, .75);
+    font-weight: 500;
+    display: inline-block;
+    margin: 15px 0 10px 0;
+}
+
+.authen-form__label {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 14px;
+    padding: 0 15px;
+    font-size: 1.4rem;
+    background-color: var(--nude-color);
+    border-radius: 30px;
+    border: 1px solid var(--nude-color);
+    outline: none;
+}
+.authen-form__input {
+    font-size: 1.4rem;
+    display: block;
+    width: 100%;
+    height: calc(44px + 2px);
+    padding: 10px 12px;
+    transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);
+    color: #8898aa;
+    border: 1px solid rgba(88, 63, 188, .35);
+    border-radius: 7px;
+    background-color: #fff;
+    background-clip: padding-box;
+    box-shadow: none;
+    outline: none;
+}
+.authen-form__input:focus {
+    border-color: rgba(88, 63, 188, .7);
+}
+
+.authen-form__controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0px 30px; */
+    margin : 20px 0;
+}
+
+.authen-form__aside {
+    width: 100%;
+    /* padding: 0px 30px; */
+    /* margin: 10px 0px; */
+}
+
+.authen-form__forgot-text {
+    text-align: end;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    margin: auto;
+}
+
+.authen-form__forgot-link {
+    color: rgba(88, 63, 188, .8);
+    font-weight: 400;
+}
+
+.authen-form__forgot-link:hover {
+    font-weight: 550;
+}

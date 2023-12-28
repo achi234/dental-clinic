@@ -294,9 +294,6 @@ $selects = getAllByKeyValue('SELECT_TREATMENT', 'ID_Customer', $paitent_id);
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    // $count = sizeof($selects['data']);
-                                    //echo $invoices['data'];
-                                    // if($count > 0)
                                     if($selects['status'] != 'No Data Found')
                                     {
                                     ?>
@@ -309,7 +306,7 @@ $selects = getAllByKeyValue('SELECT_TREATMENT', 'ID_Customer', $paitent_id);
                                         <th class="text-column" scope="row"><?php echo $select['ID_Select']?></th> 
                                         <th class="text-column" scope="row"><?php echo $select['ID_Dentist']?></th> 
                                         <?php
-                                            $select_time = $select['DateSelect']->format('Y-m-d');
+                                            $select_time = $select['DateSelect']->format('Y-m-d H:i:s');
                                         ?>
                                         <th class="text-column" scope="row"><?php echo $select_time?></th> 
                                         <th class="text-column" scope="row"><?php echo $select['ReturnDays']?></th> 

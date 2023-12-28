@@ -45,7 +45,8 @@ $dentists = getIdbyUserType('USER_DENTAL', 'Dentist');
                                                     <?php  foreach($dentists['data'] as $dentist) 
                                                     {  
                                                     ?>
-                                                <option class=""><?php echo $dentist['ID_User']?></option>
+                                                <option value="<?php echo $dentist['ID_User']; ?>"> <?php echo $dentist['Fullname'];
+                                                                                                    echo " (ID_Dentist = {$dentist['ID_User']})"?></option>
                                                 <?php
                                                     }
                                                 }

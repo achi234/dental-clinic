@@ -1,11 +1,13 @@
 <?php
 require_once('./partials/_head.php');
+
+$info = getbyKeyValue('USER_DENTAL','ID_User', $_SESSION['auth_user']['id']);
 ?>
 
 <body>
     <!-- Sidebar -->
     <?php
-    require_once('./partials/_sidebar.php');
+        require_once('./partials/_sidebar.php');
     ?>
     <!-- Main content -->
     <div class="main-content">
@@ -17,7 +19,7 @@ require_once('./partials/_head.php');
             <!-- Header -->
             <div class="heading">
                 <div class="col-lg-7">
-                    <div class="display-2">Hello <?php echo $_SESSION['auth_user']['fullname']?></div>
+                    <div class="display-2">Hello <?php echo $info['data']['Fullname']?></div>
                     <h2 class="text__profile-intro">This is your profile page. You can customize your profile as you want and also change pasword too</h2>
                 </div>
             </div>
@@ -43,15 +45,42 @@ require_once('./partials/_head.php');
 
                                             <div class="form-row__flex">
                                                 <div class="form-col margin-0">
-                                                    <label for="" class="form-col__label">Username</label>
-                                                    <input type="text" name="username" class="form-control" value="<?php echo $_SESSION['auth_user']['username']?>" readonly>
+                                                    <label for="" class="form-col__label">Fullname</label>
+                                                    <input type="text" name="fullname" class="form-control" value="<?php echo $info['data']['Fullname']?>">
                                                 </div>
 
                                                 <div class="form-col margin-0">
                                                     <label for="" class="form-col__label">Phone Number</label>
-                                                    <input type="text" name="user_phone" class="form-control" value="<?php echo $_SESSION['auth_user']['phone']?>">
+                                                    <input type="text" name="user_phone" class="form-control" value="<?php echo $info['data']['PhoneNumber']?>">
                                                 </div>
-                                            </div>      
+                                            </div>
+                                            
+                                            <br class="">
+                                            <div class="form-row__flex">
+                                                <div class="form-col margin-0">
+                                                    <label for="" class="form-col__label">Gender</label>
+                                                    <select name="user_gender" id="ptGender" class="form-cotrol">
+                                                <?php if($infor['data']['Gender'] == 'F')
+                                                { ?>
+                                                    <option value="M" >Male</option>
+                                                    <option value="F" selected>Female</option>
+                                                <?php 
+                                                } 
+                                                else
+                                                { ?>
+                                                    <option value="M" selected>Male</option>
+                                                    <option value="F" >Female</option>
+                                                <?php 
+                                                } 
+                                                ?> 
+                                            </select>
+                                                </div>
+
+                                                <div class="form-col margin-0">
+                                                    <label for="" class="form-col__label">Address</label>
+                                                    <input type="text" name="user_address" class="form-control" value="<?php echo $info['data']['CurrAddress']?>">
+                                                </div>
+                                            </div>     
                                         </div>
 
                                         <hr class="navbar__divider">
@@ -66,7 +95,7 @@ require_once('./partials/_head.php');
                                         <div class="form-small">
                                             <div class="form-col margin-0">
                                                 <label for="" class="form-col__label">Password</label>
-                                                <input type="text" name="new_password" class="form-control" value>
+                                                <input type="password" name="new_password" class="form-control">
                                             </div>
 
                                             <br class="">
@@ -86,7 +115,7 @@ require_once('./partials/_head.php');
                                 <div class="form-col order-lg-2">
                                     <div class="card-profile-image">
                                         <a href="#" class="">
-                                            <img src="" alt="" class="rounded-circle">
+                                            <img src="../../assets/image/user_avatar.png" alt="" class="rounded-circle">
                                         </a>
                                     </div>
                                 </div>
@@ -102,7 +131,7 @@ require_once('./partials/_head.php');
                             <div class="text-center">
                                 <p class="recent__heading-title margin-0">System Admin</p>
                                 <div class="text__profile-email">
-                                    <?php echo $_SESSION['auth_user']['username']?>
+                                    <?php echo $info['data']['Username']?>
                                 </div>
                             </div>
                             

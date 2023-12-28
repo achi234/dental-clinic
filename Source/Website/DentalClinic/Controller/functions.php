@@ -214,6 +214,82 @@
         }
     }
 
+    function getTopAppt($count)
+    {
+        global $conn;
+    
+        $count = validate($count);
+
+        $query = "SELECT TOP $count *
+                FROM APPOINTMENT
+                ORDER BY Date_Appt DESC, Time_Appt DESC";
+        $result = sqlsrv_query($conn, $query);
+    
+        if ($result) {
+            $data = array();
+    
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+    
+            if (!empty($data)) {
+                $response = [
+                    'status' => 'Data Found',
+                    'data' => $data,
+                ];
+            } else {
+                $response = [
+                    'status' => 'No Data Found',
+                ];
+            }
+    
+            return $response;
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+            return $response;
+        }
+    }
+
+    function getTopInvoice($count)
+    {
+        global $conn;
+    
+        $count = validate($count);
+
+        $query = "SELECT TOP $count *
+                FROM INVOICE
+                ORDER BY InvoiceTime DESC";
+        $result = sqlsrv_query($conn, $query);
+    
+        if ($result) {
+            $data = array();
+    
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+    
+            if (!empty($data)) {
+                $response = [
+                    'status' => 'Data Found',
+                    'data' => $data,
+                ];
+            } else {
+                $response = [
+                    'status' => 'No Data Found',
+                ];
+            }
+    
+            return $response;
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+            return $response;
+        }
+    }
+
     function getbyKeyValue($tableName, $key, $value)
     {
         global $conn;
@@ -302,7 +378,7 @@
         return $columns;
     }
 
-    function searchUserByKeyword($tableName, $value, $userType=null)
+    function searchUserByKeyword($tableName, $value, $userType)
     {
         global $conn;
     
@@ -310,7 +386,7 @@
         $userType = validate($userType);
         $value = validate($value);
     
-        $query = "SELECT * FROM $table WHERE UserType = '$userType' AND ";
+        $query = "SELECT * FROM $table WHERE (UserType = '$userType') AND ";
         $columns = getTableColumns($tableName);
     
         $conditions = [];
@@ -319,8 +395,10 @@
         }
     
         $query = "SELECT * FROM $tableName WHERE UserType = '$userType' AND ";
+        $query = str_pad($query, strlen($query) + 1, "(");
         $query .= implode(" OR ", $conditions);
-    
+        $query = str_pad($query, strlen($query) + 1, ")");
+
         // Thực hiện truy vấn chính
         $result = sqlsrv_query($conn, $query);
 
@@ -367,7 +445,9 @@
         }
     
         $query = "SELECT * FROM $tableName WHERE ";
+        $query = str_pad($query, strlen($query) + 1, "(");
         $query .= implode(" OR ", $conditions);
+        $query = str_pad($query, strlen($query) + 1, ")");
     
         // Thực hiện truy vấn chính
         $result = sqlsrv_query($conn, $query);
@@ -443,7 +523,7 @@
         $table = validate($tableName);
         $userType = validate($userType);
     
-        $query = "SELECT ID_User FROM $table WHERE UserType = '$userType'";
+        $query = "SELECT ID_User, Fullname FROM $table WHERE UserType = '$userType'";
         $result = sqlsrv_query($conn, $query);
     
         if ($result) {

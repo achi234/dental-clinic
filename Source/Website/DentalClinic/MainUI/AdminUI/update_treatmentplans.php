@@ -202,7 +202,7 @@ $choose_treatments = getAllByKeyValue('CHOOSE_TREATMENT', 'ID_Select', $select_i
                 <div class="container-recent">
                     <div class="container-recent-inner">
                         <div class="container-recent__heading">
-                            <p class="recent__heading-title">Choose treatment</p>
+                            <p class="recent__heading-title">Choose Treatment</p>
                             <a href="add_choosetreatments.php?id=<?php echo $select_id?>" class="btn-control btn-control-add">
                                 <i class="fa-solid fa-square-plus btn-control-icon"></i>
                                 Add treatment

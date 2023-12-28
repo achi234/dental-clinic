@@ -65,7 +65,7 @@ require_once('./partials/_head.php');
                                 <div class="form-row">
                                     <div class="form-col margin-0">
                                         <div class="form-col-bottom">
-                                            <input type="submit" name="btn-add-paitent" value="Add Paitent" class="btn-control btn-control-add">
+                                            <input type="submit" name="btn-add-paitent" value="Add Patient" class="btn-control btn-control-add">
                                         </div>
                                     </div>
                                 </div>

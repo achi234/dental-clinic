@@ -1,10 +1,9 @@
 <?php
-// session_start();
-// include('config/config.php');
-// include('config/checklogin.php');
-// check_login();
 require_once('./partials/_head.php');
-// require_once('./partials/_analytics.php');
+$pageSize = 20;
+$pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$appts = getTopAppt('10');
+$invoices = getTopInvoice('10');
 ?>
 
 <body>
@@ -19,50 +18,6 @@ require_once('./partials/_head.php');
             <?php
             require_once('./partials/_topnav.php');
             ?>
-            <!-- Header Card -->
-            <div class="header">
-                <div class="container header__body">
-                    <div class="header-body__card">
-                        <div class="body__card">
-                            <div class="body__card-inner">
-                                <div class="card-inner__title">CUSTOMERS</div>
-                                <div class="card-inner__number">14</div>
-                            </div>
-                            <i class="fa-solid fa-users card__icon bg-danger"></i>                        
-                        </div>
-                    </div>
-
-                    <div class="header-body__card">
-                        <div class="body__card">
-                            <div class="body__card-inner">
-                                <div class="card-inner__title">PRODUCTS</div>
-                                <div class="card-inner__number">26</div>
-                            </div>
-                            <i class="fa-solid fa-utensils card__icon bg-update"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="header-body__card">
-                        <div class="body__card">
-                            <div class="body__card-inner">
-                                <div class="card-inner__title">ODERS</div>
-                                <div class="card-inner__number">11</div>
-                            </div>
-                            <i class="fa-solid fa-cart-shopping card__icon bg-warning"></i>
-                        </div>
-                    </div>
-
-                    <div class="header-body__card">
-                        <div class="body__card">
-                            <div class="body__card-inner">
-                                <div class="card-inner__title">SALES</div>
-                                <div class="card-inner__number">$139</div>
-                            </div>
-                            <i class="fa-solid fa-dollar-sign card__icon bg-green"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>    
             <!-- Page content -->
             <div class="container">
                 <div class="container-recent">
@@ -76,7 +31,7 @@ require_once('./partials/_head.php');
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">ID Appointment</th> 
+                                        <th class="text-column-emphasis" scope="col">Appointment ID</th> 
                                         <th class="text-column" scope="col">CUSTOMER</th> 
                                         <th class="text-column" scope="col">DENTIST</th> 
                                         <th class="text-column" scope="col">Room</th> 
@@ -86,29 +41,115 @@ require_once('./partials/_head.php');
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
+                                <?php
+                                    $count = sizeof($appts['data']);
+                                    //echo $invoices['data'];
+                                    if($count > 0)
+                                    {
+                                    ?>
+                                        <?php  foreach($appts['data'] as $appt) 
+                                        {  
+                                        ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row">731</th> 
-                                        <th class="text-column" scope="row">434</th> 
-                                        <th class="text-column" scope="row">989</th> 
-                                        <th class="text-column" scope="row">R12</th> 
-                                        <th class="text-column" scope="row">12/2/2023</th> 
-                                        <th class="text-column" scope="row">12:00</th> 
+                                        <th class="text-column-emphasis" scope="row"><?php echo $appt['ID']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $appt['ID_Dentist']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $appt['ID_Customer']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $appt['ID_Room']?></th> 
+                                        <?php
+                                            $appt_date = $appt['Date_Appt']->format('d-m-Y');
+                                        ?>
+                                        <th class="text-column" scope="row"><?php echo $appt_date?></th> 
+                                        <?php
+                                            $appt_time = $appt['Time_Appt']->format('H:i');
+                                        ?>
+                                        <th class="text-column" scope="row"><?php echo $appt_time?></th> 
                                         <th class="text-column" scope="row">
-                                            <span class="badge badge-success">New</span>
+                                        <?php if($appt['Status_Appt'] == 'New')
+                                            {
+                                        ?>
+                                            <span class="badge badge-success"><?php echo $appt['Status_Appt']?></span>
+                                        <?php
+                                            } 
+                                            else
+                                            {
+                                        ?>
+                                            <span class="badge badge-unsuccess"><?php echo $appt['Status_Appt']?></span>
+                                        <?php
+                                            }
+                                        ?>
                                         </th> 
                                     </tr>
+                                    <?php
+                                        }
+                                    }
+                                    else
+                                    {?>
+                                       <th class="text-column" scope="row"><?php echo 'No Data Found'?></th> 
+                                    <?php    
+                                    }
+                                    ?>
 
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page content -->
+            <div class="container">
+                <div class="container-recent">
+                    <div class="container-recent-inner">
+                        <div class="container-recent__heading">
+                            <p class="recent__heading-title">Recent Invoice</p>
+                            <a href="invoices.php" class="btn-control btn-control-search">See all</a>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="thead-light">
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row">731</th> 
-                                        <th class="text-column" scope="row">434</th> 
-                                        <th class="text-column" scope="row">989</th> 
-                                        <th class="text-column" scope="row">R12</th> 
-                                        <th class="text-column" scope="row">12/2/2023</th> 
-                                        <th class="text-column" scope="row">12:00</th> 
-                                        <th class="text-column" scope="row">
-                                            <span class="badge badge-success">New</span>
-                                        </th> 
+                                    <th class="text-column-emphasis" scope="col">Invoice Id</th> 
+                                        <th class="text-column" scope="col">Treatment Plan</th> 
+                                        <th class="text-column" scope="col">Payment Id</th> 
+                                        <th class="text-column" scope="col">Total ($)</th> 
+                                        <th class="text-column" scope="col">Time</th> 
                                     </tr>
+                                </thead>
+                                <tbody class="table-body">
+                                <?php
+                                    $count = sizeof($invoices['data']);
+                                    //echo $invoices['data'];
+                                    if($count > 0)
+                                    {
+                                    ?>
+                                        <?php  foreach($invoices['data'] as $invoice) 
+                                        {  
+                                        ?>
+                                    <tr>
+                                        <th class="text-column-emphasis" scope="row"><?php echo $invoice['ID']?></th>
+                                        <th class="text-column" scope="row"><?php echo $invoice['ID_Select']?></th>
+                                        <?php
+                                            $payment = getbyKeyValue('PAYMENT_METHOD', 'ID_Payment', $invoice['ID_Payment']);
+                                            $payment_method = $payment['data']['PaymentMethod'];
+                                        ?>
+                                        <th class="text-column" scope="row"><?php echo $payment_method?></th>
+                                        <th class="text-column" scope="row"><?php echo $invoice['Total']?></th> 
+                                        <?php
+                                            $invoice_time = $invoice['InvoiceTime']->format(' H:i:s Y-m-d');
+                                        ?>
+                                        <th class="text-column" scope="row"><?php echo $invoice_time?></th>                                        
+                                    </tr>
+                                    <?php
+                                        }
+                                    }
+                                    else
+                                    {?>
+                                       <th class="text-column" scope="row"><?php echo 'No Data Found'?></th> 
+                                    <?php    
+                                    }
+                                    ?>
 
                                 </tbody>
                             </table>

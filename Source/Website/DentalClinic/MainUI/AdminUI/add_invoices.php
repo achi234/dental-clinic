@@ -30,7 +30,7 @@ $payments = getAll('PAYMENT_METHOD');
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Select Treatment</label>
+                                            <label for="" class="form-col__label">Treatment Plan Id</label>
                                             <input type="text" name="select_id" class="form-control" value>
                                             
                                         </div>
@@ -38,8 +38,13 @@ $payments = getAll('PAYMENT_METHOD');
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Payment</label>
                                             <select name="payment_id" id="paymentId" class="form-cotrol">
-                                                <option value="1" class="">Cash</option>
-                                                <option value="2" class="">Momo</option>
+                                            <?php foreach ($payments['data'] as $payment) 
+                                                { 
+                                            ?>
+                                                <option value="<?php echo $payment['ID_Payment']?>" class=""><?php echo $payment['PaymentMethod']?></option>
+                                            <?php
+                                                } 
+                                            ?>
                                             </select>
                                         </div>
                                         
@@ -72,7 +77,7 @@ $payments = getAll('PAYMENT_METHOD');
                                         <div class="form-row__flex">
                                             <div class="form-col">
                                                 <label for="" class="form-col__label">Amount Paid</label>
-                                                <input type="text" name="amount_paid" class="form-control" value>
+                                                <input type="text" name="amount_paid" class="form-control" value="0">
                                             </div>
                                             
                                             <div class="form-col">

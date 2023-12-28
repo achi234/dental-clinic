@@ -1,6 +1,7 @@
 <?php
     session_start();
     include("../config/config.php");
+    include("./functions.php");
     $count = 0;
     if(isset($_POST['btn-login']))
     {    
@@ -12,16 +13,17 @@
             $username = stripslashes($username);
             $password = stripslashes($password);
 
-            $sql="SELECT * FROM ACCOUNT WHERE username='$username' and pass_word='$password'";
+            $sql="SELECT * FROM ACCOUNT WHERE Username='$username' and Pass_word='$password'";
             $stmt = sqlsrv_query($conn, $sql);
+            $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
-            if(!$stmt)
+            if(!sqlsrv_has_rows($stmt))
             {
                 $_SESSION['status'] = 'Wrong Username or Password. Please enter again';
                 header("location: ../login.php");
                 exit(0);               
             }
-            elseif(sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)['isActive'] == 'No')
+            elseif($row['isActive'] == 'No')
             {
                 $_SESSION['status'] = 'Your account has been banned!';
                 header("location: ../login.php");
@@ -29,13 +31,14 @@
             }
             else
             {
-                $sql="SELECT * FROM USER_DENTAL WHERE username='$username'";
+                $sql="SELECT * FROM USER_DENTAL WHERE Username='$username'";
                 $stmt = sqlsrv_query($conn, $sql);
                 $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
-                if(sqlsrv_num_rows($stmt) != 1)
+
+                if(sqlsrv_has_rows($stmt))
                 {
-                    $count=sqlsrv_num_rows($stmt);
+                    
                     $_SESSION['authenticated'] = true;
 
                     $_SESSION['auth_user'] = 
@@ -52,15 +55,13 @@
                     switch($_SESSION['auth_user']['role'])
                     {
                         case 'Admin':
-                            header("location: ../MainUI//AdminUI/dashboard.php");
+                            header("location: ../MainUI/AdminUI/dashboard.php");
                             exit(0);
-                        //case "Dentist":
-                        case "Nha si":
-                            header("location: ../MainUI/DentistUI/dentistHomepage.php");
+                        case "Dentist":
+                            header("location: ../MainUI/DentistUI/dashboard.php");
                             exit(0);
-                        //case "Staff":
-                        case "Nhan vien":
-                            header("location: ../MainUI//StaffUI/dashboard.php");
+                        case "Staff":
+                            header("location: ../MainUI/StaffUI/dashboard.php");
                             exit(0);
                         default:
                             echo $_SESSION['auth_user']['role'];
@@ -71,7 +72,7 @@
                 }
                 else
                 {
-                    $_SESSION['status'] = 'No user found in USER_DENTAL.';
+                    $_SESSION['status'] = 'No user found.';
                     header("location: ../login.php");
                     exit(0);
                 }

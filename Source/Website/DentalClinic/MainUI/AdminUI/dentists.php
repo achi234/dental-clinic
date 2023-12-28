@@ -87,7 +87,7 @@
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">ID</th> 
+                                        <th class="text-column-emphasis" scope="col">Dentist ID</th> 
                                         <th class="text-column" scope="col">USERNAME</th> 
                                         <th class="text-column" scope="col">FULL NAME</th> 
                                         <th class="text-column" scope="col">Gender</th> 

@@ -1,10 +1,5 @@
 <?php
-// session_start();
-// include('config/config.php');
-// include('config/checklogin.php');
-// check_login();
 require_once('./partials/_head.php');
-// require_once('./partials/_analytics.php');
 ?>
 
 <body>
@@ -28,24 +23,23 @@ require_once('./partials/_head.php');
                         </div>
                         
                         <div class="container-recent__body card__body-form">
-                            <form method="POST" class="">
+                            <form method="POST" action="../../Controller/StaffController/add_paitent.php">
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Paitent Name</label>
-                                            <input type="text" name="paitent_name" class="form-control" value="LJCH-7436">
+                                            <input type="text" name="paitent_name" placeholder="Enter your name" class="form-control">
                                         </div>
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Gender</label>
-                                            <select name="paitent_gender" id="ptGender" class="form-cotrol" onchange="getPaitent(this.value)">
-                                                <option value="" class="">Select Gender</option>
-                                                <option value="" class="">Nam</option>
-                                                <option value="" class="">Nữ</option>
+                                            <select name="paitent_gender" id="ptGender" class="form-cotrol">
+                                                <option value="M">Male</option>
+                                                <option value="F">Female</option>
                                             </select>
                                         </div>
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Paitent Phone Number</label>
-                                            <input type="text" name="paintent_phone" class="form-control" value>
+                                            <input type="text" name="paintent_phone" placeholder="Enter your phone number" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -56,12 +50,12 @@ require_once('./partials/_head.php');
                                     <div class="form-row__flex">
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Paitent Address</label>
-                                            <input type="text" name="paitent_address" class="form-control" value="Street 5">
+                                            <input type="text" name="paitent_address" placeholder="Enter your address" class="form-control">
                                         </div>
 
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Date Of Birth</label>
-                                            <input type="text" name="paitent_dob" class="form-control" value>
+                                            <input type="date" name="paitent_dob" placeholder="dd/mm/yyyy" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +65,7 @@ require_once('./partials/_head.php');
                                 <div class="form-row">
                                     <div class="form-col margin-0">
                                         <div class="form-col-bottom">
-                                            <input type="submit" name="addPaitent" value="Add Paitent" class="btn-control btn-control-add" value="">
+                                            <input type="submit" name="btn-add-paitent" value="Add Patient" class="btn-control btn-control-add">
                                         </div>
                                     </div>
                                 </div>

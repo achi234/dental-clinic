@@ -1,10 +1,7 @@
 <?php
-// session_start();
-// include('config/config.php');
-// include('config/checklogin.php');
-// check_login();
 require_once('./partials/_head.php');
-// require_once('./partials/_analytics.php');
+$select_treatments = getAll('SELECT_TREATMENT');
+$payments = getAll('PAYMENT_METHOD');
 ?>
 
 <body>
@@ -29,22 +26,25 @@ require_once('./partials/_head.php');
                         </div>
                         
                         <div class="container-recent__body card__body-form">
-                            <form method="POST" class="">
+                            <form method="POST" action="../../Controller/StaffController/add_invoice.php">
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Select Treatment</label>
-                                            <select name="select_id" id="selectId" class="form-cotrol" onchange="getSelect(this.value)">
-                                                <option value="" class="">1</option>
-                                                <option value="" class="">2</option>
-                                            </select>
+                                            <label for="" class="form-col__label">Treatment Plan Id</label>
+                                            <input type="text" name="select_id" class="form-control" value>
+                                            
                                         </div>
 
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Payment Id</label>
-                                            <select name="payment_id" id="paymentId" class="form-cotrol" onchange="getPayment(this.value)">
-                                                <option value="" class="">1</option>
-                                                <option value="" class="">2</option>
+                                            <label for="" class="form-col__label">Payment</label>
+                                            <select name="payment_id" id="paymentId" class="form-cotrol">
+                                            <?php foreach ($payments['data'] as $payment) 
+                                                { 
+                                            ?>
+                                                <option value="<?php echo $payment['ID_Payment']?>" class=""><?php echo $payment['PaymentMethod']?></option>
+                                            <?php
+                                                } 
+                                            ?>
                                             </select>
                                         </div>
                                         
@@ -77,7 +77,7 @@ require_once('./partials/_head.php');
                                         <div class="form-row__flex">
                                             <div class="form-col">
                                                 <label for="" class="form-col__label">Amount Paid</label>
-                                                <input type="text" name="amount_paid" class="form-control" value>
+                                                <input type="text" name="amount_paid" class="form-control" value="0">
                                             </div>
                                             
                                             <div class="form-col">
@@ -93,7 +93,7 @@ require_once('./partials/_head.php');
                                 <div class="form-row">
                                     <div class="form-col margin-0">
                                         <div class="form-col-bottom">
-                                            <input type="submit" name="addInvoice" value="Add Invoice" class="btn-control btn-control-add" value="">
+                                            <input type="submit" name="btn-add-invoice" value="Add Invoice" class="btn-control btn-control-add" value="">
                                         </div>
                                     </div>
                                 </div>

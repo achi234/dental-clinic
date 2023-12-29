@@ -4,12 +4,12 @@
     include("../../config/config.php");
     session_start();
 
-    $param = checkParam('id');
+    $param = checkParam('sdt');
     if(is_numeric($param))
     {
-        $dentist_id = validate($param);
+        $dentist_phone = validate($param);
 
-        $dentist = getbyKeyValue('USER_DENTAL','ID_User', $dentist_id);
+        $dentist = getbyKeyValue('TAIKHOAN','SDT', $dentist_phone);
         if($dentist['status'] != 'Data Found')
         {
            redirect('../../MainUI/AdminUI/dentists.php', $dentist['status'], '');
@@ -28,11 +28,11 @@
                 'isActive' => 'No',
             ];
 
-            $updateAccount = updatebyKeyValue('ACCOUNT', 'Username', $dentist['data']['Username'], $dataAccount);
+            $updateAccount = updatebyKeyValue('TAIKHOAN', 'SDT', $dentist['data']['SDT'], $dataAccount);
 
             if($updateAccount['status'])
             {
-                redirect('../../MainUI/AdminUI/dentists.php', '', "You've deleted dentist {$dentist['data']['fullname']} !");
+                redirect('../../MainUI/AdminUI/dentists.php', '', "You've deleted dentist {$dentist['data']['HoTen_NS']} !");
             }
             else
             {

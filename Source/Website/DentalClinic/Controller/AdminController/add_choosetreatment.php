@@ -5,20 +5,20 @@
 
     if(isset($_POST['btn-add-choosetreatment']))
     {
-        $select_id = $_POST['select_id'];
         $treatment_id = $_POST['treatment_id'];
+        $treatment_name = $_POST['treatment_name'];
         $choosetreatment_price = $_POST['choosetreatment_price'];
         
         if(!empty($select_id) && !empty($treatment_id) && 
         !empty($choosetreatment_price))
         {
             $dataCT = [
-                'ID_Select' => $select_id,
-                'ID_Treatment' => $treatment_id,
-                'Price' => $choosetreatment_price,
+                'ID_DichVu' => $treatment_id,
+                'TenDV' => $treatment_name,
+                'PhiDV' => $choosetreatment_price,
             ];
 
-            $addCT = insert('CHOOSE_TREATMENT', $dataCT);
+            $addCT = insert('DICHVU', $dataCT);
 
             echo $addCT['query'];
 

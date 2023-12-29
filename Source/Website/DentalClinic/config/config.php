@@ -7,9 +7,9 @@ $serverName = ".";
 // );
 
 $connectionOptions = array(
-    "Database" => "QLPKNHAKHOA",
-    "Uid" => "SONGCAT",
-    "PWD" => "SONGCAT"
+    "Database" => "QLPHONGKHAMNHAKHOA",
+    "Uid" => "ADMINISTRATOR",
+    "PWD" => "ADMIN123"
 );
 
 // Establishes the connection

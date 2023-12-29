@@ -15,9 +15,7 @@
     // echo $param;
     // echo $treatment_id;
 
-
-
-    $query = "DELETE FROM CHOOSE_TREATMENT WHERE ID_Select= '$param' AND ID_Treatment='$treatment_id' ";
+    $query = "DELETE FROM DICHVU WHERE ID_Select= '$param' AND ID_Treatment='$treatment_id' ";
    
     $result = sqlsrv_query($conn, $query);
 

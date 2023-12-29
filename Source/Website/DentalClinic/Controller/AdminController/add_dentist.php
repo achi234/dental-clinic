@@ -5,32 +5,25 @@
     
     if(isset($_POST['btn-add-dentist']))
     {
-        $fullname = $_POST['dentist_name'];
-        $gender = $_POST['dentist_gender'];
-        $phone = $_POST['dentist_phone'];
-        $address = $_POST['dentist_address'];
-        $username = $_POST['user_name'];
-        $password = $_POST['password'];
+        $phone = $_POST['SDT_NS'];
+        $fullname = $_POST['HoTen_NS'];
+        $password = $_POST['MatKhau'];
 
-        if(!empty($fullname) && !empty($gender) && !empty($phone) &&
-        !empty($address)  && !empty($username) && !empty($password))
+        if(!empty($fullname) && !empty($phone)  && !empty($password))
         {
             $dataAccount = [
-                'Username'  => $username,
-                'Pass_word' => $password,
+                'SDT'  => $phone,
+                'MatKhau' => $password,
+                'VaiTro'    => 'Dentist'
             ];
 
             $dataUser = [
-                'Fullname'    => $fullname,
-                'Username'    => $username,
-                'Gender'      => $gender,
-                'CurrAddress' => $address,
-                'PhoneNumber' => $phone,
-                'UserType'    => 'Dentist',
+                'SDT_NS' => $phone,
+                'HoTen_NS'    => $fullname,
             ];
 
-            $addAccount = insert('ACCOUNT', $dataAccount);
-            $addUser = insert('USER_DENTAL', $dataUser);
+            $addAccount = insert('TAIKHOAN', $dataAccount);
+            $addUser = insert('NHASI', $dataUser);
 
             echo $addAccount['query'];
             echo $addUser['query'];

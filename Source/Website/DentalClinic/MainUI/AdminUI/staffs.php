@@ -5,7 +5,7 @@ require_once('./partials/_head.php');
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNumber, 'ID_User');
+$staffs = getByUserTypeWithPagination('TAIKHOAN', 'Staff', $pageSize, $pageNumber, 'SDT');
 ?>
 
 <body>
@@ -63,16 +63,16 @@ $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNu
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $staffs = searchUserByKeyword('USER_DENTAL', $strKeyword, 'Staff');
+                                    $staffs = searchUserByKeyword('TAIKHOAN', $strKeyword, 'Staff');
                                     if($staffs['status'] == 'No Data Found')
                                     {
                                         $_SESSION['status'] = $staffs['status'];
-                                        $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNumber, 'ID_User');
+                                        $staffs = getByUserTypeWithPagination('TAIKHOAN', 'Staff', $pageSize, $pageNumber, 'SDT');
                                     }
                                 }
                                 else
                                 {
-                                    $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNumber, 'ID_User');
+                                    $staffs = getByUserTypeWithPagination('TAIKHOAN', 'Staff', $pageSize, $pageNumber, 'SDT');
                                 }
                             ?>
                             
@@ -146,12 +146,12 @@ $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNu
                                         ?>  
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                            <a href="../../Controller/AdminController/delete_staff.php?id=<?php  echo $staff['ID_User']?>" 
+                                            <a href="../../Controller/AdminController/delete_staff.php?id=<?php  echo $staff['SDT']?>" 
                                                     class="btn-control btn-control-delete">
                                                         <i class="fa-solid fa-trash-can btn-control-icon"></i>
                                                         Delete
                                                     </a>
-                                                <a href="update_staffs.php?id=<?php  echo $staff['ID_User']?>" class="btn-control btn-control-edit">
+                                                <a href="update_staffs.php?id=<?php  echo $staff['SDT']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-user-pen btn-control-icon"></i>
                                                     Update
                                                 </a>

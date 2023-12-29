@@ -114,11 +114,11 @@
         $startRow = ($pageNumber - 1) * $pageSize;
         $userType = validate($userType);
 
-        $query = "SELECT COUNT(*) as total FROM $table WHERE UserType = '$userType'"; // Đếm tổng số dòng
+        $query = "SELECT COUNT(*) as total FROM $table WHERE VaiTro = '$userType'"; // Đếm tổng số dòng
         $result = sqlsrv_query($conn, $query);
         $totalRows = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)['total'];
 
-        $query = "SELECT * FROM $table WHERE UserType = '$userType' ORDER BY $pageOrder OFFSET $startRow ROWS FETCH NEXT $pageSize ROWS ONLY";
+        $query = "SELECT * FROM $table WHERE VaiTro = '$userType' ORDER BY $pageOrder OFFSET $startRow ROWS FETCH NEXT $pageSize ROWS ONLY";
         $result = sqlsrv_query($conn, $query);
 
         if ($result) {
@@ -386,7 +386,7 @@
         $userType = validate($userType);
         $value = validate($value);
     
-        $query = "SELECT * FROM $table WHERE (UserType = '$userType') AND ";
+        $query = "SELECT * FROM $table WHERE (VaiTro = '$userType') AND ";
         $columns = getTableColumns($tableName);
     
         $conditions = [];
@@ -394,7 +394,7 @@
             $conditions[] = "$column LIKE '%$value%'";
         }
     
-        $query = "SELECT * FROM $tableName WHERE UserType = '$userType' AND ";
+        $query = "SELECT * FROM $tableName WHERE VaiTro = '$userType' AND ";
         $query = str_pad($query, strlen($query) + 1, "(");
         $query .= implode(" OR ", $conditions);
         $query = str_pad($query, strlen($query) + 1, ")");
@@ -486,7 +486,7 @@
         $table = validate($tableName);
         $userType = validate($userType);
     
-        $query = "SELECT * FROM $table WHERE UserType = '$userType'";
+        $query = "SELECT * FROM $table WHERE VaiTro = '$userType'";
         $result = sqlsrv_query($conn, $query);
     
         if ($result) {
@@ -523,7 +523,7 @@
         $table = validate($tableName);
         $userType = validate($userType);
     
-        $query = "SELECT ID_User, Fullname FROM $table WHERE UserType = '$userType'";
+        $query = "SELECT ID_User, Fullname FROM $table WHERE VaiTro = '$userType'";
         $result = sqlsrv_query($conn, $query);
     
         if ($result) {

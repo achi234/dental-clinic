@@ -5,21 +5,21 @@
     $count = 0;
     if(isset($_POST['btn-login']))
     {    
-        if(!empty(trim($_POST['username'])) && !empty(trim($_POST['password'])))
+        if(!empty(trim($_POST['sdt'])) && !empty(trim($_POST['matkhau'])))
         {
-            $username=$_POST['username'];
-            $password=$_POST['password'];
+            $sdt=$_POST['sdt'];
+            $matkhau=$_POST['matkhau'];
 
-            $username = stripslashes($username);
-            $password = stripslashes($password);
+            $sdt = stripslashes($sdt);
+            $matkhau = stripslashes($matkhau);
 
-            $sql="SELECT * FROM ACCOUNT WHERE Username='$username' and Pass_word='$password'";
+            $sql="SELECT * FROM TAIKHOAN WHERE SDT='$sdt' and MatKhau='$matkhau'";
             $stmt = sqlsrv_query($conn, $sql);
             $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
             if(!sqlsrv_has_rows($stmt))
             {
-                $_SESSION['status'] = 'Wrong Username or Password. Please enter again';
+                $_SESSION['status'] = 'Wrong Phone number or Password. Please enter again';
                 header("location: ../login.php");
                 exit(0);               
             }
@@ -31,7 +31,7 @@
             }
             else
             {
-                $sql="SELECT * FROM USER_DENTAL WHERE Username='$username'";
+                $sql="SELECT * FROM TAIKHOAN WHERE SDT='$sdt'";
                 $stmt = sqlsrv_query($conn, $sql);
                 $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
@@ -43,13 +43,11 @@
 
                     $_SESSION['auth_user'] = 
                     [
-                        'id' => $row['ID_User'],
-                        'username' => $row['Username'],
-                        'fullname' => $row['Fullname'],
-                        'gender' => $row['Gender'],
-                        'phone' => $row['PhoneNumber'],
-                        'address' => $row['CurrAddress'],
-                        'role' => $row['UserType'],
+                        'sdt' => $row['SDT'],
+                        /*'hoten_kh' => $row['HoTen_KH'],
+                        'ngaysinh' => $row['NgaySinh'],
+                        'diachi' => $row['DiaChi'],*/
+                        'vaitro' => $row['VaiTro'],
                     ];
             
                     switch($_SESSION['auth_user']['role'])

@@ -5,7 +5,7 @@
     $pageSize = 20;
     $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $dentists = getByUserTypeWithPagination('USER_DENTAL', 'Dentist', $pageSize, $pageNumber, 'ID_User');
+    $dentists = getByUserTypeWithPagination('TAIKHOAN', 'Dentist', $pageSize, $pageNumber, 'SDT');
 ?>
 
 <body>
@@ -61,17 +61,17 @@
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $dentists = searchUserByKeyword('USER_DENTAL', $strKeyword, 'Dentist');
+                                    $dentists = searchUserByKeyword('TAIKHOAN', $strKeyword, 'Dentist');
 
                                     if($dentists['status'] == 'No Data Found')
                                     {
                                         $_SESSION['status'] = $dentists['status'];
-                                        $dentists = getByUserTypeWithPagination('USER_DENTAL', 'Dentist', $pageSize, $pageNumber, 'ID_User');
+                                        $dentists = getByUserTypeWithPagination('TAIKHOAN', 'Dentist', $pageSize, $pageNumber, 'SDT');
                                     }
                                 }
                                 else
                                 {
-                                    $dentists = getByUserTypeWithPagination('USER_DENTAL', 'Dentist', $pageSize, $pageNumber, 'ID_User');
+                                    $dentists = getByUserTypeWithPagination('TAIKHOAN', 'Dentist', $pageSize, $pageNumber, 'SDT');
                                 }
                             ?>
                             <div class="container__heading-search">
@@ -144,12 +144,12 @@
                                         ?> 
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="../../Controller/AdminController/delete_dentist.php?id=<?php  echo $dentist['ID_User']?>" 
+                                                <a href="../../Controller/AdminController/delete_dentist.php?id=<?php  echo $dentist['SDT']?>" 
                                                     class="btn-control btn-control-delete">
                                                         <i class="fa-solid fa-trash-can btn-control-icon"></i>
                                                         Delete
                                                 </a>
-                                                <a href="update_dentists.php?id=<?php  echo $dentist['ID_User']?>" class="btn-control btn-control-edit">
+                                                <a href="update_dentists.php?id=<?php  echo $dentist['SDT']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-user-pen btn-control-icon"></i>
                                                     Update
                                                 </a>

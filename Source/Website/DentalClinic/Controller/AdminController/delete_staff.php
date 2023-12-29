@@ -4,12 +4,12 @@
     include("../../config/config.php");
     session_start();
 
-    $param = checkParam('id');
+    $param = checkParam('sdt');
     if(is_numeric($param))
     {
-        $staff_id = validate($param);
+        $staff_phone = validate($param);
 
-        $staff = getbyKeyValue('USER_DENTAL','ID_User', $staff_id);
+        $staff = getbyKeyValue('TAIKHOAN','SDT', $staff_phone);
         if($staff['status'] != 'Data Found')
         {
            redirect('../../MainUI/AdminUI/staffs.php', $staff['status'], '');
@@ -19,18 +19,18 @@
             // echo "Here";
             // echo $staff['query'];
 
-            // $deleteStaff = delete('STAFF', 'ID_Staff', $staff_id);
-            // $deleteUser = delete('USER_DENTAL', 'ID_User', $staff_id);
+            // $deleteStaff = delete('STAFF', 'ID_Staff', $staff_phone);
+            // $deleteUser = delete('TAIKHOAN', 'SDT', $staff_phone);
 
             $dataAccount = [
                 'isActive' => 'No',
             ];
 
-            $updateAccount = updatebyKeyValue('ACCOUNT', 'Username', $staff['data']['Username'], $dataAccount);
+            $updateAccount = updatebyKeyValue('TAIKHOAN', 'SDT', $staff['data']['SDT'], $dataAccount);
 
             if($updateAccount['status'])
             {
-                redirect('../../MainUI/AdminUI/staffs.php', '', "You've deleted staff {$staff['data']['fullname']} !");
+                redirect('../../MainUI/AdminUI/staffs.php', '', "You've deleted staff {$staff['data']['HoTen_NS']} !");
             }
             else
             {

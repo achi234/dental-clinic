@@ -6,31 +6,24 @@
     if(isset($_POST['btn-add-staff']))
     {
         $fullname = $_POST['staff_name'];
-        $gender = $_POST['staff_gender'];
         $phone = $_POST['staff_phone'];
-        $address = $_POST['staff_address'];
-        $username = $_POST['user_name'];
         $password = $_POST['password'];
 
-        if(!empty($fullname) && !empty($gender) && !empty($phone) &&
-        !empty($address)  && !empty($username) && !empty($password))
+        if(!empty($fullname)&& !empty($phone) && !empty($password))
         {
             $dataAccount = [
-                'Username'  => $username,
-                'Pass_word' => $password,
+                'SDT'  => $phone,
+                'MatKhau' => $password,
+                'VaiTro'    => 'Staff',
             ];
 
             $dataUser = [
-                'Fullname'    => $fullname,
-                'Username'    => $username,
-                'Gender'      => $gender,
-                'CurrAddress' => $address,
-                'PhoneNumber' => $phone,
-                'UserType'    => 'Staff',
+                'SDT_NV' => $phone,
+                'HoTen_NV'    => $fullname,
             ];
 
-            $addAccount = insert('ACCOUNT', $dataAccount);
-            $addUser = insert('USER_DENTAL', $dataUser);
+            $addAccount = insert('TAIKHOAN', $dataAccount);
+            $addUser = insert('STAFF', $dataUser);
 
             echo $addAccount['query'];
             echo $addUser['query'];

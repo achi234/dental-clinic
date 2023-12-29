@@ -9,7 +9,7 @@
     {
         $appointment_id = validate($param);
 
-        $appointment = getbyKeyValue('APPOINTMENT','ID_Appointment', $appointment_id);
+        $appointment = getbyKeyValue('CUOCHEN','ID_CuocHen', $appointment_id);
         if($appointment['status'] != 'Data Found')
         {
            redirect('../../MainUI/AdminUI/appointments.php', $appointment['status'], '');
@@ -17,11 +17,11 @@
         else
         {
 
-            $deleteAppointment = delete('APPOINTMENT', 'ID_Appointment', $appointment_id);
+            $deleteAppointment = delete('CUOCHEN', 'ID_CuocHen', $appointment_id);
 
             if($deleteAppointment['status'])
             {
-                redirect('../../MainUI/AdminUI/appointments.php', '', "You've deleted appointment {$appointment['data']['ID_Appointment']} !");
+                redirect('../../MainUI/AdminUI/appointments.php', '', "You've deleted CUOCHEN {$appointment['data']['ID_CuocHen']} !");
             }
             else
             {

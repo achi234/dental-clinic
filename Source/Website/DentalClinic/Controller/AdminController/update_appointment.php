@@ -7,8 +7,8 @@
     {
         $appointment_id = $_POST['appointment_id'];
 
-        if(empty($_POST['dentist_id']) || empty($_POST['customer_name']) || empty($_POST['room_id']) || empty($_POST['appt_date']) 
-        || empty($_POST['appt_time']) || empty($_POST['appt_status']))
+        if(empty($_POST['dentist_phone']) || empty($_POST['customer_phone']) 
+        || empty($_POST['appt_date'])  || empty($_POST['appt_time']) )
         {
             redirect('../../MainUI/AdminUI/update_appointments.php?id='.$appointment_id, 'All fields are required.', '');
             exit(0);
@@ -16,15 +16,12 @@
         else
         {
 
-            $appt_dentist = $_POST["dentist_id"];
-            
-            $appt_customerName = $_POST["customer_name"];
-            $appt_room = $_POST["room_id"];
+            $appt_dentist = $_POST["dentist_phone"];
+            $appt_customer = $_POST["customer_phone"];
             $appt_date = $_POST["appt_date"];
             $appt_time = $_POST["appt_time"];
-            $appt_status = $_POST["appt_status"];
-            
-            $checkCustomer = getbyKeyValue('CUSTOMER', 'Fullname', $appt_customerName);
+
+            $checkCustomer = getbyKeyValue('KHACHHANG', 'SDT_KH', $appt_customer);
 
             if($checkCustomer['status'] == 'No Data Found')
             {
@@ -38,16 +35,14 @@
             $formattedTime = date('H:i:s', strtotime($appt_time));
 
             $data = [
-                'ID_Dentist' => $appt_dentist,
-                'ID_Customer' => $appt_customer,
-                'ID_Room' => $appt_room,
-                'Date_Appt' => $formattedDate,
-                'Time_Appt' => $formattedTime,
-                'Status_Appt' => $appt_status,
+                'SDT_NS' => $appt_dentist,
+                'SDT_KH' => $appt_customer,
+                'Ngay' => $formattedDate,
+                'Gio' => $formattedTime,
             ];
 
 
-            $updateAppointment = updatebyKeyValue('APPOINTMENT', 'ID_Appointment', $appointment_id, $data);
+            $updateAppointment = updatebyKeyValue('CUOCHEN', 'ID_CuocHen', $appointment_id, $data);
             echo $updateAppointment['query'];
 
             if($updateAppointment['status'])

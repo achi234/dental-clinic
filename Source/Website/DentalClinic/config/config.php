@@ -1,5 +1,5 @@
 <?php
-$serverName = ".";
+$serverName = "LAPTOP-DUIAC375\SQLEXPRESS";
 // $connectionOptions = array(
 //     "Database" => "QLPKNHAKHOA",
 //     "Uid" => "KIEUNHI",

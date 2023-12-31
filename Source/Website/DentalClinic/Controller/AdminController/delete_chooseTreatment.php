@@ -9,13 +9,13 @@
 
     $param = checkParam('id');
 
-    $treatment_id = checkParam('treatment_id');
+    //$treatment_id = checkParam('ID_DichVu');
     
 
     // echo $param;
     // echo $treatment_id;
 
-    $query = "DELETE FROM DICHVU WHERE ID_Select= '$param' AND ID_Treatment='$treatment_id' ";
+    $query = "DELETE FROM DICHVU WHERE ID_DichVu= '$param'";
    
     $result = sqlsrv_query($conn, $query);
 

@@ -5,29 +5,39 @@
     
     if(isset($_POST['btn-add-patient']))
     {
-        $phone = $_POST['patient_phone'];
-        $fullname = $_POST['patient_name'];
-        $address = $_POST['patient_address'];
-        $dob = $_POST['patient_dob'];
+        $id_hoso = $_POST['id_hoso'];
+        $sdtkh = $_POST['patient_phone'];
+        $sdtns = $_POST['dentist_phone'];
+        $ngaytaohoso = $_POST['ngay_tao'];
+        $phikham = $_POST['phi_kham'];
+        $id_dichvu = $_POST['id_dichvu'];
+        $tongtienthuoc = $_POST['tongtien_thuoc'];
+        $tongtien = $_POST['tongtien'];
 
-        if(!empty($fullname) && !empty($phone) &&
-        !empty($address)  && !empty($dob))
+        if(!empty($id_hoso) && !empty($sdtkh) &&
+        !empty($sdtns)  && !empty($ngaytaohoso) &&
+        !empty($phikham)  && !empty($id_dichvu) &&
+        !empty($tongtienthuoc)  && !empty($tongtien))
         {
-            $dataCustomer = [
-                'SDT_KH' => $phone,
-                'HoTen_KH'    => $fullname,
-                'NgaySinh' => $dob,
-                'DiaChi' => $address,
+            $dataPatient = [
+                'ID_HoSo' => $id_hoso,
+                'SDT_KH' => $sdtkh,
+                'SDT_NS' => $sdtns,
+                'NgayTaoHoSo' => $ngaytaohoso,
+                'PhiKham' => $phikham,
+                'ID_DichVu' => $id_dichvu,
+                'TongTienThuoc' => $tongtienthuoc,
+                'TongTien' => $tongtien,
             ];
 
-            $addpatient = insert('KHACHHANG', $dataCustomer);
+            $addpatient = insert('HOSOKHACHHANG', $dataPatient);
 
             echo $addpatient['query'];
 
             if($addpatient['status'])
             {
-                echo "You've added customer successfully!";
-                redirect('../../MainUI/AdminUI/patients.php', '', "You've added customer successfully!");
+                echo "You've added patient's profile successfully!";
+                redirect('../../MainUI/AdminUI/patients.php', '', "You've added patient's profile successfully!");
             }
             else
             {

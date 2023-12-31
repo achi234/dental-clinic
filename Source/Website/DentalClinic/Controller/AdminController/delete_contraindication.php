@@ -17,11 +17,11 @@
 
     if($result)
     {
-        redirect('../../MainUI/AdminUI/update_paitents.php?id='.$param, '', 'Delete contraindication successfully');
+        redirect('../../MainUI/AdminUI/update_patients.php?id='.$param, '', 'Delete contraindication successfully');
     }
     else
     {
-        redirect('../../MainUI/AdminUI/update_paitents.php?id='.$param, 'Cannot delete contraindication. Please try again!', '');
+        redirect('../../MainUI/AdminUI/update_patients.php?id='.$param, 'Cannot delete contraindication. Please try again!', '');
     }
 
 ?>

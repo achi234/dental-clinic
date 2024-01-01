@@ -5,7 +5,7 @@
     $pageSize = 20;
     $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $dentists = getByUserTypeWithPagination('TAIKHOAN', 'Dentist', $pageSize, $pageNumber, 'SDT');
+    $dentists = getByUserTypeWithPagination('TAIKHOAN', 'DENTIST', $pageSize, $pageNumber, 'SDT');
 ?>
 
 <body>
@@ -61,17 +61,17 @@
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $dentists = searchUserByKeyword('TAIKHOAN', $strKeyword, 'Dentist');
+                                    $dentists = searchUserByKeyword('TAIKHOAN', $strKeyword, 'DENTIST');
 
                                     if($dentists['status'] == 'No Data Found')
                                     {
                                         $_SESSION['status'] = $dentists['status'];
-                                        $dentists = getByUserTypeWithPagination('TAIKHOAN', 'Dentist', $pageSize, $pageNumber, 'SDT');
+                                        $dentists = getByUserTypeWithPagination('TAIKHOAN', 'DENTIST', $pageSize, $pageNumber, 'SDT');
                                     }
                                 }
                                 else
                                 {
-                                    $dentists = getByUserTypeWithPagination('TAIKHOAN', 'Dentist', $pageSize, $pageNumber, 'SDT');
+                                    $dentists = getByUserTypeWithPagination('TAIKHOAN', 'DENTIST', $pageSize, $pageNumber, 'SDT');
                                 }
                             ?>
                             <div class="container__heading-search">
@@ -87,13 +87,9 @@
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">Dentist ID</th> 
-                                        <th class="text-column" scope="col">USERNAME</th> 
+                                        <th class="text-column-emphasis" scope="col">Phone Number</th> 
                                         <th class="text-column" scope="col">FULL NAME</th> 
-                                        <th class="text-column" scope="col">Gender</th> 
-                                        <th class="text-column" scope="col">Phone Number</th> 
-                                        <th class="text-column" scope="col">Address</th>
-                                        <th class="text-column" scope="col">Status</th>  
+                                        <th class="text-column" scope="col">STATUS</th> 
                                         <th class="text-column" scope="col">ACTION</th> 
                                     </tr>
                                 </thead>
@@ -108,25 +104,14 @@
                                         {  
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $dentist['ID']?></th>
-                                        <th class="text-column" scope="row"><?php echo $dentist['Username']?></th>
-                                        <th class="text-column" scope="row"><?php echo $dentist['Fullname']?></th> 
-                                        <?php if($dentist['Gender'] = 'F')
-                                            {?>
-                                                <th class="text-column" scope="row">Female</th> 
-                                            <?php
-                                            }
-                                            else
-                                            {
-                                            ?>
-                                                <th class="text-column" scope="row">Male</th> 
-                                            <?php
-                                            }
+                                        <?php
+                                        //$dentist_phone = $dentists['data']['ID_Payment'];
+                                        $dentist_detail = getbyKeyValue('NHASI', 'SDT_NS', $dentist['SDT']);
                                         ?>
-                                        <th class="text-column" scope="row"><?php echo $dentist['PhoneNumber']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $dentist['CurrAddress']?></th>
-                                        <?php  $dentist_status = getbyKeyValue('ACCOUNT', 'Username', $dentist['Username']);
-                                            if($dentist_status['data']['isActive'] == 'Yes') 
+                                        <th class="text-column-emphasis" scope="row"><?php echo $dentist_detail['data']['SDT_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $dentist_detail['data']['HoTen_NS']?></th> 
+                                        <?php  $dentist_status = getbyKeyValue('TAIKHOAN', 'SDT', $dentist['SDT']);
+                                            if($dentist_status['data']['isActive'] == 'YES') 
                                         {?>
                                             <th class="text-column" scope="row">
                                                 <span class="badge badge-success">Active</span>

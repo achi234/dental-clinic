@@ -1,7 +1,7 @@
 <?php
 require_once('./partials/_head.php');
-$dentists = getIdbyUserType('TAIKHOAN', 'Dentist');
-//$dentists = getAll('NHASI');
+//$dentists = getIdbyUserType('TAIKHOAN', 'Dentist');
+$dentists = getAll('NHASI');
 $patients = getAll('KHACHHANG');
 //$rooms = getAll('ROOM');
 ?>
@@ -43,7 +43,7 @@ $patients = getAll('KHACHHANG');
                                                     {  
                                                     ?>
                                                 <option value="<?php echo $dentist['SDT_NS']?>" class=""><?php echo $dentist['HoTen_NS'];
-                                                                                                              echo " (SDT_NS = {$dentist['SDT']})" ?></option>
+                                                                                                              echo " (SDT_NS = {$dentist['SDT_NS']})" ?></option>
                                                 <?php
                                                     }
                                                 }
@@ -58,7 +58,7 @@ $patients = getAll('KHACHHANG');
                                         </div>
 
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Paitent Id</label>
+                                            <label for="" class="form-col__label">Patient Id</label>
                                             <input type="number" name="paitent_id" class="form-control">
                                             <!-- <select name="paitent_id" id="ptId" class="form-cotrol" onchange="getPaintent(this.value)"> -->
                                             <?php

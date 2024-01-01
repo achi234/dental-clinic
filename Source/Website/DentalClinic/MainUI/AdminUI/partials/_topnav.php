@@ -10,8 +10,8 @@
         <li class="navbar-user">
             <img src="../../assets/image/user_avatar.png" alt="" class="navbar-user-img">
             <span class="navbar-user-name"><?php 
-            $info = getbyKeyValue('USER_DENTAL','ID_User', $_SESSION['auth_user']['id']);
-            echo $info['data']['Fullname']?></span>
+            $info = getbyKeyValue('TAIKHOAN','SDT', $_SESSION['sdt']['vaitro']);
+            //echo $info['data']['sdt']?></span>
 
             <ul class="navbar-user-menu">
                 <li class="navbar-nav__item">

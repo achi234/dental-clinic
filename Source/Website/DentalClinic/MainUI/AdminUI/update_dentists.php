@@ -1,8 +1,9 @@
 <?php
 require_once('./partials/_head.php');
 
-$dentist_id = $_GET['id'];
-$dentist = getbyKeyValue('USER_DENTAL', 'ID_User', $dentist_id);
+$dentist_phone = $_GET['id'];
+$dentist = getbyKeyValue('TAIKHOAN', 'SDT', $dentist_phone);
+$dentist_detail = getbyKeyValue('NHASI', 'SDT_NS', $dentist_phone);
 ?>
 
 <body>
@@ -30,54 +31,20 @@ $dentist = getbyKeyValue('USER_DENTAL', 'ID_User', $dentist_id);
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
-                                        <input type="hidden" name="dentist_id" value="<?php echo $dentist['data']['ID_User']; ?>">
+                                        <input type="hidden" name="dentist_phone" value="<?php echo $dentist['data']['SDT']; ?>">
                                             <label for="" class="form-col__label">Dentist Name</label>
-                                            <input type="text" name="dentist_name" class="form-control" value="<?php echo $dentist['data']['Fullname']?>">
-                                        </div>
-                                        <div class="form-col">
-                                            <label for="dentist_gender" class="form-col__label">Gender</label>
-                                            <select name="dentist_gender" id="ptGender" class="form-cotrol">
-                                                <?php if($dentist['data']['Gender'] == 'F')
-                                                { ?>
-                                                    <option value="M" >Male</option>
-                                                    <option value="F" selected>Female</option>
-                                                <?php 
-                                                } 
-                                                else
-                                                { ?>
-                                                    <option value="M" selected>Male</option>
-                                                    <option value="F" >Female</option>
-                                                <?php 
-                                                } 
-                                                ?> 
-                                            </select>
+                                            <input type="text" name="dentist_name" class="form-control" value="<?php echo $dentist_detail['data']['HoTen_NS']?>">
                                         </div>
 
                                     </div>
                                 </div>
-
                                 <hr class="navbar__divider">
 
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Dentist Address</label>
-                                            <input type="text" name="dentist_address" class="form-control" value="<?php echo $dentist['data']['CurrAddress']?>">
-                                        </div>
-                                        <div class="form-col">
-                                            <label for="" class="form-col__label">Phone Number</label>
-                                            <input type="text" name="dentist_phone" class="form-control" value="<?php echo $dentist['data']['PhoneNumber']?>">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <hr class="navbar__divider">
-
-                                <div class="form-row">
-                                    <div class="form-row__flex">
-                                        <div class="form-col">
-                                            <label for="" class="form-col__label">Username</label>
-                                            <input type="text" name="user_name" class="form-control" value="<?php echo $dentist['data']['Username']?>" readonly>
+                                            <label for="" class="form-col__label">Phone</label>
+                                            <input type="text" name="dentist_phone" class="form-control" value="<?php echo $dentist['data']['SDT']?>" readonly>
                                         </div>
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Password</label>

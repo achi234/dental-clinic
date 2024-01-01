@@ -5,7 +5,7 @@ require_once('./partials/_head.php');
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$staffs = getByUserTypeWithPagination('TAIKHOAN', 'Staff', $pageSize, $pageNumber, 'SDT');
+$staffs = getByUserTypeWithPagination('TAIKHOAN', 'STAFF', $pageSize, $pageNumber, 'SDT');
 ?>
 
 <body>
@@ -89,12 +89,8 @@ $staffs = getByUserTypeWithPagination('TAIKHOAN', 'Staff', $pageSize, $pageNumbe
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">ID</th> 
-                                        <th class="text-column" scope="col">Username</th> 
+                                        <th class="text-column-emphasis" scope="col">Phone</th> 
                                         <th class="text-column" scope="col">FULL NAME</th> 
-                                        <th class="text-column" scope="col">Gender</th> 
-                                        <th class="text-column" scope="col">Phone Number</th> 
-                                        <th class="text-column" scope="col">Address</th> 
                                         <th class="text-column" scope="col">Status</th>  
                                         <th class="text-column" scope="col">ACTION</th> 
                                     </tr>
@@ -110,25 +106,13 @@ $staffs = getByUserTypeWithPagination('TAIKHOAN', 'Staff', $pageSize, $pageNumbe
                                         {  
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $staff['ID']?></th>
-                                        <th class="text-column" scope="row"><?php echo $staff['Username']?></th>
-                                        <th class="text-column" scope="row"><?php echo $staff['Fullname']?></th> 
-                                        <?php if($staff['Gender'] == 'F')
-                                            {?>
-                                                <th class="text-column" scope="row">Female</th> 
-                                            <?php
-                                            }
-                                            else
-                                            {
-                                            ?>
-                                                <th class="text-column" scope="row">Male</th> 
-                                            <?php
-                                            }
+                                        <?php
+                                        $staff_detail = getbyKeyValue('NHANVIEN', 'SDT_NV', $staff['SDT']);
                                         ?>
-                                        <th class="text-column" scope="row"><?php echo $staff['PhoneNumber']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $staff['CurrAddress']?></th>
-                                        <?php  $staff_status = getbyKeyValue('ACCOUNT', 'Username', $staff['Username']);
-                                            if($staff_status['data']['isActive'] == 'Yes') 
+                                        <th class="text-column-emphasis" scope="row"><?php echo $staff_detail['data']['SDT_NV']?></th>
+                                        <th class="text-column" scope="row"><?php echo $staff_detail['data']['HoTen_NV']?></th> 
+                                        <?php  $staff_status = getbyKeyValue('TAIKHOAN', 'SDT', $staff['SDT']);
+                                            if($staff_status['data']['isActive'] == 'YES') 
                                         {?>
                                             <th class="text-column" scope="row">
                                                 <span class="badge badge-success">Active</span>

@@ -41,7 +41,7 @@
                     
                     $_SESSION['authenticated'] = true;
 
-                    $_SESSION['auth_user'] = 
+                    $_SESSION['sdt'] = 
                     [
                         'sdt' => $row['SDT'],
                         /*'hoten_kh' => $row['HoTen_KH'],
@@ -50,19 +50,19 @@
                         'vaitro' => $row['VaiTro'],
                     ];
             
-                    switch($_SESSION['auth_user']['role'])
+                    switch($_SESSION['sdt']['vaitro'])
                     {
-                        case 'Admin':
+                        case 'ADMINISTRATOR':
                             header("location: ../MainUI/AdminUI/dashboard.php");
                             exit(0);
-                        case "Dentist":
+                        case "DENTIST":
                             header("location: ../MainUI/DentistUI/dashboard.php");
                             exit(0);
-                        case "Staff":
+                        case "STAFF":
                             header("location: ../MainUI/StaffUI/dashboard.php");
                             exit(0);
                         default:
-                            echo $_SESSION['auth_user']['role'];
+                            echo $_SESSION['sdt']['vaitro'];
                             $_SESSION['status'] = 'Error when directing...Please try again!';
                             header("location: ../login.php");
                             exit(0);

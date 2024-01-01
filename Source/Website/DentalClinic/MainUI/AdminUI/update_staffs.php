@@ -6,8 +6,9 @@
 require_once('./partials/_head.php');
 // require_once('./partials/_analytics.php');
 
-$staff_id = $_GET['id'];
-$staff = getbyKeyValue('USER_DENTAL', 'ID_User', $staff_id);
+$staff_phone = $_GET['id'];
+$staff = getbyKeyValue('TAIKHOAN', 'SDT', $staff_phone);
+$staff_detail = getbyKeyValue('NHANVIEN', 'SDT_NV', $staff_phone);
 ?>
 
 <body>
@@ -32,57 +33,23 @@ $staff = getbyKeyValue('USER_DENTAL', 'ID_User', $staff_id);
                         
                         <div class="container-recent__body card__body-form">
                             <form method="POST" action="../../Controller/AdminController/update_staff.php">
-                                <div class="form-row">
+                            <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
-                                        <input type="hidden" name="staff_id" value="<?php echo $staff['data']['ID_User']; ?>">
+                                        <input type="hidden" name="staff_phone" value="<?php echo $staff['data']['SDT']; ?>">
                                             <label for="" class="form-col__label">Staff Name</label>
-                                            <input type="text" name="staff_name" class="form-control" value="<?php echo $staff['data']['Fullname']?>">
-                                        </div>
-                                        <div class="form-col">
-                                            <label for="staff_gender" class="form-col__label">Gender</label>
-                                            <select name="staff_gender" id="ptGender" class="form-cotrol">
-                                                <?php if($staff['data']['Gender'] == 'F')
-                                                { ?>
-                                                    <option value="M" >Male</option>
-                                                    <option value="F" selected>Female</option>
-                                                <?php 
-                                                } 
-                                                else
-                                                { ?>
-                                                    <option value="M" selected>Male</option>
-                                                    <option value="F" >Female</option>
-                                                <?php 
-                                                } 
-                                                ?> 
-                                            </select>
+                                            <input type="text" name="staff_name" class="form-control" value="<?php echo $staff_detail['data']['HoTen_NV']?>">
                                         </div>
 
                                     </div>
                                 </div>
-
                                 <hr class="navbar__divider">
 
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Staff Address</label>
-                                            <input type="text" name="staff_address" class="form-control" value="<?php echo $staff['data']['CurrAddress']?>">
-                                        </div>
-                                        <div class="form-col">
-                                            <label for="" class="form-col__label">Staff Phone Number</label>
-                                            <input type="text" name="staff_phone" class="form-control" value="<?php echo $staff['data']['PhoneNumber']?>">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <hr class="navbar__divider">
-
-                                <div class="form-row">
-                                    <div class="form-row__flex">
-                                        <div class="form-col">
-                                            <label for="" class="form-col__label">Username</label>
-                                            <input type="text" name="user_name" class="form-control" value="<?php echo $staff['data']['Username']?>" readonly>
+                                            <label for="" class="form-col__label">Phone</label>
+                                            <input type="text" name="staff_phone" class="form-control" value="<?php echo $staff['data']['SDT']?>" readonly>
                                         </div>
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Password</label>

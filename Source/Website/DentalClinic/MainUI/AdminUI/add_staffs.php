@@ -32,13 +32,6 @@ require_once('./partials/_head.php');
                                             <label for="" class="form-col__label">Staff Name</label>
                                             <input type="text" name="staff_name" placeholder="Enter your fullname" class="form-control" value>
                                         </div>
-                                        <div class="form-col">
-                                            <label for="" class="form-col__label">Gender</label>
-                                            <select name="staff_gender" id="staffGender" class="form-cotrol">
-                                                <option value="M">Male</option>
-                                                <option value="F">Female</option>
-                                            </select>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -46,13 +39,10 @@ require_once('./partials/_head.php');
 
                                 <div class="form-row">
                                     <div class="form-row__flex">
-                                        <div class="form-col">
-                                            <label for="" class="form-col__label">Staff Address</label>
-                                            <input type="text" name="staff_address" placeholder="Enter your address" class="form-control">
-                                        </div>
+
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Staff Phone Number</label>
-                                            <input type="text" name="staff_phone" placeholder="Enter your phone number" class="form-control">
+                                            <input type="text" name="staff_phone" placeholder="Enter phone number" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -61,10 +51,6 @@ require_once('./partials/_head.php');
 
                                 <div class="form-row">
                                     <div class="form-row__flex">
-                                        <div class="form-col">
-                                            <label for="" class="form-col__label">Username</label>
-                                            <input type="text" name="user_name" placeholder="Enter your username" class="form-control">
-                                        </div>
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Password</label>
                                             <input type="text" name="password" placeholder="Enter your password" class="form-control">

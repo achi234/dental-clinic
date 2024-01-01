@@ -1,16 +1,16 @@
 <?php
 $serverName = "LAPTOP-DUIAC375\SQLEXPRESS";
-// $connectionOptions = array(
-//     "Database" => "QLPKNHAKHOA",
-//     "Uid" => "KIEUNHI",
-//     "PWD" => "KIEUNHI"
-// );
-
 $connectionOptions = array(
-    "Database" => "QLPHONGKHAMNHAKHOA",
-    "Uid" => "ADMINISTRATOR",
-    "PWD" => "ADMIN123"
-);
+     "Database" => "QLPHONGKHAMNHAKHOA",
+     "Uid" => "KIEUNHI",
+     "PWD" => "KIEUNHI"
+ );
+
+//$connectionOptions = array(
+//    "Database" => "QLPHONGKHAMNHAKHOA",
+//    "Uid" => "ADMINISTRATOR",
+//    "PWD" => "ADMINISTRATOR"
+//);
 
 // Establishes the connection
 $conn = sqlsrv_connect($serverName, $connectionOptions);

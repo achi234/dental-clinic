@@ -84,8 +84,7 @@ $appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_Cuoc
                                     <tr>
                                         <th class="text-column-emphasis" scope="col">Id</th> 
                                         <th class="text-column" scope="col">Dentist</th> 
-                                        <th class="text-column" scope="col">Customer</th> 
-                                        <th class="text-column" scope="col">Room</th> 
+                                        <th class="text-column" scope="col">Customer</th>
                                         <th class="text-column" scope="col">Date</th> 
                                         <th class="text-column" scope="col">Time</th> 
                                         <th class="" scope="col"></th> 
@@ -102,22 +101,22 @@ $appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_Cuoc
                                     ?>
                                         <?php  foreach($appointments['data'] as $appointment) 
                                         {  
-                                            $dentist = getbyKeyValue('USER_DENTAL','ID_User', $appointment['ID_Dentist']);
-                                            $customer = getbyKeyValue('CUSTOMER','ID_Customer', $appointment['ID_Customer']);
+                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $appointment['SDT_NS']);
+                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $appointment['SDT_KH']);
                                         ?>
                                     <tr>
                                         <th class="text-column-emphasis" scope="row"><?php echo $appointment['ID_CuocHen']?></th>
-                                        <th class="text-column" scope="row"><?php echo $dentist['data']['Fullname']?></th>
-                                        <th class="text-column" scope="row"><?php echo $customer['data']['Fullname']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $appointment['ID_Room']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
                                         <?php
-                                            $appt_date = $appointment['Date_Appt']->format('d-m-Y');
-                                            $appt_time = $appointment['Time_Appt']->format('H:i');
+                                            $appt_date = $appointment['Ngay']->format('d-m-Y');
+                                            $appt_time = $appointment['Gio']->format('H:i');
                                         ?>
                                         <th class="text-column" scope="row"><?php echo $appt_date?></th>   
                                         <th class="text-column" scope="row"><?php echo $appt_time?></th>                                        
                                         <th class="text-column" scope="row">
-                                        <?php if($appointment['Status_Appt'] == 'New') 
+                                        
+                                        <?php /*if($appointment['Status_Appt'] == 'New') 
                                         {?>
                                             <th class="text-column" scope="row">
                                                 <span class="badge badge-success">New</span>
@@ -132,7 +131,7 @@ $appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_Cuoc
                                             </th> 
                                             <?php
                                             }
-                                        ?>
+                                        */?> 
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
                                                 <a href="../../Controller/AdminController/delete_appointment.php?id=<?php  echo $appointment['ID_CuocHen']?>" 

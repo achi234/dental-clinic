@@ -14,7 +14,7 @@
             $dataAccount = [
                 'SDT'  => $phone,
                 'MatKhau' => $password,
-                'VaiTro'    => 'Dentist'
+                'VaiTro'    => 'DENTIST'
             ];
 
             $dataUser = [

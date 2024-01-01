@@ -1,7 +1,7 @@
 <?php
 require_once('./partials/_head.php');
 $select_id = $_GET['id'];
-$treatments = getAll('TREATMENT');
+$treatments = getAll('DICHVU');
 ?>
 
 <body>

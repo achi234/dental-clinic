@@ -18,12 +18,12 @@
             <div class="authen-form__form">
                 <form method="post" action="Controller/checklogin.php">
                     <div class="authen-form__group">
-                        <p class="authen-form__title">Username</p>
-                        <input type="text" class="authen-form__input" placeholder="Enter your username" name="username">
+                        <p class="authen-form__title">Phone Number</p>
+                        <input type="text" class="authen-form__input" placeholder="Enter your phone number" name="sdt">
                     </div>
                     <div class="authen-form__group">
                         <p class="authen-form__title">Password</p>
-                        <input type="password" class="authen-form__input" placeholder="Enter your password" name="password">
+                        <input type="password" class="authen-form__input" placeholder="Enter your password" name="matkhau">
                     </div>
             </div>
     

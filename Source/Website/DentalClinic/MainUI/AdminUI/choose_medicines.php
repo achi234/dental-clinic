@@ -1,11 +1,11 @@
 <?php
-    $page_title = "Smile - Medicine List";
+    $page_title = "Smile - Choose Medicines";
     require_once('./partials/_head.php');
 
     $pageSize = 20;
     $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $medicines = getAllWithPagination('THUOC', $pageSize, $pageNumber, 'ID_Thuoc');
+    $medicines = getAllWithPagination('KEDON', $pageSize, $pageNumber, 'ID_Thuoc');
 ?>
 
 <body>
@@ -61,11 +61,11 @@
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $medicines = searchByKeyword('THUOC', $strKeyword);
+                                    $medicines = searchByKeyword('KEDON', $strKeyword);
                                 }
                                 else
                                 {
-                                    $medicines = getAllWithPagination('THUOC', $pageSize, $pageNumber, 'ID_Thuoc');
+                                    $medicines = getAllWithPagination('KEDON', $pageSize, $pageNumber, 'ID_Thuoc');
                                 }
                             ?>
                             <div class="container__heading-search">

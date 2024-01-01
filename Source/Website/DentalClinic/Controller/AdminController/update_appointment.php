@@ -29,7 +29,7 @@
                 exit(0);
             }
 
-            $appt_customer = $checkCustomer['data']['ID_Customer'];
+            $appt_customer = $checkCustomer['data']['SDT_KH'];
 
             $formattedDate = date('Y-m-d', strtotime($appt_date));
             $formattedTime = date('H:i:s', strtotime($appt_time));

@@ -27,7 +27,7 @@
             }
             else
             {
-                $dentist = getbyKeyValue('TAIKHOAN', 'SDT', $sdt);
+                $dentist = getbyKeyValue('TAIKHOAN', 'SDT', $dentist_phone);
                 $password = $dentist['data']['MatKhau'];
             }
 
@@ -37,11 +37,10 @@
 
             $dataUser = [
                 'HoTen_NS'    => $dentist_name,
-                'SDT_NS' => $dentist_phone,
             ];
 
-            $updateAccount = updatebyKeyValue('TAIKHOAN', 'SDT', $sdt, $dataAccount);
-            $updateUser = updatebyKeyValue('NHASI', 'SDT_NS', $sdtns, $dataUser);
+            $updateAccount = updatebyKeyValue('TAIKHOAN', 'SDT', $dentist_phone, $dataAccount);
+            $updateUser = updatebyKeyValue('NHASI', 'SDT_NS', $dentist_phone, $dataUser);
 
             // echo $updateAccount['query'];
             // echo '<br>';
@@ -53,7 +52,7 @@
             }
             else
             {
-                redirect('../../MainUI/AdminUI/update_dentists.php?id='.$dentist_id, 'Something went wrong! Please enter again...', "");
+                redirect('../../MainUI/AdminUI/update_dentists.php?id='.$dentist_phone, 'Something went wrong! Please enter again...', "");
             }
         }
     }

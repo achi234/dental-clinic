@@ -114,6 +114,11 @@
  
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
+                                                <a href="../../Controller/AdminController/delete_medicine.php?id=<?php  echo $medicine['ID_THUOC']?>" 
+                                                    class="btn-control btn-control-delete">
+                                                        <i class="fa-solid fa-trash-can btn-control-icon"></i>
+                                                        Delete
+                                                </a>
                                                 <a href="update_medicines.php?id=<?php  echo $medicine['ID_THUOC']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-pills btn-control-icon"></i>
                                                     Update

@@ -5,7 +5,7 @@
     $pageSize = 20;
     $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $medicines = getAllWithPagination('THUOC', $pageSize, $pageNumber, 'ID_Thuoc');
+    $medicines = getAllWithPagination('THUOC', $pageSize, $pageNumber, 'ID_THUOC');
 ?>
 
 <body>
@@ -65,7 +65,7 @@
                                 }
                                 else
                                 {
-                                    $medicines = getAllWithPagination('THUOC', $pageSize, $pageNumber, 'ID_Thuoc');
+                                    $medicines = getAllWithPagination('THUOC', $pageSize, $pageNumber, 'ID_THUOC');
                                 }
                             ?>
                             <div class="container__heading-search">
@@ -84,8 +84,12 @@
                                         
                                         <th class="text-column-emphasis" scope="col">Medicine Id</th> 
                                         <th class="text-column" scope="col">Medicine Name</th> 
+                                        <th class="text-column" scope="col">DONVITINH</th> 
+                                        <th class="text-column" scope="col">CHIDINH</th> 
+                                        <th class="text-column" scope="col">SOLUONGTON</th> 
+                                        <th class="text-column" scope="col">NGAYHETHAN</th> 
                                         <th class="text-column" scope="col">Price ($)</th> 
-                                        <th class="text-column" scope="col">Action</th> 
+                                        <th class="text-column" scope="col">ACTION</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
@@ -100,13 +104,17 @@
                                         {  
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $medicine['ID']?></th>
-                                        <th class="text-column" scope="row"><?php echo $medicine['MedicineName']?></th>
-                                        <th class="text-column" scope="row"><?php echo $medicine['Price']?></th> 
+                                        <th class="text-column-emphasis" scope="row"><?php echo $medicine['ID_THUOC']?></th>
+                                        <th class="text-column" scope="row"><?php echo $medicine['TenThuoc']?></th>
+                                        <th class="text-column" scope="row"><?php echo $medicine['DONVITINH']?></th>
+                                        <th class="text-column" scope="row"><?php echo $medicine['CHIDINH']?></th>
+                                        <th class="text-column" scope="row"><?php echo $medicine['SOLUONGTON']?></th>
+                                        <th class="text-column" scope="row"><?php echo $medicine['NGAYHETHAN']->format('d-m-Y')?></th>
+                                        <th class="text-column" scope="row"><?php echo $medicine['GIATHUOC']?></th> 
  
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="update_medicines.php?id=<?php  echo $medicine['ID_Thuoc']?>" class="btn-control btn-control-edit">
+                                                <a href="update_medicines.php?id=<?php  echo $medicine['ID_THUOC']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-pills btn-control-icon"></i>
                                                     Update
                                                 </a>

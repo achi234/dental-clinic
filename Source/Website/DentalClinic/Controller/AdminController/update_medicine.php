@@ -22,17 +22,19 @@
             $ngayhethan = $_POST['ngayhethan'];
             $medicine_price = $_POST['medicine_price'];
 
+            $formattedNHH = date('Y-m-d', strtotime($ngayhethan));
+
             $data = [
                 'TenThuoc' => $medicine_name,
                 'DONVITINH' => $donvitinh,
                 'CHIDINH' => $chidinh,
-                'NGAYHETHAN' => $ngayhethan,
+                'NGAYHETHAN' => $formattedNHH,
                 'SOLUONGTON' => $soluongton,
                 'GIATHUOC' => $medicine_price,
             ];
 
 
-            $updateMedicine = updatebyKeyValue('THUOC', 'ID_Thuoc', $medicine_id, $data);
+            $updateMedicine = updatebyKeyValue('THUOC', 'ID_THUOC', $medicine_id, $data);
 
 
             if($updateMedicine['status'])

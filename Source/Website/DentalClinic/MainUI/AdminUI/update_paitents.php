@@ -3,8 +3,6 @@ require_once('./partials/_head.php');
 
 $paitent_id = $_GET['id'];
 $paitent = getbyKeyValue('CUSTOMER', 'ID_Customer', $paitent_id);
-$tooth_problems = getAllByKeyValue('TOOTH_PROBLEM', 'ID_Customer', $paitent_id);
-$contraindications = getAllByKeyValue('CONTRAINDICATION', 'ID_Customer', $paitent_id);
 $selects = getAllByKeyValue('SELECT_TREATMENT', 'ID_Customer', $paitent_id);
 ?>
 

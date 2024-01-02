@@ -5,7 +5,6 @@
     
     if(isset($_POST['btn-add-medicine']))
     {
-        $medid = $_POST['ID_Thuoc'];
         $medname = $_POST['TenThuoc'];
         $donvitinh = $_POST['DONVITINH'];
         $chidinh = $_POST['CHIDINH'];
@@ -13,10 +12,10 @@
         $ngayhethan = $_POST['NGAYHETHAN'];
         $price = $_POST['GIATHUOC'];
 
-        if(!empty($medname) && !empty($price) && $price > 0)
+        if(!empty($medname) && !empty($donvitinh) && !empty($slton) 
+        && !empty($slton) && !empty($price) && $price > 0)
         {
             $dataMedicine = [
-                'ID_Thuoc' => $medid,
                 'TenThuoc' => $medname,
                 'DONVITINH' => $donvitinh,
                 'CHIDINH' => $chidinh,
@@ -29,7 +28,7 @@
 
             echo $addMedicine['query'];
 
-            if($addmedicine['status'])
+            if($addMedicine['status'])
             {
                 echo "You've added medicine successfully!";
                 redirect('../../MainUI/AdminUI/medicines.php', '', "You've added medicine successfully!");

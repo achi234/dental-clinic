@@ -29,13 +29,29 @@ require_once('./partials/_head.php');
                                     <div class="form-row__flex">
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Medicine Name</label>
-                                            <input type="text" name="medicine_name" placeholder="Enter medicine name" class="form-control">
+                                            <input type="text" name="TenThuoc" placeholder="Enter medicine name" class="form-control">
                                         </div>
 
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Medicine Price ($)</label>
-                                            <input type="number" name="medicine_price" placeholder="Enter medicine price" class="form-control">
+                                            <label for="" class="form-col__label">Price ($)</label>
+                                            <input type="number" name="GIATHUOC" placeholder="Enter medicine price" class="form-control">
                                         </div>
+                                    </div>
+                                    <div class="form-col">
+                                            <label for="" class="form-col__label">DONVITINH</label>
+                                            <input type="text" name="DONVITINH" placeholder="Enter..." class="form-control">
+                                    </div>
+                                    <div class="form-col">
+                                            <label for="" class="form-col__label">CHIDINH</label>
+                                            <input type="text" name="CHIDINH" placeholder="Enter..." class="form-control">
+                                    </div>
+                                    <div class="form-col">
+                                            <label for="" class="form-col__label">SOLUONGTON</label>
+                                            <input type="text" name="SOLUONGTON" placeholder="Enter..." class="form-control">
+                                    </div>
+                                    <div class="form-col">
+                                            <label for="" class="form-col__label">NGAYHETHAN</label>
+                                            <input type="date" name="NGAYHETHAN" placeholder="Enter..." class="form-control">
                                     </div>
                                 </div>
 

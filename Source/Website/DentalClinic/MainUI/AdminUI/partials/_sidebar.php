@@ -19,7 +19,7 @@
                 </li>
 
                 <li class="navbar-nav__item">
-                    <a href="paitents.php" class="nav-item__link text-primary">
+                    <a href="patients.php" class="nav-item__link text-primary">
                         <i class="fa-solid fa-bed-pulse nav-item__icon"></i>
                         <p class="nav-item__text">Patients</p>
                     </a>

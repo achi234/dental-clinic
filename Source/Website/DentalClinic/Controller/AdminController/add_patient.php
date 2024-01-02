@@ -5,29 +5,25 @@
     
     if(isset($_POST['btn-add-patient']))
     {
-        $id_hoso = $_POST['id_hoso'];
-        $sdtkh = $_POST['patient_phone'];
-        $sdtns = $_POST['dentist_phone'];
+        $customer_phone = $_POST['customer_phone'];
+        $dentist_phone = $_POST['dentist_phone'];
         $ngaytaohoso = $_POST['ngay_tao'];
         $phikham = $_POST['phi_kham'];
         $id_dichvu = $_POST['id_dichvu'];
-        $tongtienthuoc = $_POST['tongtien_thuoc'];
-        $tongtien = $_POST['tongtien'];
+        //$tongtienthuoc = $_POST['tongtien_thuoc'];
+        //$tongtien = $_POST['tongtien'];
 
-        if(!empty($id_hoso) && !empty($sdtkh) &&
-        !empty($sdtns)  && !empty($ngaytaohoso) &&
-        !empty($phikham)  && !empty($id_dichvu) &&
-        !empty($tongtienthuoc)  && !empty($tongtien))
+        if(!empty($customer_phone) && !empty($dentist_phone)  && !empty($phikham)
+        && !empty($ngaytaohoso) && !empty($id_dichvu))
         {
             $dataPatient = [
-                'ID_HoSo' => $id_hoso,
-                'SDT_KH' => $sdtkh,
-                'SDT_NS' => $sdtns,
+                'SDT_KH' => $customer_phone,
+                'SDT_NS' => $dentist_phone,
                 'NgayTaoHoSo' => $ngaytaohoso,
                 'PhiKham' => $phikham,
                 'ID_DichVu' => $id_dichvu,
-                'TongTienThuoc' => $tongtienthuoc,
-                'TongTien' => $tongtien,
+                //'TongTienThuoc' => $tongtienthuoc,
+                //'TongTien' => $tongtien,
             ];
 
             $addpatient = insert('HOSOKHACHHANG', $dataPatient);
@@ -36,7 +32,7 @@
 
             if($addpatient['status'])
             {
-                echo "You've added patient's profile successfully!";
+                echo "You've added a new patient successfully!";
                 redirect('../../MainUI/AdminUI/patients.php', '', "You've added patient's profile successfully!");
             }
             else

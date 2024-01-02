@@ -35,7 +35,7 @@
             else
             {
                 echo "Something went wrong! Please enter again...";
-                redirect('../../MainUI/AdminUI/add_medicines.php', 'Something went wrong! Please enter again...', "");
+                redirect('../../MainUI/AdminUI/add_chooseMed.php', 'Something went wrong! Please enter again...', "");
             }                            
         }
         else

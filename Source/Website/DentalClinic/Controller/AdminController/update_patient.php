@@ -5,7 +5,7 @@
     session_start();
     if(isset($_POST['btn-updatePatient']))
     {
-        $id_hoso = $_POST['id_hoso'];
+        $patient_id = $_POST['patient_id'];
         if(empty($_POST['customer_phone']) || empty($_POST['dentist_phone']) || empty($_POST['date_created']) || empty($_POST['id_dichvu'])
           || empty($_POST['phi_kham']) || empty($_POST['tongtien_thuoc']) || empty($_POST['tongtien']))
         {

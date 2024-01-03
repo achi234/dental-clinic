@@ -93,6 +93,8 @@ end
 -- Nội dung: Tổng chi phí thanh toán cho 1 hồ sơ bệnh nhân phải bằng 
 -- tổng chi phí dịch vụ, phí khám bệnh và thuốc được kê. 
 -- TongTien(HSKH) = PhiDV + PhiKham + TongTienThuoc
+drop trigger tg_add_TongTienThuoc_HOSO
+
 create trigger tg_add_TongTienThuoc_HOSO
 on HOSOKHACHHANG
 after insert
@@ -111,7 +113,7 @@ begin
 	from inserted
 
 	-- TongTienThuoc(HSKH) = SUM(ThanhTien(KEDON))
-	select @tong_tien_thuoc = isnull(sum(ThanhTien), 0)
+	select @tong_tien_thuoc = isnull(sum(THANHTIEN), 0)
 	from KEDON where ID_HOSO = @id_hoso
 
 	update HOSOKHACHHANG

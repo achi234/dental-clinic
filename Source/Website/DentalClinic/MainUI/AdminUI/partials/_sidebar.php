@@ -54,9 +54,9 @@
                 </li>
 
                 <li class="navbar-nav__item">
-                    <a href="invoices.php" class="nav-item__link text-primary">
+                    <a href="choose_medicines.php" class="nav-item__link text-primary">
                         <i class="fa-solid fa-file-invoice nav-item__icon"></i>
-                        <p class="nav-item__text">Invoices</p>
+                        <p class="nav-item__text">Prescription</p>
                     </a>
                 </li>
             </ul>

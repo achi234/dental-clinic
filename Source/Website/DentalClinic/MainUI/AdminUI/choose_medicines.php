@@ -5,7 +5,8 @@
     $pageSize = 20;
     $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $medicines = getAllWithPagination('KEDON', $pageSize, $pageNumber, 'ID_Thuoc');
+    $medicines = getAllWithPagination('KEDON', $pageSize, $pageNumber, 'ID_THUOC');
+    $patients = getAllWithPagination('KEDON', $pageSize, $pageNumber, 'ID_HOSO');
 ?>
 
 <body>
@@ -27,7 +28,7 @@
                         <div class="container-recent__heading heading__button">
                             <a href="add_medicines.php" class="btn-control btn-control-add">
                                 <i class="fa-solid fa-pills btn-control-icon"></i>
-                                Add new medicine
+                                Add new prescription
                             </a>
                             <div class="pagination">
                                 <?php
@@ -65,7 +66,7 @@
                                 }
                                 else
                                 {
-                                    $medicines = getAllWithPagination('KEDON', $pageSize, $pageNumber, 'ID_Thuoc');
+                                    $medicines = getAllWithPagination('KEDON', $pageSize, $pageNumber, 'ID_THUOC');
                                 }
                             ?>
                             <div class="container__heading-search">
@@ -81,14 +82,14 @@
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                        
-                                        <th class="text-column-emphasis" scope="col">Medicine Id</th> 
-                                        <th class="text-column" scope="col">Medicine Name</th> 
+                                        <th class="text-column-emphasis" scope="col">Patient ID</th> 
+                                        <th class="text-column-emphasis" scope="col">Medicine ID</th>
+                                        <th class="text-column" scope="col">Amount</th>  
                                         <th class="text-column" scope="col">Price ($)</th> 
+                                        <th class="text-column" scope="col">Total</th> 
                                         <th class="text-column" scope="col">Action</th> 
                                     </tr>
                                 </thead>
-                                <tbody class="table-body">
                                 <tbody class="table-body">
                                 <?php
                                     $count = sizeof($medicines['data']);
@@ -100,13 +101,15 @@
                                         {  
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $medicine['ID']?></th>
-                                        <th class="text-column" scope="row"><?php echo $medicine['MedicineName']?></th>
-                                        <th class="text-column" scope="row"><?php echo $medicine['Price']?></th> 
+                                        <th class="text-column-emphasis" scope="row"><?php echo $medicine['ID_HOSO']?></th>
+                                        <th class="text-column-emphasis" scope="row"><?php echo $medicine['ID_THUOC']?></th>
+                                        <th class="text-column" scope="row"><?php echo $medicine['SOLUONG']?></th>
+                                        <th class="text-column" scope="row"><?php echo $medicine['DONGIA']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $medicine['THANHTIEN']?></th> 
  
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="update_medicines.php?id=<?php  echo $medicine['ID_Thuoc']?>" class="btn-control btn-control-edit">
+                                                <a href="update_medicines.php?id=<?php  echo $medicine['ID_THUOC']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-pills btn-control-icon"></i>
                                                     Update
                                                 </a>

@@ -95,7 +95,6 @@
                                         <th class="text-column" scope="col">Service_ID</th> 
                                         <th class="text-column" scope="col">Medincine Fee</th> 
                                         <th class="text-column" scope="col">Total</th> 
-                                        <!-- <th class="text-column" scope="col">DOB</th>  -->
                                         <th class="text-column" scope="col">ACTION</th> 
                                     </tr>
                                 </thead>
@@ -107,7 +106,7 @@
                                     {
                                     ?>
                                         <?php  foreach($patients['data'] as $patient) 
-                                        {  
+                                        { 
                                         ?>
                                     <tr>
                                         <th class="text-column-emphasis" scope="row"><?php echo $patient['ID_HoSo']?></th>

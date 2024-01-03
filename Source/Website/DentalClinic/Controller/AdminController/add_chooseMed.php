@@ -11,13 +11,13 @@
         $price = $_POST['DonGia'];
 
         if(!empty($medid) && !empty($patient_id) 
-        && !empty($price) && $price > 0  && !empty($total) && $total > 0)
+        && !empty($price) && $price > 0)
         {
             $total = $soluong*$price;
 
             $dataCM = [
-                'ID_HoSo' => $patient_id,
-                'ID_Thuoc' => $medid,
+                'ID_HOSO' => $patient_id,
+                'ID_THUOC' => $medid,
                 'SOLUONG' => $soluong,
                 'DONGIA' => $price,
                 'THANHTIEN' => $total,

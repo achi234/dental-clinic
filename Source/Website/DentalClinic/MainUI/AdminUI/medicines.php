@@ -84,10 +84,10 @@
                                         
                                         <th class="text-column-emphasis" scope="col">Medicine Id</th> 
                                         <th class="text-column" scope="col">Medicine Name</th> 
-                                        <th class="text-column" scope="col">DONVITINH</th> 
-                                        <th class="text-column" scope="col">CHIDINH</th> 
-                                        <th class="text-column" scope="col">SOLUONGTON</th> 
-                                        <th class="text-column" scope="col">NGAYHETHAN</th> 
+                                        <th class="text-column" scope="col">Unit</th> 
+                                        <th class="text-column" scope="col">Dosage</th> 
+                                        <th class="text-column" scope="col">Quatity</th> 
+                                        <th class="text-column" scope="col">Expiration Date</th> 
                                         <th class="text-column" scope="col">Price ($)</th> 
                                         <th class="text-column" scope="col">ACTION</th> 
                                     </tr>
@@ -114,11 +114,11 @@
  
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="../../Controller/AdminController/delete_medicine.php?id=<?php  echo $medicine['ID_THUOC']?>" 
+                                                <!-- <a href="../../Controller/AdminController/delete_medicine.php?id=<?php  echo $medicine['ID_THUOC']?>" 
                                                     class="btn-control btn-control-delete">
                                                         <i class="fa-solid fa-trash-can btn-control-icon"></i>
                                                         Delete
-                                                </a>
+                                                </a> -->
                                                 <a href="update_medicines.php?id=<?php  echo $medicine['ID_THUOC']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-pills btn-control-icon"></i>
                                                     Update

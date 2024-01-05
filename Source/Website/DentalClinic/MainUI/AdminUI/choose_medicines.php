@@ -131,6 +131,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             <!-- Footer -->
             <?php 
             require_once('./partials/_footer.php'); 

@@ -1,7 +1,7 @@
 <?php
 require_once('./partials/_head.php');
 
-$info = getbyKeyValue('USER_DENTAL','ID_User', $_SESSION['auth_user']['id']);
+$info = getbyKeyValue('ADMINISTRATOR','SDT_Admin', $_SESSION['auth_user']['id']);
 ?>
 
 <body>
@@ -19,7 +19,7 @@ $info = getbyKeyValue('USER_DENTAL','ID_User', $_SESSION['auth_user']['id']);
             <!-- Header -->
             <div class="heading">
                 <div class="col-lg-7">
-                    <div class="display-2">Hello <?php echo $info['data']['Fullname']?></div>
+                    <div class="display-2">Hello <?php echo $info['data']['HoTen_Adim']?></div>
                     <h2 class="text__profile-intro">This is your profile page. You can customize your profile as you want and also change pasword too</h2>
                 </div>
             </div>
@@ -46,41 +46,15 @@ $info = getbyKeyValue('USER_DENTAL','ID_User', $_SESSION['auth_user']['id']);
                                             <div class="form-row__flex">
                                                 <div class="form-col margin-0">
                                                     <label for="" class="form-col__label">Fullname</label>
-                                                    <input type="text" name="fullname" class="form-control" value="<?php echo $info['data']['Fullname']?>">
+                                                    <input type="text" name="fullname" class="form-control" value="<?php echo $info['data']['HoTen_Adim']?>">
                                                 </div>
 
                                                 <div class="form-col margin-0">
                                                     <label for="" class="form-col__label">Phone Number</label>
-                                                    <input type="text" name="user_phone" class="form-control" value="<?php echo $info['data']['PhoneNumber']?>">
+                                                    <input type="text" name="user_phone" class="form-control" value="<?php echo $info['data']['SDT_Admin']?> readonly">
                                                 </div>
                                             </div>
                                             
-                                            <br class="">
-                                            <div class="form-row__flex">
-                                                <div class="form-col margin-0">
-                                                    <label for="" class="form-col__label">Gender</label>
-                                                    <select name="user_gender" id="ptGender" class="form-cotrol">
-                                                <?php if($infor['data']['Gender'] == 'F')
-                                                { ?>
-                                                    <option value="M" >Male</option>
-                                                    <option value="F" selected>Female</option>
-                                                <?php 
-                                                } 
-                                                else
-                                                { ?>
-                                                    <option value="M" selected>Male</option>
-                                                    <option value="F" >Female</option>
-                                                <?php 
-                                                } 
-                                                ?> 
-                                            </select>
-                                                </div>
-
-                                                <div class="form-col margin-0">
-                                                    <label for="" class="form-col__label">Address</label>
-                                                    <input type="text" name="user_address" class="form-control" value="<?php echo $info['data']['CurrAddress']?>">
-                                                </div>
-                                            </div>     
                                         </div>
 
                                         <hr class="navbar__divider">
@@ -131,7 +105,7 @@ $info = getbyKeyValue('USER_DENTAL','ID_User', $_SESSION['auth_user']['id']);
                             <div class="text-center">
                                 <p class="recent__heading-title margin-0">System Admin</p>
                                 <div class="text__profile-email">
-                                    <?php echo $info['data']['Username']?>
+                                    <?php echo $info['data']['HoTen_Admin']?>
                                 </div>
                             </div>
                             

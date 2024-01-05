@@ -6,6 +6,8 @@
     if(isset($_POST['btn-updateMedicine']))
     {
         $medicine_id = $_POST['medicine_id'];
+        $record_id = $_POST['$patient_id'];
+        
         if(empty($_POST['medicine_name']) || empty($_POST['medicine_price']) 
         || empty($_POST['donvitinh']) || empty($_POST['soluongton'])
         || empty($_POST['ngayhethan']) || empty($_POST['chidinh']))
@@ -39,11 +41,11 @@
 
             if($updateMedicine['status'])
             {
-                redirect('../../MainUI/AdminUI/medicines.php', '', "You've modified medicine successfully!");
+                redirect('./../MainUI/AdminUI/update_patients.php?id='.$patient_id, '', "You've modified medicine successfully!");
             }
             else
             {
-                redirect('../../MainUI/AdminUI/update_medicines.php?id='.$medicine_id, 'Something went wrong! Please enter again...', "");
+                redirect('./../MainUI/AdminUI/update_patients.php?id='.$patient_id, 'Something went wrong! Please enter again...', "");
             }
         }
     }

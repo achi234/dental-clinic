@@ -5,16 +5,19 @@
     
     if(isset($_POST['btn-add-appt']))
     {
-        $id_appointment = $_POST['ID_CuocHen'];
+        //$id_appointment = $_POST['ID_CuocHen'];
         $dentist = $_POST['SDT_NS'];
         $patient = $_POST['SDT_KH'];
         $date = $_POST['appt_date'];
         $time = $_POST['appt_time'];
-
-        if(!empty($date) && !empty($time))
+        // echo $dentist;
+        // echo $patient;
+        // echo $date;
+        // echo $time;
+        
+        if(!empty($dentist) && !empty($patient) &&!empty($date) && !empty($time))
         {
             $dataAppt = [
-                'ID_CuocHen'  => $id_appointment,
                 'SDT_NS'  => $dentist,
                 'SDT_KH' => $patient,
                 'Ngay'   => $date,

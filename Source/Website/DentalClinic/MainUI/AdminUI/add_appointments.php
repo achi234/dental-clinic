@@ -33,7 +33,8 @@ $patients = getAll('KHACHHANG');
                                     <div class="form-row__flex">
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Dentist Name</label>
-                                            <select name="dentist_phone" id="dentistPhone" class="form-cotrol" onchange="getDentist(this.value)">
+                                            <select name="SDT_NS" class="form-cotrol">
+                                            <option>Select dentist</option>
                                             <?php
                                                 $count = sizeof($dentists['data']);
                                                 if($count > 0)
@@ -42,8 +43,8 @@ $patients = getAll('KHACHHANG');
                                                     <?php  foreach($dentists['data'] as $dentist) 
                                                     {  
                                                     ?>
-                                                <option value="<?php echo $dentist['SDT_NS']?>" class=""><?php echo $dentist['HoTen_NS'];
-                                                                                                              echo " (SDT_NS = {$dentist['SDT_NS']})" ?></option>
+                                                <option value="<?php echo $dentist['SDT_NS']?>" class=""><?php echo $dentist['SDT_NS'];
+                                                                                                              echo " (HoTen = {$dentist['HoTen_NS']})" ?></option>
                                                 <?php
                                                     }
                                                 }
@@ -59,28 +60,29 @@ $patients = getAll('KHACHHANG');
 
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Patient Id</label>
-                                            <input type="number" name="paitent_id" class="form-control">
-                                            <!-- <select name="paitent_id" id="ptId" class="form-cotrol" onchange="getPaintent(this.value)"> -->
+                                            <select name="SDT_KH" class="form-cotrol">
+                                            <option>Select patient</option>
                                             <?php
-                                                // $count = sizeof($patients['data']);
-                                                // if($count > 0)
-                                                // {
+                                                $count = sizeof($patients['data']);
+                                                if($count > 0)
+                                                {
                                                 ?>
-                                                    <?php  //foreach($patients['data'] as $paitent) 
-                                                    // {  
+                                                    <?php  foreach($patients['data'] as $patient) 
+                                                    {  
                                                     ?>
-                                                <!-- <option value="<?php //echo $paitent['ID_Customer']?>" class=""><?php //echo $paitent['ID_Customer']?></option> -->
+                                                <option value="<?php echo $patient['SDT_KH']?>" class=""><?php echo $patient['SDT_KH'];
+                                                                                                              echo " (HoTen = {$patient['HoTen_KH']})" ?></option>
                                                 <?php
-                                                //     }
-                                                // }
-                                                // else
-                                                // {
+                                                    }
+                                                }
+                                                else
+                                                {
                                                     ?>
-                                                    <!-- <th class="text-column" scope="row"><?php //echo 'No Data Found'?></th>  -->
+                                                    <th class="text-column" scope="row"><?php echo 'No Data Found'?></th> 
                                                     <?php
-                                                //}
+                                                }
                                             ?>
-                                            <!-- </select> -->
+                                            </select>
                                         </div>
                                         
                                        

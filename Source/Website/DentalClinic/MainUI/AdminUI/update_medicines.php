@@ -44,23 +44,23 @@ $medicine = getbyKeyValue('THUOC', 'ID_THUOC', $medicine_id);
                                         </div>
                                     </div>
                                     <div class="form-col">
-                                        <label for="" class="form-col__label">DONVITINH</label>
+                                        <label for="" class="form-col__label">Unit</label>
                                         <input type="text" name="donvitinh" placeholder="Enter..." class="form-control"
                                             value="<?php echo $medicine['data']['DONVITINH']; ?>">
                                     </div>
                                     <div class="form-col">
-                                        <label for="" class="form-col__label">CHIDINH</label>
+                                        <label for="" class="form-col__label">Dosage</label>
                                         <input type="text" name="chidinh" placeholder="Enter..." class="form-control"
                                             value="<?php echo $medicine['data']['CHIDINH']; ?>">
                                     </div>
                                     <div class="form-col">
-                                        <label for="" class="form-col__label">SOLUONGTON</label>
+                                        <label for="" class="form-col__label">Quantity in Stock</label>
                                         <input type="text" name="soluongton" placeholder="Enter..." class="form-control"
                                             value="<?php echo $medicine['data']['SOLUONGTON']; ?>">
                                     </div>
 
                                     <div class="form-col">
-                                        <label for="" class="form-col__label">NGAYHETHAN</label>
+                                        <label for="" class="form-col__label">Expiration Date</label>
                                         <input type="date" name="ngayhethan" placeholder="Enter..." class="form-control"
                                             value="<?php echo $medicine['data']['NGAYHETHAN']->format('Y-m-d'); ?>">
                                     </div>

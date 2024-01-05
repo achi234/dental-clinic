@@ -2,8 +2,8 @@
 require_once('./partials/_head.php');
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$appts = getTopAppt('10');
-$invoices = getTopInvoice('10');
+$appointments = getTopAppt('10');
+$records = getTopRecord('10');
 ?>
 
 <body>
@@ -31,53 +31,35 @@ $invoices = getTopInvoice('10');
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">Appointment ID</th> 
-                                        <th class="text-column" scope="col">CUSTOMER</th> 
-                                        <th class="text-column" scope="col">DENTIST</th> 
-                                        <th class="text-column" scope="col">Room</th> 
+                                    <th class="text-column-emphasis" scope="col">Appointment Id</th> 
+                                        <th class="text-column" scope="col">Dentist</th> 
+                                        <th class="text-column" scope="col">Customer</th>
                                         <th class="text-column" scope="col">Date</th> 
                                         <th class="text-column" scope="col">Time</th> 
-                                        <th class="text-column" scope="col">Type</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($appts['data']);
-                                    //echo $invoices['data'];
+                                    $count = sizeof($appointments['data']);
+                                    //echo $appointments['data'];
                                     if($count > 0)
                                     {
                                     ?>
-                                        <?php  foreach($appts['data'] as $appt) 
+                                        <?php  foreach($appointments['data'] as $appointment) 
                                         {  
+                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $appointment['SDT_NS']);
+                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $appointment['SDT_KH']);
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $appt['ID']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $appt['ID_Dentist']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $appt['ID_Customer']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $appt['ID_Room']?></th> 
+                                        <th class="text-column-emphasis" scope="row"><?php echo $appointment['ID_CuocHen']?></th>
+                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
                                         <?php
-                                            $appt_date = $appt['Date_Appt']->format('d-m-Y');
+                                            $appt_date = $appointment['Ngay']->format('d-m-Y');
+                                            $appt_time = $appointment['Gio']->format('H:i');
                                         ?>
-                                        <th class="text-column" scope="row"><?php echo $appt_date?></th> 
-                                        <?php
-                                            $appt_time = $appt['Time_Appt']->format('H:i');
-                                        ?>
-                                        <th class="text-column" scope="row"><?php echo $appt_time?></th> 
-                                        <th class="text-column" scope="row">
-                                        <?php if($appt['Status_Appt'] == 'New')
-                                            {
-                                        ?>
-                                            <span class="badge badge-success"><?php echo $appt['Status_Appt']?></span>
-                                        <?php
-                                            } 
-                                            else
-                                            {
-                                        ?>
-                                            <span class="badge badge-unsuccess"><?php echo $appt['Status_Appt']?></span>
-                                        <?php
-                                            }
-                                        ?>
-                                        </th> 
+                                        <th class="text-column" scope="row"><?php echo $appt_date?></th>   
+                                        <th class="text-column" scope="row"><?php echo $appt_time?></th>                                        
                                     </tr>
                                     <?php
                                         }
@@ -87,8 +69,7 @@ $invoices = getTopInvoice('10');
                                        <th class="text-column" scope="row"><?php echo 'No Data Found'?></th> 
                                     <?php    
                                     }
-                                    ?>
-
+                                    ?>                                
                                 </tbody>
                             </table>
 
@@ -102,44 +83,42 @@ $invoices = getTopInvoice('10');
                 <div class="container-recent">
                     <div class="container-recent-inner">
                         <div class="container-recent__heading">
-                            <p class="recent__heading-title">Recent Invoice</p>
-                            <a href="invoices.php" class="btn-control btn-control-search">See all</a>
+                            <p class="recent__heading-title">Recent Patient Record</p>
+                            <a href="patients.php" class="btn-control btn-control-search">See all</a>
                         </div>
 
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                    <th class="text-column-emphasis" scope="col">Invoice Id</th> 
-                                        <th class="text-column" scope="col">Treatment Plan</th> 
-                                        <th class="text-column" scope="col">Payment Id</th> 
-                                        <th class="text-column" scope="col">Total ($)</th> 
-                                        <th class="text-column" scope="col">Time</th> 
+                                    <th class="text-column-emphasis" scope="col">Patient Id</th> 
+                                        <th class="text-column" scope="col">Dentist</th> 
+                                        <th class="text-column" scope="col">Customer</th> 
+                                        <th class="text-column" scope="col">Date created</th> 
+                                        <th class="text-column" scope="col">Total</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($invoices['data']);
-                                    //echo $invoices['data'];
+                                    $count = sizeof($records['data']);
+                                    //echo $records['data'];
                                     if($count > 0)
                                     {
                                     ?>
-                                        <?php  foreach($invoices['data'] as $invoice) 
-                                        {  
+                                        <?php  foreach($records['data'] as $record) 
+                                        { 
+                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $record['SDT_NS']);
+                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $record['SDT_KH']);
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $invoice['ID']?></th>
-                                        <th class="text-column" scope="row"><?php echo $invoice['ID_Select']?></th>
-                                        <?php
-                                            $payment = getbyKeyValue('PAYMENT_METHOD', 'ID_Payment', $invoice['ID_Payment']);
-                                            $payment_method = $payment['data']['PaymentMethod'];
-                                        ?>
-                                        <th class="text-column" scope="row"><?php echo $payment_method?></th>
-                                        <th class="text-column" scope="row"><?php echo $invoice['Total']?></th> 
-                                        <?php
-                                            $invoice_time = $invoice['InvoiceTime']->format(' H:i:s Y-m-d');
-                                        ?>
-                                        <th class="text-column" scope="row"><?php echo $invoice_time?></th>                                        
+                                        <th class="text-column-emphasis" scope="row"><?php echo $record['ID_HoSo']?></th>
+                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $record['NgayTaoHoSo']->format('d-m-Y')?></th> 
+                                        <!-- <th class="text-column" scope="row"><?php //echo $record['PhiKham']?></th> 
+                                        <th class="text-column" scope="row"><?php //echo $record['ID_DichVu']?></th> 
+                                        <th class="text-column" scope="row"><?php //echo $record['TongTienThuoc']?></th>  -->
+                                        <th class="text-column" scope="row"><?php echo $record['TongTien']?></th> 
                                     </tr>
                                     <?php
                                         }
@@ -150,7 +129,6 @@ $invoices = getTopInvoice('10');
                                     <?php    
                                     }
                                     ?>
-
                                 </tbody>
                             </table>
 

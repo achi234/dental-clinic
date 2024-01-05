@@ -1,5 +1,5 @@
 <?php
-    $page_title = "Smile - Patient List";
+    $page_title = "Smile - Patient Record List";
     require_once('./partials/_head.php');
 
     $pageSize = 20;
@@ -26,7 +26,7 @@
                         <div class="container-recent__heading heading__button">
                             <a href="add_patients.php" class="btn-control btn-control-add">
                                 <i class="fa-solid fa-bed-pulse btn-control-icon"></i>
-                                Add new patient
+                                Add new record
                             </a>
 
                             <div class="pagination">
@@ -91,9 +91,9 @@
                                         <th class="text-column" scope="col">Dentist</th> 
                                         <th class="text-column" scope="col">Customer</th> 
                                         <th class="text-column" scope="col">Date created</th> 
-                                        <th class="text-column" scope="col">PhiKham</th> 
+                                        <!-- <th class="text-column" scope="col">PhiKham</th> 
                                         <th class="text-column" scope="col">Service_ID</th> 
-                                        <th class="text-column" scope="col">Medincine Fee</th> 
+                                        <th class="text-column" scope="col">Medincine Fee</th>  -->
                                         <th class="text-column" scope="col">Total</th> 
                                         <th class="text-column" scope="col">ACTION</th> 
                                     </tr>
@@ -107,15 +107,17 @@
                                     ?>
                                         <?php  foreach($patients['data'] as $patient) 
                                         { 
+                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $patient['SDT_NS']);
+                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $patient['SDT_KH']);
                                         ?>
                                     <tr>
                                         <th class="text-column-emphasis" scope="row"><?php echo $patient['ID_HoSo']?></th>
-                                        <th class="text-column" scope="row"><?php echo $patient['SDT_NS']?></th>
-                                        <th class="text-column" scope="row"><?php echo $patient['SDT_KH']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
                                         <th class="text-column" scope="row"><?php echo $patient['NgayTaoHoSo']->format('d-m-Y')?></th> 
-                                        <th class="text-column" scope="row"><?php echo $patient['PhiKham']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $patient['ID_DichVu']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $patient['TongTienThuoc']?></th> 
+                                        <!-- <th class="text-column" scope="row"><?php //echo $patient['PhiKham']?></th> 
+                                        <th class="text-column" scope="row"><?php //echo $patient['ID_DichVu']?></th> 
+                                        <th class="text-column" scope="row"><?php //echo $patient['TongTienThuoc']?></th>  -->
                                         <th class="text-column" scope="row"><?php echo $patient['TongTien']?></th> 
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">

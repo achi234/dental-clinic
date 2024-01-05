@@ -5,7 +5,7 @@
     $pageSize = 20;
     $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $dentists = getByUserTypeWithPagination('TAIKHOAN', 'DENTIST', $pageSize, $pageNumber, 'SDT');
+    $dentists = getAllWithPagination('NHASI', $pageSize, $pageNumber, 'SDT_NS');
 ?>
 
 <body>
@@ -61,17 +61,17 @@
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $dentists = searchUserByKeyword('TAIKHOAN', $strKeyword, 'DENTIST');
+                                    $dentists = searchByKeyword('NHASI', $strKeyword);
 
                                     if($dentists['status'] == 'No Data Found')
                                     {
                                         $_SESSION['status'] = $dentists['status'];
-                                        $dentists = getByUserTypeWithPagination('TAIKHOAN', 'DENTIST', $pageSize, $pageNumber, 'SDT');
+                                        $dentists = getAllWithPagination('NHASI', $pageSize, $pageNumber, 'SDT_NS');
                                     }
                                 }
                                 else
                                 {
-                                    $dentists = getByUserTypeWithPagination('TAIKHOAN', 'DENTIST', $pageSize, $pageNumber, 'SDT');
+                                    $dentists = getAllWithPagination('NHASI', $pageSize, $pageNumber, 'SDT_NS');
                                 }
                             ?>
                             <div class="container__heading-search">
@@ -106,11 +106,11 @@
                                     <tr>
                                         <?php
                                         //$dentist_phone = $dentists['data']['ID_Payment'];
-                                        $dentist_detail = getbyKeyValue('NHASI', 'SDT_NS', $dentist['SDT']);
+                                        $dentist_detail = getbyKeyValue('NHASI', 'SDT_NS', $dentist['SDT_NS']);
                                         ?>
                                         <th class="text-column-emphasis" scope="row"><?php echo $dentist_detail['data']['SDT_NS']?></th>
                                         <th class="text-column" scope="row"><?php echo $dentist_detail['data']['HoTen_NS']?></th> 
-                                        <?php  $dentist_status = getbyKeyValue('TAIKHOAN', 'SDT', $dentist['SDT']);
+                                        <?php  $dentist_status = getbyKeyValue('TAIKHOAN', 'SDT', $dentist['SDT_NS']);
                                             if($dentist_status['data']['isActive'] == 'YES') 
                                         {?>
                                             <th class="text-column" scope="row">
@@ -129,12 +129,12 @@
                                         ?> 
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="../../Controller/AdminController/delete_dentist.php?id=<?php  echo $dentist['SDT']?>" 
+                                                <a href="../../Controller/AdminController/delete_dentist.php?id=<?php  echo $dentist['SDT_NS']?>" 
                                                     class="btn-control btn-control-delete">
                                                         <i class="fa-solid fa-trash-can btn-control-icon"></i>
                                                         Delete
                                                 </a>
-                                                <a href="update_dentists.php?id=<?php  echo $dentist['SDT']?>" class="btn-control btn-control-edit">
+                                                <a href="update_dentists.php?id=<?php  echo $dentist['SDT_NS']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-user-pen btn-control-icon"></i>
                                                     Update
                                                 </a>

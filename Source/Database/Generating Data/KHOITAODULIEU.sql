@@ -449,7 +449,7 @@ insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (12, 12, 5, 12792)
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (6, 26, 7, 8558);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (7, 41, 1, 14223);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (1, 55, 2, 19765);
-insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (15, 20, 3, 16903);
+--insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (15, 20, 3, 16903);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (1, 11, 10, 14047);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (16, 11, 4, 4798);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (9, 2, 1, 6912);
@@ -460,7 +460,7 @@ insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (11, 41, 3, 12893)
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (11, 11, 4, 19998);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (4, 34, 2, 8841);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (7, 5, 2, 3937);
-insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (6, 11, 5, 6120);
+--insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (6, 11, 5, 6120);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (10, 25, 3, 12333);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (11, 10, 5, 11796);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (12, 14, 10, 6063);
@@ -470,10 +470,10 @@ insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (7, 36, 1, 14585);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (4, 5, 3, 12173);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (16, 12, 2, 9105);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (13, 14, 10, 16057);
-insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (12, 14, 3, 15637);
+--insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (12, 14, 3, 15637);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (13, 16, 9, 13264);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (1, 17, 9, 14553);
-insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (10, 17, 1, 14293);
+--insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (10, 17, 1, 14293);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (15, 26, 4, 16068);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (3, 25, 9, 15082);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (12, 2, 7, 8803);
@@ -502,7 +502,7 @@ insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (15, 77, 5, 13369)
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (15, 55, 8, 15842);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (12, 75, 9, 19937);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (6, 75, 5, 9202);
-insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (9, 2, 5, 4716);
+--insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (9, 2, 5, 4716);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (16, 75, 10, 10493);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (10, 66, 7, 18019);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (14, 14, 9, 17527);
@@ -510,11 +510,11 @@ insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (10, 58, 1, 16949)
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (12, 27, 10, 4178);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (1, 28, 5, 11270);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (15, 6, 6, 7435);
-insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (6, 11, 8, 14353);
+--insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (6, 11, 8, 14353);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (8, 2, 10, 8267); --
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (8, 87, 3, 7650);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (9, 58, 1, 13251);
-insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (1, 17, 6, 5760);
+--insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (1, 17, 6, 5760);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (4, 27, 1, 6901);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (14, 55, 8, 4259);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (11, 54, 8, 8713);
@@ -522,7 +522,7 @@ insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (14, 62, 3, 17662)
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (14, 78, 4, 9266);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (9, 74, 9, 7337);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (3, 44, 10, 16703);
-insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (3, 20, 5, 15893);
+--insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (3, 20, 5, 15893);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (16, 26, 10, 13172);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (3, 127, 9, 15749);
 insert into KEDON (ID_HOSO, ID_THUOC, SOLUONG, DONGIA) values (9, 125, 9, 6341);

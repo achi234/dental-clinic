@@ -5,7 +5,7 @@ require_once('./partials/_head.php');
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$staffs = getByUserTypeWithPagination('TAIKHOAN', 'STAFF', $pageSize, $pageNumber, 'SDT');
+$staffs = getAllWithPagination('NHANVIEN', $pageSize, $pageNumber, 'SDT_NV');
 ?>
 
 <body>
@@ -63,16 +63,16 @@ $staffs = getByUserTypeWithPagination('TAIKHOAN', 'STAFF', $pageSize, $pageNumbe
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $staffs = searchUserByKeyword('TAIKHOAN', $strKeyword, 'Staff');
+                                    $staffs = searchByKeyword('NHANVIEN', $strKeyword);
                                     if($staffs['status'] == 'No Data Found')
                                     {
                                         $_SESSION['status'] = $staffs['status'];
-                                        $staffs = getByUserTypeWithPagination('TAIKHOAN', 'Staff', $pageSize, $pageNumber, 'SDT');
+                                        $staffs = getAllWithPagination('NHANVIEN', $pageSize, $pageNumber, 'SDT_NV');
                                     }
                                 }
                                 else
                                 {
-                                    $staffs = getByUserTypeWithPagination('TAIKHOAN', 'Staff', $pageSize, $pageNumber, 'SDT');
+                                    $staffs = getAllWithPagination('NHANVIEN', $pageSize, $pageNumber, 'SDT_NV');
                                 }
                             ?>
                             
@@ -107,11 +107,11 @@ $staffs = getByUserTypeWithPagination('TAIKHOAN', 'STAFF', $pageSize, $pageNumbe
                                         ?>
                                     <tr>
                                         <?php
-                                        $staff_detail = getbyKeyValue('NHANVIEN', 'SDT_NV', $staff['SDT']);
+                                        $staff_detail = getbyKeyValue('NHANVIEN', 'SDT_NV', $staff['SDT_NV']);
                                         ?>
                                         <th class="text-column-emphasis" scope="row"><?php echo $staff_detail['data']['SDT_NV']?></th>
                                         <th class="text-column" scope="row"><?php echo $staff_detail['data']['HoTen_NV']?></th> 
-                                        <?php  $staff_status = getbyKeyValue('TAIKHOAN', 'SDT', $staff['SDT']);
+                                        <?php  $staff_status = getbyKeyValue('TAIKHOAN', 'SDT', $staff['SDT_NV']);
                                             if($staff_status['data']['isActive'] == 'YES') 
                                         {?>
                                             <th class="text-column" scope="row">
@@ -130,12 +130,12 @@ $staffs = getByUserTypeWithPagination('TAIKHOAN', 'STAFF', $pageSize, $pageNumbe
                                         ?>  
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                            <a href="../../Controller/AdminController/delete_staff.php?id=<?php  echo $staff['SDT']?>" 
+                                            <a href="../../Controller/AdminController/delete_staff.php?id=<?php  echo $staff['SDT_NV']?>" 
                                                     class="btn-control btn-control-delete">
                                                         <i class="fa-solid fa-trash-can btn-control-icon"></i>
                                                         Delete
                                                     </a>
-                                                <a href="update_staffs.php?id=<?php  echo $staff['SDT']?>" class="btn-control btn-control-edit">
+                                                <a href="update_staffs.php?id=<?php  echo $staff['SDT_NV']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-user-pen btn-control-icon"></i>
                                                     Update
                                                 </a>

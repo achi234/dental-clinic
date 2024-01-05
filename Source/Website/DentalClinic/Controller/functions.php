@@ -221,8 +221,8 @@
         $count = validate($count);
 
         $query = "SELECT TOP $count *
-                FROM APPOINTMENT
-                ORDER BY Date_Appt DESC, Time_Appt DESC";
+                FROM CUOCHEN
+                ORDER BY Ngay DESC, Gio DESC";
         $result = sqlsrv_query($conn, $query);
     
         if ($result) {
@@ -252,15 +252,15 @@
         }
     }
 
-    function getTopInvoice($count)
+    function getTopRecord($count)
     {
         global $conn;
     
         $count = validate($count);
 
         $query = "SELECT TOP $count *
-                FROM INVOICE
-                ORDER BY InvoiceTime DESC";
+                FROM HOSOKHACHHANG
+                ORDER BY NgayTaoHoSo DESC";
         $result = sqlsrv_query($conn, $query);
     
         if ($result) {

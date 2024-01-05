@@ -38,20 +38,20 @@ require_once('./partials/_head.php');
                                         </div>
                                     </div>
                                     <div class="form-col">
-                                            <label for="" class="form-col__label">DONVITINH</label>
-                                            <input type="text" name="DONVITINH" placeholder="Enter..." class="form-control">
+                                            <label for="" class="form-col__label">Unit</label>
+                                            <input type="text" name="DONVITINH" placeholder="Enter calculation unit" class="form-control">
                                     </div>
                                     <div class="form-col">
-                                            <label for="" class="form-col__label">CHIDINH</label>
-                                            <input type="text" name="CHIDINH" placeholder="Enter..." class="form-control">
+                                            <label for="" class="form-col__label">Dosage</label>
+                                            <input type="text" name="CHIDINH" placeholder="Enter daily dose" class="form-control">
                                     </div>
                                     <div class="form-col">
-                                            <label for="" class="form-col__label">SOLUONGTON</label>
-                                            <input type="text" name="SOLUONGTON" placeholder="Enter..." class="form-control">
+                                            <label for="" class="form-col__label">Quantity in Stock</label>
+                                            <input type="number" name="SOLUONGTON" placeholder="Enter quantity" class="form-control">
                                     </div>
                                     <div class="form-col">
-                                            <label for="" class="form-col__label">NGAYHETHAN</label>
-                                            <input type="date" name="NGAYHETHAN" placeholder="Enter..." class="form-control">
+                                            <label for="" class="form-col__label">Expiration Date</label>
+                                            <input type="date" name="NGAYHETHAN" placeholder="Enter out of date" class="form-control">
                                     </div>
                                 </div>
 

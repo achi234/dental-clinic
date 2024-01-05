@@ -13,6 +13,12 @@
         //$tongtienthuoc = $_POST['tongtien_thuoc'];
         //$tongtien = $_POST['tongtien'];
 
+        // echo $customer_phone;
+        // echo $dentist_phone;
+        // echo $ngaytaohoso;
+        // echo $phikham;
+        // echo $id_dichvu;
+        
         if(!empty($customer_phone) && !empty($dentist_phone)  && !empty($phikham)
         && !empty($ngaytaohoso) && !empty($id_dichvu))
         {

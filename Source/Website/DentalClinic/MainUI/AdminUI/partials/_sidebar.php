@@ -21,7 +21,7 @@
                 <li class="navbar-nav__item">
                     <a href="patients.php" class="nav-item__link text-primary">
                         <i class="fa-solid fa-bed-pulse nav-item__icon"></i>
-                        <p class="nav-item__text">Patients</p>
+                        <p class="nav-item__text">Patient Records</p>
                     </a>
                 </li> 
 
@@ -53,12 +53,12 @@
                     </a>
                 </li>
 
-                <li class="navbar-nav__item">
+                <!-- <li class="navbar-nav__item">
                     <a href="choose_medicines.php" class="nav-item__link text-primary">
                         <i class="fa-solid fa-file-invoice nav-item__icon"></i>
                         <p class="nav-item__text">Prescription</p>
                     </a>
-                </li>
+                </li> -->
             </ul>
             <!-- Divider -->
             <hr class="navbar__divider">

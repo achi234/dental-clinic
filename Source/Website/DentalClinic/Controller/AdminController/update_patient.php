@@ -9,7 +9,7 @@
         if(empty($_POST['customer_phone']) || empty($_POST['dentist_phone']) || empty($_POST['ngay_tao']) || empty($_POST['id_dichvu'])
           || empty($_POST['phi_kham']) /*|| empty($_POST['tongtien_thuoc']) || empty($_POST['tongtien'])*/)
         {
-            redirect('../../MainUI/AdminUI/update_patient.php?id='.$patient_id, 'All fields are required.', '');
+            redirect('../../MainUI/AdminUI/update_patients.php?id='.$patient_id, 'All fields are required.', '');
             exit(0);
         }
         else
@@ -19,8 +19,12 @@
             $date_created = $_POST['ngay_tao'];
             $id_dichvu = $_POST['id_dichvu'];
             $phi_kham = $_POST['phi_kham'];
-            //$tongtien_thuoc = $_POST['tongtien_thuoc'];
-            //$tongtien= $_POST['tongtien'];
+            
+            // echo $customer_phone;
+            // echo $dentist_phone;
+            // echo $date_created;
+            // echo $id_dichvu;
+            // echo $phi_kham;
 
             $formattedDate = date('Y-m-d', strtotime($date_created));
 
@@ -30,17 +34,15 @@
                 'NgayTaoHoSo' => $formattedDate,
                 'ID_DichVu' => $id_dichvu,
                 'PhiKham' => $phi_kham,
-                //'TongTienThuoc' => $tongtien_thuoc,
-                //'TongTien' => $tongtien
             ];
 
             $updatePatient = updatebyKeyValue('HOSOKHACHHANG', 'ID_HoSo', $patient_id, $dataPatient);
 
 
-            if($updateCustomer['status'])
+            if($updatePatient['status'])
             {
                 //echo "Here";
-               redirect('../../MainUI/AdminUI/update_patients.php?id='.$patient_id, '', "You've modified patient successfully!");
+               redirect('../../MainUI/AdminUI/patients.php?id='.$patient_id, '', "You've modified patient successfully!");
             }
             else
             {

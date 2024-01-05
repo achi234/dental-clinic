@@ -82,13 +82,13 @@ $appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_Cuoc
                             <table class="table">
                                 <thead class="thead-light"> 
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">Id</th> 
+                                        <th class="text-column-emphasis" scope="col">Appointment Id</th> 
                                         <th class="text-column" scope="col">Dentist</th> 
                                         <th class="text-column" scope="col">Customer</th>
                                         <th class="text-column" scope="col">Date</th> 
                                         <th class="text-column" scope="col">Time</th> 
                                         <th class="" scope="col"></th> 
-                                        <th class="text-column" scope="col">Status</th> 
+                                        <!-- <th class="text-column" scope="col">Status</th>  -->
                                         <th class="text-column" scope="col">ACTIONS</th> 
                                     </tr>
                                 </thead>

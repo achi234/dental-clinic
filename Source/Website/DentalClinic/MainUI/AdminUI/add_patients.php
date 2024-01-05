@@ -1,5 +1,8 @@
 <?php
 require_once('./partials/_head.php');
+$services = getAll('DICHVU');
+$customers = getAll('KHACHHANG');
+$dentists = getAll('NHASI');
 ?>
 
 <body>
@@ -27,12 +30,32 @@ require_once('./partials/_head.php');
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Customer Phone</label>
-                                            <input type="text" name="customer_phone" placeholder="Enter..." class="form-control">
+                                            <label for="" class="form-col__label">Customer</label>
+                                            <select name="customer_phone" class="form-cotrol">
+                                            <option>Select customer</option>
+                                            <?php  foreach($customers['data'] as $customer) 
+                                            {  
+                                            ?>
+                                                <option value="<?php echo $customer['SDT_KH']?>" class=""><?php echo $customer['HoTen_KH'];
+                                                                                                              echo " (PhoneNum = {$customer['SDT_KH']})"?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                            </select>
                                         </div>
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Dentist Phone</label>
-                                            <input type="text" name="dentist_phone" placeholder="Enter..." class="form-control">
+                                            <label for="" class="form-col__label">Dentist</label>
+                                            <select name="dentist_phone" class="form-cotrol">
+                                            <option>Select dentist</option>
+                                            <?php  foreach($dentists['data'] as $dentist) 
+                                            {  
+                                            ?>
+                                                <option value="<?php echo $dentist['SDT_NS']?>" class=""><?php echo $dentist['HoTen_NS'];
+                                                                                                              echo " (PhoneNum = {$dentist['SDT_NS']})"?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -46,11 +69,22 @@ require_once('./partials/_head.php');
                                             <input type="date" name="ngay_tao" placeholder="dd/mm/yyyy" class="form-control">
                                         </div>
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Service ID</label>
-                                            <input type="text" name="id_dichvu" placeholder="Enter service id" class="form-control">
+                                            <label for="" class="form-col__label">Service</label>
+                                            <select name="id_dichvu" class="form-cotrol">
+                                            <option>Enter service</option>
+                                            <?php  foreach($services['data'] as $service) 
+                                            {  
+                                            ?>
+                                                <option value="<?php echo $service['ID_DichVu']?>" class=""><?php echo $service['TenDV'];
+                                                                                                              echo " (Id = {$service['ID_DichVu']})"?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                            </select>
+
                                         </div>
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Phi Kham</label>
+                                            <label for="" class="form-col__label">Examination Fee</label>
                                             <input type="text" name="phi_kham" placeholder="Enter amount" class="form-control">
                                         </div>
                                     </div>
@@ -61,7 +95,7 @@ require_once('./partials/_head.php');
                                 <div class="form-row">
                                     <div class="form-col margin-0">
                                         <div class="form-col-bottom">
-                                            <input type="submit" name="btn-add-patient" value="Add Patient" class="btn-control btn-control-add">
+                                            <input type="submit" name="btn-add-patient" value="Add Record" class="btn-control btn-control-add">
                                         </div>
                                     </div>
                                 </div>

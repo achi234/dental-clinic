@@ -24,7 +24,7 @@ require_once('./partials/_head.php');
                         </div>
                         
                         <div class="container-recent__body card__body-form">
-                            <form method="POST" action="../../../Controller/AdminController/add_dentist.php">
+                            <form method="POST" action="../../Controller/AdminController/add_dentist.php">
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">

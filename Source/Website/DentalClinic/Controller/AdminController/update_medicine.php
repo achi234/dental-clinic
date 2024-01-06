@@ -41,11 +41,11 @@
 
             if($updateMedicine['status'])
             {
-                redirect('./../MainUI/AdminUI/update_patients.php?id='.$patient_id, '', "You've modified medicine successfully!");
+                redirect('../../MainUI/AdminUI/update_medicines.php?id='.$medicine_id, '', "You've modified medicine successfully!");
             }
             else
             {
-                redirect('./../MainUI/AdminUI/update_patients.php?id='.$patient_id, 'Something went wrong! Please enter again...', "");
+                redirect('../../MainUI/AdminUI/update_medicines.php?id='.$medicine_id, 'Something went wrong! Please enter again...', "");
             }
         }
     }

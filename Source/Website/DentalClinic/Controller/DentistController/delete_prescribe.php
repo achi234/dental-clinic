@@ -7,9 +7,8 @@
 
     global $conn;
 
-    $param = checkParam('id');
-
-    $medicine_id = checkParam('medicine_id');
+    $param = checkParam('record_id');
+    $medicine_id = checkParam('id');
     
 
     // echo $param;
@@ -17,17 +16,17 @@
 
 
 
-    $query = "DELETE FROM PRESCRIBE WHERE ID_Select= '$param' AND ID_Medicine='$medicine_id' ";
+    $query = "DELETE FROM KEDON WHERE ID_HoSo= '$param' AND ID_Thuoc='$medicine_id' ";
    
     $result = sqlsrv_query($conn, $query);
 
     if($result)
     {
-        redirect('../../MainUI/DentistUI/update_treatmentplans.php?id='.$param, '', 'Delete prescribe successfully');
+        redirect('../../MainUI/DentistUI/update_patients.php?id='.$param, '', 'Delete prescribe successfully');
     }
     else
     {
-        redirect('../../MainUI/DentistUI/update_treatmentplans.php?id='.$param, 'Cannot delete medicine choice. Please try again!', '');
+        redirect('../../MainUI/DentistUI/update_patients.php?id='.$param, 'Cannot delete medicine choice. Please try again!', '');
     }
 
 ?>

@@ -5,25 +5,26 @@
     
     if(isset($_POST['btn-add-appt']))
     {
-        $dentist = $_POST['dentist_id'];
-        $paitent = $_POST['paitent_id'];
-        $room = $_POST['room_id'];
+        //$id_appointment = $_POST['ID_CuocHen'];
+        $dentist = $_POST['SDT_NS'];
+        $patient = $_POST['SDT_KH'];
         $date = $_POST['appt_date'];
         $time = $_POST['appt_time'];
-        $status = $_POST['appt_status'];
-
-        if(!empty($date) && !empty($time))
+        // echo $dentist;
+        // echo $patient;
+        // echo $date;
+        // echo $time;
+        
+        if(!empty($dentist) && !empty($patient) &&!empty($date) && !empty($time))
         {
             $dataAppt = [
-                'ID_Dentist'  => $dentist,
-                'ID_Customer' => $paitent,
-                'ID_Room'     => $room,
-                'Date_Appt'   => $date,
-                'Time_Appt'   => $time,
-                'Status_Appt' => $status,
+                'SDT_NS'  => $dentist,
+                'SDT_KH' => $patient,
+                'Ngay'   => $date,
+                'Gio'   => $time,
             ];
 
-            $addAppt = insert('APPOINTMENT', $dataAppt);
+            $addAppt = insert('CUOCHEN', $dataAppt);
 
             echo $addAppt['query'];
 

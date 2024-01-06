@@ -105,6 +105,42 @@
 
         return $response;
     }
+    function getbyKeyValueWithPagination($tableName, $pageSize, $pageNumber, $pageOrder, $key, $value)
+    {
+        global $conn;
+
+        $table = validate($tableName);
+        $startRow = ($pageNumber - 1) * $pageSize;
+        $key = validate($key);
+        $value = validate($value);
+
+        $query = "SELECT COUNT(*) as total FROM $table WHERE $key = '$value'"; // Đếm tổng số dòng
+        $result = sqlsrv_query($conn, $query);
+        $totalRows = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)['total'];
+
+        $query = "SELECT * FROM $table WHERE $key = '$value' ORDER BY $pageOrder OFFSET $startRow ROWS FETCH NEXT $pageSize ROWS ONLY";
+        $result = sqlsrv_query($conn, $query);
+
+        if ($result) {
+            $data = array();
+
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+
+            $response = [
+                'status' => 'Data Found',
+                'data' => $data,
+                'total' => $totalRows,
+            ];
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+        }
+
+        return $response;
+    }
 
     function getByUserTypeWithPagination($tableName, $userType, $pageSize, $pageNumber, $pageOrder)
     {
@@ -252,6 +288,46 @@
         }
     }
 
+    function getTopApptbyDentist($count, $phoneNum)
+    {
+        global $conn;
+    
+        $count = validate($count);
+        $phoneNum = validate($phoneNum);
+
+        $query = "SELECT TOP $count *
+                FROM CUOCHEN
+                WHERE SDT_NS = '$phoneNum'
+                ORDER BY Ngay DESC, Gio DESC";
+        $result = sqlsrv_query($conn, $query);
+    
+        if ($result) {
+            $data = array();
+    
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+    
+            if (!empty($data)) {
+                $response = [
+                    'status' => 'Data Found',
+                    'data' => $data,
+                ];
+            } else {
+                $response = [
+                    'status' => 'No Data Found',
+                ];
+            }
+    
+            return $response;
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+            return $response;
+        }
+    }
+
     function getTopRecord($count)
     {
         global $conn;
@@ -260,6 +336,122 @@
 
         $query = "SELECT TOP $count *
                 FROM HOSOKHACHHANG
+                ORDER BY NgayTaoHoSo DESC";
+        $result = sqlsrv_query($conn, $query);
+    
+        if ($result) {
+            $data = array();
+    
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+    
+            if (!empty($data)) {
+                $response = [
+                    'status' => 'Data Found',
+                    'data' => $data,
+                ];
+            } else {
+                $response = [
+                    'status' => 'No Data Found',
+                ];
+            }
+    
+            return $response;
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+            return $response;
+        }
+    }
+
+    function getTopDentist($count)
+    {
+        global $conn;
+    
+        $count = validate($count);
+
+        $query = "SELECT TOP $count *
+                FROM NHASI
+                ORDER BY SDT_NS DESC";
+        $result = sqlsrv_query($conn, $query);
+    
+        if ($result) {
+            $data = array();
+    
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+    
+            if (!empty($data)) {
+                $response = [
+                    'status' => 'Data Found',
+                    'data' => $data,
+                ];
+            } else {
+                $response = [
+                    'status' => 'No Data Found',
+                ];
+            }
+    
+            return $response;
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+            return $response;
+        }
+    }
+
+    function getTopStaff($count)
+    {
+        global $conn;
+    
+        $count = validate($count);
+
+        $query = "SELECT TOP $count *
+                FROM NHANVIEN
+                ORDER BY SDT_NV DESC";
+        $result = sqlsrv_query($conn, $query);
+    
+        if ($result) {
+            $data = array();
+    
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+    
+            if (!empty($data)) {
+                $response = [
+                    'status' => 'Data Found',
+                    'data' => $data,
+                ];
+            } else {
+                $response = [
+                    'status' => 'No Data Found',
+                ];
+            }
+    
+            return $response;
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+            return $response;
+        }
+    }
+
+    function getTopRecordbyDentist($count, $phoneNum)
+    {
+        global $conn;
+    
+        $count = validate($count);
+        $phoneNum = validate($phoneNum);
+
+        $query = "SELECT TOP $count *
+                FROM HOSOKHACHHANG
+                WHERE SDT_NS = '$phoneNum'
                 ORDER BY NgayTaoHoSo DESC";
         $result = sqlsrv_query($conn, $query);
     

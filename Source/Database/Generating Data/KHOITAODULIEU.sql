@@ -262,6 +262,8 @@ insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0131937914', 'jZ1
 insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0806357650', 'yF1_3s', N'STAFF', 'YES');
 insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0449550681', 'iO8}gY\K3', N'STAFF', 'YES');
 insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0268386745', 'yI9uj5', N'STAFF', 'YES');
+insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0123456788', '123456', 'STAFF', 'YES');
+
 GO
 insert into NHANVIEN (SDT_NV, HoTen_NV) values ('0470485125', 'Terrill Seed');
 insert into NHANVIEN (SDT_NV, HoTen_NV) values ('0591860948', 'Raddy Kaines');
@@ -272,7 +274,7 @@ insert into NHANVIEN (SDT_NV, HoTen_NV) values ('0131937914', 'Caressa Wreakes')
 insert into NHANVIEN (SDT_NV, HoTen_NV) values ('0806357650', 'Forbes O''Heagertie');
 insert into NHANVIEN (SDT_NV, HoTen_NV) values ('0449550681', 'Emilee Boice');
 insert into NHANVIEN (SDT_NV, HoTen_NV) values ('0268386745', 'Oberon Skippings');
-
+insert into NHANVIEN (SDT_NV, HoTen_NV) values ('0123456788', 'Song Cat');
 ---- ADMINISTRATOR ----
 
 GO
@@ -281,13 +283,14 @@ insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0348663971', 'gC4
 insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0480997575', 'mE7ffkwZcHs', 'ADMINISTRATOR', 'YES');
 insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0600481765', 'eF7YV$5="f', 'ADMINISTRATOR', 'YES');
 insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0392894551', 'yY1IE8Sbd?', 'ADMINISTRATOR', 'YES');
+insert into TAIKHOAN (SDT, MATKHAU, VAITRO, ISACTIVE) values ('0123456789', '123456', 'ADMINISTRATOR', 'YES');
 GO
 insert into ADMINISTRATOR (SDT_Admin, HoTen_Admin) values ('0442309718', 'Dolores Rosenblath');
 insert into ADMINISTRATOR (SDT_Admin, HoTen_Admin) values ('0348663971', 'Willey Siddons');
 insert into ADMINISTRATOR (SDT_Admin, HoTen_Admin) values ('0480997575', 'Abran Poyner');
 insert into ADMINISTRATOR (SDT_Admin, HoTen_Admin) values ('0600481765', 'Dehlia Pattesall');
 insert into ADMINISTRATOR (SDT_Admin, HoTen_Admin) values ('0392894551', 'Tildie Pethick');
-
+insert into ADMINISTRATOR (SDT_Admin, HoTen_Admin) values ('0123456789', 'Song Cat');
 
 ---- CUOCHEN ----
 GO

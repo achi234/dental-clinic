@@ -1,7 +1,18 @@
 <?php
-require_once('./partials/_head.php');
-
-$info = getbyKeyValue('ADMINISTRATOR','SDT_Admin', $_SESSION['auth_user']['id']);
+    require_once('./partials/_head.php');
+    global $conn;
+    $sql = "SELECT * FROM ADMINISTRATOR WHERE SDT_Admin = {$_SESSION['sdt']['sdt']}";
+    $result = sqlsrv_query($conn, $sql);
+    
+    //echo $sql;
+    $name= '';
+    $sdt = '';
+    if(sqlsrv_has_rows($result))
+    {
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        $name = $row['HoTen_Admin'];
+        $sdt = $row['SDT_Admin'];
+    }
 ?>
 
 <body>
@@ -19,7 +30,7 @@ $info = getbyKeyValue('ADMINISTRATOR','SDT_Admin', $_SESSION['auth_user']['id'])
             <!-- Header -->
             <div class="heading">
                 <div class="col-lg-7">
-                    <div class="display-2">Hello <?php echo $info['data']['HoTen_Adim']?></div>
+                    <div class="display-2">Hello <?php echo $name?></div>
                     <h2 class="text__profile-intro">This is your profile page. You can customize your profile as you want and also change pasword too</h2>
                 </div>
             </div>
@@ -46,12 +57,12 @@ $info = getbyKeyValue('ADMINISTRATOR','SDT_Admin', $_SESSION['auth_user']['id'])
                                             <div class="form-row__flex">
                                                 <div class="form-col margin-0">
                                                     <label for="" class="form-col__label">Fullname</label>
-                                                    <input type="text" name="fullname" class="form-control" value="<?php echo $info['data']['HoTen_Adim']?>">
+                                                    <input type="text" name="fullname" class="form-control" value="<?php echo $name?>">
                                                 </div>
 
                                                 <div class="form-col margin-0">
                                                     <label for="" class="form-col__label">Phone Number</label>
-                                                    <input type="text" name="user_phone" class="form-control" value="<?php echo $info['data']['SDT_Admin']?> readonly">
+                                                    <input type="text" name="phone" class="form-control" value="<?php echo $sdt?>" readonly>
                                                 </div>
                                             </div>
                                             
@@ -105,7 +116,7 @@ $info = getbyKeyValue('ADMINISTRATOR','SDT_Admin', $_SESSION['auth_user']['id'])
                             <div class="text-center">
                                 <p class="recent__heading-title margin-0">System Admin</p>
                                 <div class="text__profile-email">
-                                    <?php echo $info['data']['HoTen_Admin']?>
+                                    <?php echo $name?>
                                 </div>
                             </div>
                             

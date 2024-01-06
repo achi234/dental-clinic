@@ -1,7 +1,16 @@
 <?php
     //session_start();
-
-
+    global $conn;
+    $sql = "SELECT HOTEN_Admin FROM ADMINISTRATOR WHERE SDT_Admin = {$_SESSION['sdt']['sdt']}";
+    $result = sqlsrv_query($conn, $sql);
+    
+    $name= "";
+    if(sqlsrv_has_rows($result))
+    {
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        $name = $row['HOTEN_Admin'];
+    }
+    
 ?>
 <div class="navbar navbar-top navbar-expand-md">
     <div class="container container-header">
@@ -10,8 +19,7 @@
         <li class="navbar-user">
             <img src="../../assets/image/user_avatar.png" alt="" class="navbar-user-img">
             <span class="navbar-user-name"><?php 
-            $info = getbyKeyValue('TAIKHOAN','SDT', $_SESSION['sdt']['vaitro']);
-            //echo $info['data']['sdt']?></span>
+            echo $name?></span>
 
             <ul class="navbar-user-menu">
                 <li class="navbar-nav__item">

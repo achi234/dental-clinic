@@ -83,13 +83,13 @@ $services = getAll('DICHVU');
                                                     if($services['ID_DichVu'] == $record['data']['ID_DichVu'])
                                                     {?>
                                                     <option value="<?php echo $service['ID_DichVu']; ?>" selected> <?php echo $service['TenDv'];
-                                                                                                              echo " (PhoneNum = {$service['ID_DichVu']})" ?></option>
+                                                                                                              echo " (ID = {$service['ID_DichVu']})" ?></option>
                                                 <?php 
                                                     }
                                                     else
                                                     { ?>
                                                     <option value="<?php echo $service['ID_DichVu']; ?>"> <?php echo $service['TenDV'];
-                                                                                                              echo " (PhoneNum = {$service['ID_DichVu']})" ?></option>
+                                                                                                              echo " (ID = {$service['ID_DichVu']})" ?></option>
                                                 <?php
                                                     } 
                                                 }?>
@@ -165,7 +165,7 @@ $services = getAll('DICHVU');
  
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="update_precripes.php?id=<?php  echo $precript['ID_THUOC'];?>&record_id=<?php echo $record_id?>" class="btn-control btn-control-edit">
+                                                <a href="update_prescribes.php?id=<?php  echo $precript['ID_THUOC'];?>&record_id=<?php echo $record_id?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-pills btn-control-icon"></i>
                                                     Update
                                                 </a>

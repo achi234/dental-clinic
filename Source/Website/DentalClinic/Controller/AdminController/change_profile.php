@@ -5,7 +5,7 @@
     
     if(isset($_POST['btn-changeProfile']))
     {
-        if(empty($_POST['fullname']) || empty($_POST['user_phone'])|| empty($_POST['user_gender'])|| empty($_POST['user_address']))
+        if(empty($_POST['fullname']))
         {
             //echo 'Here';
             redirect('../../MainUI/AdminUI/change_profile.php', 'All fields are required.', '');
@@ -13,29 +13,28 @@
         }
         else
         {
-            $id = $_SESSION['auth_user']['id'];
-            $username =  $_SESSION['auth_user']['username'];
+            $sdt = $_SESSION['sdt']['sdt'];
             $fullname = $_POST['fullname'];
-            $phone = $_POST['user_phone'];
-            $gender = $_POST['user_gender'];
-            $address = $_POST['user_address'];
             $password = $_POST['new_password'];
 
 
             if(empty($password))
             {
-                $info = getbyKeyValue('ACCOUNT', 'Username',$username);
-                $password = $info['data']['Pass_word'];
+                $info = getbyKeyValue('TAIKHOAN', 'SDT',$sdt);
+                $password = $info['data']['MatKhau'];
             }
 
-            $dataUser = [
-                'Fullname'    => $fullname,
-                'Gender'      => $gender,
-                'CurrAddress' => $address,
-                'PhoneNumber' => $phone,
+            $dataAdmin = [
+                'HoTen_Admin'    => $fullname,
+                
+            ];
+            $dataTaiKhoan = [
+                'MatKhau'    => $password,
             ];
 
-            $updateUser = updatebyKeyValue('USER_DENTAL', 'ID_User', $id, $dataUser);
+            $updateAdmin = updatebyKeyValue('ADMINISTRATOR', 'SDT_Admin', $sdt, $dataAdmin);
+            $updateTaikhoan = updatebyKeyValue('TAIKHOAN', 'SDT', $sdt, $dataTaiKhoan);
+            
             // echo $username;
             // echo '<br>';
             // echo $fullname;
@@ -48,14 +47,17 @@
             // echo '<br>';
             // echo $password;
             // echo '<br>';
-
-            if($updateUser['status'])
+            
+            if($updateAdmin['status'] && $updateTaikhoan['status'])
             {
                 redirect('../../MainUI/AdminUI/change_profile.php', '', "You've update your information successfully!");
             }
             else
             {
-                redirect('../../MainUI/AdminUI/change_profile.php', 'Something went wrong! Please enter again...', "");
+                echo $updateAdmin['query'];
+                echo $updateTaikhoan['query'];
+                
+               redirect('../../MainUI/AdminUI/change_profile.php', 'Something went wrong! Please enter again...', "");
             }
 
         }

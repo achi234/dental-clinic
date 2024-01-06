@@ -137,7 +137,6 @@ $services = getAll('DICHVU');
                                         <th class="text-column" scope="col">Amount</th>  
                                         <th class="text-column" scope="col">Price ($)</th> 
                                         <th class="text-column" scope="col">Total</th> 
-                                        <th class="text-column" scope="col">Action</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
@@ -158,15 +157,6 @@ $services = getAll('DICHVU');
                                         <th class="text-column" scope="row"><?php echo $precript['SOLUONG']?></th>
                                         <th class="text-column" scope="row"><?php echo $precript['DONGIA']?></th> 
                                         <th class="text-column" scope="row"><?php echo $precript['THANHTIEN']?></th> 
- 
-                                        <th class="text-column" scope="row">
-                                            <div class="text-column__action">
-                                                <a href="update_prescribes.php?id=<?php  echo $precript['ID_THUOC'];?>&record_id=<?php echo $record_id?>" class="btn-control btn-control-edit">
-                                                    <i class="fa-solid fa-pills btn-control-icon"></i>
-                                                    Update
-                                                </a>
-                                            </div>
-                                        </th> 
                                     </tr>
                                     <?php
                                         }

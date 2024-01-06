@@ -2,8 +2,10 @@
 require_once('./partials/_head.php');
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$appointments = getTopAppt('10');
-$records = getTopRecord('10');
+
+$customer_phone = $_SESSION['sdt']['sdt'];
+$appointments = getTopApptbyCustomer('10', $customer_phone);
+$records = getTopRecordbyCustomer('10', $customer_phone);
 ?>
 
 <body>
@@ -100,9 +102,9 @@ $records = getTopRecord('10');
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($records['data']);
+                                    //$count = sizeof($records['data']);
                                     //echo $records['data'];
-                                    if($count > 0)
+                                    if($records['status'] == 'Data Found')
                                     {
                                     ?>
                                         <?php  foreach($records['data'] as $record) 

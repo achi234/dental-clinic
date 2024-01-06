@@ -328,6 +328,47 @@
         }
     }
 
+    function getTopApptbyCustomer($count, $phoneNum)
+    {
+        global $conn;
+    
+        $count = validate($count);
+        $phoneNum = validate($phoneNum);
+
+        $query = "SELECT TOP $count *
+                FROM CUOCHEN
+                WHERE SDT_KH = '$phoneNum'
+                ORDER BY Ngay DESC, Gio DESC";
+        $result = sqlsrv_query($conn, $query);
+    
+        if ($result) {
+            $data = array();
+    
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+    
+            if (!empty($data)) {
+                $response = [
+                    'status' => 'Data Found',
+                    'data' => $data,
+                ];
+            } else {
+                $response = [
+                    'status' => 'No Data Found',
+                ];
+            }
+    
+            return $response;
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+            return $response;
+        }
+    }
+
+
     function getTopRecord($count)
     {
         global $conn;
@@ -452,6 +493,46 @@
         $query = "SELECT TOP $count *
                 FROM HOSOKHACHHANG
                 WHERE SDT_NS = '$phoneNum'
+                ORDER BY NgayTaoHoSo DESC";
+        $result = sqlsrv_query($conn, $query);
+    
+        if ($result) {
+            $data = array();
+    
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+    
+            if (!empty($data)) {
+                $response = [
+                    'status' => 'Data Found',
+                    'data' => $data,
+                ];
+            } else {
+                $response = [
+                    'status' => 'No Data Found',
+                ];
+            }
+    
+            return $response;
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+            return $response;
+        }
+    }
+
+    function getTopRecordbyCustomer($count, $phoneNum)
+    {
+        global $conn;
+    
+        $count = validate($count);
+        $phoneNum = validate($phoneNum);
+
+        $query = "SELECT TOP $count *
+                FROM KHACHHANG
+                WHERE SDT_KH = '$phoneNum'
                 ORDER BY NgayTaoHoSo DESC";
         $result = sqlsrv_query($conn, $query);
     

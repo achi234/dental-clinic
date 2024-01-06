@@ -1,7 +1,7 @@
 <?php
     require_once('./partials/_head.php');
     global $conn;
-    $sql = "SELECT * FROM ADMINISTRATOR WHERE SDT_Admin = {$_SESSION['sdt']['sdt']}";
+    $sql = "SELECT * FROM KHACHHANG WHERE SDT_KH = {$_SESSION['sdt']['sdt']}";
     $result = sqlsrv_query($conn, $sql);
     
     //echo $sql;
@@ -10,8 +10,8 @@
     if(sqlsrv_has_rows($result))
     {
         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-        $name = $row['HoTen_Admin'];
-        $sdt = $row['SDT_Admin'];
+        $name = $row['HoTen_KH'];
+        $sdt = $row['SDT_KH'];
     }
 ?>
 
@@ -44,7 +44,7 @@
                             </div>
                             
                             <div class="container-recent__body card__body-form">
-                                <form method="POST" action="../../Controller/AdminController/change_profile.php">
+                                <form method="POST" action="../../Controller/CustomerController/change_profile.php">
                                     <div class="form-row">
                                         <h6 class="heading-small text-muted margin-0">User Information</h6>
                                         
@@ -83,6 +83,27 @@
                                                 <input type="password" name="new_password" class="form-control">
                                             </div>
 
+                                            <br class="">           
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        
+                                        <h6 class="heading-small text-muted">Other Information</h6>
+                                        
+                                        <br class="">
+                                        
+                                        <div class="form-small">
+                                            <div class="form-col margin-0">
+                                                <label for="" class="form-col__label">Address</label>
+                                                <input type="text" name="diachi" class="form-control">
+                                            </div>
+
+                                            <br class="">
+
+                                            <div class="form-col margin-0">
+                                                <label for="" class="form-col__label">Date Of Birth</label>
+                                                <input type="date" name="dob" class="form-control">
+                                            </div>
                                             <br class="">
 
                                             <div class="form-col">
@@ -114,7 +135,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <p class="recent__heading-title margin-0">System Admin</p>
+                                <p class="recent__heading-title margin-0">System KH</p>
                                 <div class="text__profile-email">
                                     <?php echo $name?>
                                 </div>

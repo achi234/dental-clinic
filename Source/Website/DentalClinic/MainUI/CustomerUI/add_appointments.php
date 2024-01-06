@@ -3,7 +3,19 @@ require_once('./partials/_head.php');
 //$dentists = getIdbyUserType('TAIKHOAN', 'Dentist');
 $dentists = getAll('NHASI');
 $patients = getAll('KHACHHANG');
-//$rooms = getAll('ROOM');
+global $conn;
+    $sql = "SELECT * FROM KHACHHANG WHERE SDT_KH = {$_SESSION['sdt']['sdt']}";
+    $result = sqlsrv_query($conn, $sql);
+    
+    //echo $sql;
+    $name= '';
+    $sdt = '';
+    if(sqlsrv_has_rows($result))
+    {
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        $name = $row['HoTen_KH'];
+        $sdt = $row['SDT_KH'];
+    }
 ?>
 
 <body>
@@ -28,7 +40,7 @@ $patients = getAll('KHACHHANG');
                         </div>
                         
                         <div class="container-recent__body card__body-form">
-                            <form method="POST" action="../../Controller/StaffController/add_appointment.php">
+                            <form method="POST" action="../../Controller/CustomerController/add_appointment.php">
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
@@ -60,29 +72,7 @@ $patients = getAll('KHACHHANG');
 
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Patient Id</label>
-                                            <select name="SDT_KH" class="form-cotrol">
-                                            <option>Select patient</option>
-                                            <?php
-                                                $count = sizeof($patients['data']);
-                                                if($count > 0)
-                                                {
-                                                ?>
-                                                    <?php  foreach($patients['data'] as $patient) 
-                                                    {  
-                                                    ?>
-                                                <option value="<?php echo $patient['SDT_KH']?>" class=""><?php echo $patient['SDT_KH'];
-                                                                                                              echo " (HoTen = {$patient['HoTen_KH']})" ?></option>
-                                                <?php
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    ?>
-                                                    <th class="text-column" scope="row"><?php echo 'No Data Found'?></th> 
-                                                    <?php
-                                                }
-                                            ?>
-                                            </select>
+                                            <input type="text" name="SDT_KH" class="form-control" value="<?php echo $sdt?>" readonly>
                                         </div>
                                         
                                        

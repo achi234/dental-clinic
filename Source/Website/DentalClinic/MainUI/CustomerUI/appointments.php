@@ -5,7 +5,8 @@ require_once('./partials/_head.php');
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_CuocHen');
+$customer_phone = $_SESSION['sdt']['sdt'];
+$appointments = getbyKeyValueWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_CuocHen', 'SDT_KH', $customer_phone);
 ?>
 
 <body>
@@ -62,11 +63,17 @@ $appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_Cuoc
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $appointments = searchByKeyword('CUOCHEN', $strKeyword);
+                                    $patients = searchByKeyword('CUOCHEN', $strKeyword);
+
+                                    if($patients['status'] == 'No Data Found')
+                                    {
+                                        $_SESSION['status'] = $patients['status'];
+                                        $patients = getbyKeyValueWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_CuocHen', 'SDT_KH', $_SESSION['sdt']['sdt']);
+                                    }
                                 }
                                 else
                                 {
-                                    $appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_CuocHen');
+                                    $patients = getbyKeyValueWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_CuocHen', 'SDT_KH', $_SESSION['sdt']['sdt']);
                                 }
                             ?>
                             <div class="container__heading-search">
@@ -95,6 +102,7 @@ $appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_Cuoc
                                 <tbody class="table-body">
                                 <?php
                                     $count = sizeof($appointments['data']);
+                                    
                                     //echo $appointments['data'];
                                     if($count > 0)
                                     {

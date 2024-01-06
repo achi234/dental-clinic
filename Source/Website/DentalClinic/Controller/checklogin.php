@@ -61,6 +61,9 @@
                         case "STAFF":
                             header("location: ../MainUI/StaffUI/dashboard.php");
                             exit(0);
+                        case "CUSTOMER":
+                            header("location: ../MainUI/CustomerUI/dashboard.php");
+                            exit(0);
                         default:
                             echo $_SESSION['sdt']['vaitro'];
                             $_SESSION['status'] = 'Error when directing...Please try again!';

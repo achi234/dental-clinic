@@ -1,20 +1,20 @@
 <?php
     //session_start();
     global $conn;
-    $sql = "SELECT HOTEN_NV FROM NHANVIEN WHERE SDT_NV = {$_SESSION['sdt']['sdt']}";
+    $sql = "SELECT HOTEN_KH FROM KHACHHANG WHERE SDT_KH = {$_SESSION['sdt']['sdt']}";
     $result = sqlsrv_query($conn, $sql);
     
     $name= "";
     if(sqlsrv_has_rows($result))
     {
         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-        $name = $row['HOTEN_NV'];
+        $name = $row['HOTEN_KH'];
     }
 
 ?>
 <div class="navbar navbar-top navbar-expand-md">
     <div class="container container-header">
-        <a href="dashboard.php" class="h4 container__dashboard-name">SYSTEM STAFF DASHBOARD</a>
+        <a href="dashboard.php" class="h4 container__dashboard-name">SYSTEM CUSTOMER DASHBOARD</a>
 
         <li class="navbar-user">
             <img src="../../assets/image/user_avatar.png" alt="" class="navbar-user-img">

@@ -3,8 +3,8 @@ require_once('./partials/_head.php');
 $appointment_id = $_GET['id'];
 $appointment = getbyKeyValue('CUOCHEN', 'ID_CuocHen', $appointment_id);
 
-$dentists = getbyKeyValue('NHASI', 'SDT_NS', $appointment['data']['SDT_NS']);
-$patients = getAll('KHACHHANG');
+$patients = getbyKeyValue('KHACHHANG', 'SDT_KH', $appointment['data']['SDT_KH']);
+$dentists = getAll('NHASI');
 ?>
 
 <body>
@@ -29,36 +29,34 @@ $patients = getAll('KHACHHANG');
                         </div>
                         
                         <div class="container-recent__body card__body-form">
-                            <form method="POST" action="../../Controller/StaffController/update_appointment.php">
+                            <form method="POST" action="../../Controller/CustomerController/update_appointment.php">
                             <input type="hidden" name="appointment_id" value="<?php echo $appointment_id; ?>">
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Dentist Phone</label>
-                                            <input type="text" name="dentist_phone" class="form-control" value="<?php echo $dentists['data']['SDT_NS'];?>" readonly>
-                                        </div>
-
-                                        <div class="form-col">
-                                            <label for="" class="form-col__label">Patient Name</label>
-                                            <select name="customer_phone" class="form-control">
-                                                <?php foreach ($patients['data'] as $patient) 
+                                            <label for="" class="form-col__label">Dentist Name</label>
+                                            <select name="dentist_phone" class="form-control">
+                                                <?php foreach ($dentists['data'] as $dentist) 
                                                 { 
-                                                    if($patients['SDT_KH'] == $appointment['data']['SDT_KH'])
+                                                    if($dentists['SDT_NS'] == $appointment['data']['SDT_NS'])
                                                     {?>
-                                                    <option value="<?php echo $patient['SDT_KH']; ?>" selected> <?php echo $patient['HoTen_KH'];
-                                                                                                              echo " (PhoneNum = {$patient['SDT_KH']})" ?></option>
+                                                    <option value="<?php echo $dentist['SDT_NS']; ?>" selected> <?php echo $dentist['HoTen_NS'];
+                                                                                                              echo " (PhoneNum = {$dentist['SDT_NS']})" ?></option>
                                                 <?php 
                                                     }
                                                     else
                                                     { ?>
-                                                    <option value="<?php echo $patient['SDT_KH']; ?>"> <?php echo $patient['HoTen_KH'];
-                                                                                                              echo " (PhoneNum = {$patient['SDT_KH']})" ?></option>
+                                                    <option value="<?php echo $dentist['SDT_NS']; ?>"> <?php echo $dentist['HoTen_NS'];
+                                                                                                              echo " (PhoneNum = {$dentist['SDT_NS']})" ?></option>
                                                 <?php
                                                     } 
                                                 }?>
                                             </select>
                                         </div>
-                                        
+                                        <div class="form-col">
+                                            <label for="" class="form-col__label">Customer Phone</label>
+                                            <input type="text" name="customer_phone" class="form-control" value="<?php echo $patients['data']['SDT_KH'];?>" readonly>
+                                        </div>
                                     </div>
                                 </div>
 

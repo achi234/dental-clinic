@@ -4,8 +4,9 @@
 
     $pageSize = 20;
     $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
-    $patients = getAllWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo');
+    
+    $customer_phone = $_SESSION['sdt']['sdt'];
+    $patients = getbyKeyValueWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo', 'SDT_KH', $customer_phone);
 ?>
 
 <body>
@@ -24,11 +25,7 @@
                 <div class="container-recent">
                     <form action="" method="POST" class="container-recent-inner">
                         <div class="container-recent__heading heading__button">
-                            <a href="add_patients.php" class="btn-control btn-control-add">
-                                <i class="fa-solid fa-bed-pulse btn-control-icon"></i>
-                                Add new record
-                            </a>
-
+                            <p class="recent__heading-title"> Patient record </p>
                             <div class="pagination">
                                 <?php
                                     $totalPages = ceil($patients['total'] / $pageSize);
@@ -66,12 +63,12 @@
                                     if($patients['status'] == 'No Data Found')
                                     {
                                         $_SESSION['status'] = $patients['status'];
-                                        $patients = getAllWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo');
+                                        $patients = getbyKeyValueWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo', 'SDT_KH', $_SESSION['sdt']['sdt']);
                                     }
                                 }
                                 else
                                 {
-                                    $patients = getAllWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo');
+                                    $patients = getbyKeyValueWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo', 'SDT_KH', $_SESSION['sdt']['sdt']);
                                 }
                             ?>
                             <div class="container__heading-search">
@@ -87,22 +84,23 @@
                             <table class="table">
                                 <thead class="thead-light"> 
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">Patient Id</th> 
-                                        <th class="text-column" scope="col">Dentist</th> 
+                                        <th class="text-column-emphasis" scope="col">Record Id</th> 
+                                        <!-- <th class="text-column" scope="col">Dentist</th>  -->
                                         <th class="text-column" scope="col">Customer</th> 
                                         <th class="text-column" scope="col">Date created</th> 
-                                        <!-- <th class="text-column" scope="col">PhiKham</th> 
+                                        <th class="text-column" scope="col">PhiKham</th> 
                                         <th class="text-column" scope="col">Service_ID</th> 
-                                        <th class="text-column" scope="col">Medincine Fee</th>  -->
+                                        <th class="text-column" scope="col">Medincine Fee</th> 
                                         <th class="text-column" scope="col">Total</th> 
-                                        <th class="text-column" scope="col">ACTION</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($patients['data']);
+                                    // $count = sizeof($patients['data']);
                                     //echo $patients['data'];
-                                    if($count > 0)
+                                    // if($count > 0)
+                                    $status = $patients['status'];
+                                    if($status != 'No Data Found')
                                     {
                                     ?>
                                         <?php  foreach($patients['data'] as $patient) 
@@ -112,21 +110,13 @@
                                         ?>
                                     <tr>
                                         <th class="text-column-emphasis" scope="row"><?php echo $patient['ID_HoSo']?></th>
-                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
+                                        <!-- <th class="text-column" scope="row"><?php //echo $dentist['data']['HoTen_NS']?></th> -->
                                         <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
                                         <th class="text-column" scope="row"><?php echo $patient['NgayTaoHoSo']->format('d-m-Y')?></th> 
-                                        <!-- <th class="text-column" scope="row"><?php //echo $patient['PhiKham']?></th> 
-                                        <th class="text-column" scope="row"><?php //echo $patient['ID_DichVu']?></th> 
-                                        <th class="text-column" scope="row"><?php //echo $patient['TongTienThuoc']?></th>  -->
+                                        <th class="text-column" scope="row"><?php echo $patient['PhiKham']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $patient['ID_DichVu']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $patient['TongTienThuoc']?></th> 
                                         <th class="text-column" scope="row"><?php echo $patient['TongTien']?></th> 
-                                        <th class="text-column" scope="row">
-                                            <div class="text-column__action">
-                                                <a href="update_patients.php?id=<?php  echo $patient['ID_HoSo']?>" class="btn-control btn-control-edit">
-                                                    <i class="fa-solid fa-user-pen btn-control-icon"></i>
-                                                    View Detail
-                                                </a>
-                                            </div>
-                                        </th> 
                                     </tr>
                                     <?php
                                         }

@@ -142,9 +142,9 @@ $services = getAll('DICHVU');
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($precripts['data']);
+                                    //$count = sizeof($precripts['data']);
                                     //echo $staffs['data'];
-                                    if($count > 0)
+                                    if($precripts['status'] == 'Data Found')
                                     {
                                     ?>
                                         <?php  foreach($precripts['data'] as $precript) 

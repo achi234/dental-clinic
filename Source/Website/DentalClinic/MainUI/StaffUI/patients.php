@@ -100,9 +100,9 @@
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($patients['data']);
+                                    //$count = sizeof($patients['data']);
                                     //echo $patients['data'];
-                                    if($count > 0)
+                                    if($patients['status'] == 'Data Found')
                                     {
                                     ?>
                                         <?php  foreach($patients['data'] as $patient) 

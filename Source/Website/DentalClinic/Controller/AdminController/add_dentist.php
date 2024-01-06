@@ -5,9 +5,9 @@
     
     if(isset($_POST['btn-add-dentist']))
     {
-        $phone = $_POST['SDT_NS'];
-        $fullname = $_POST['HoTen_NS'];
-        $password = $_POST['MatKhau'];
+        $phone = $_POST['dentist_phone'];
+        $fullname = $_POST['dentist_name'];
+        $password = $_POST['password'];
 
         if(!empty($fullname) && !empty($phone)  && !empty($password))
         {

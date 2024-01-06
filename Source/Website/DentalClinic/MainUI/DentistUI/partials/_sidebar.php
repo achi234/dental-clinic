@@ -25,7 +25,7 @@
                     </a>
                 </li> 
 
-                <!-- <li class="navbar-nav__item">
+                <li class="navbar-nav__item">
                     <a href="staffs.php" class="nav-item__link text-primary">
                         <i class="fa-solid fa-user-tie nav-item__icon"></i>
                         <p class="nav-item__text">Staffs</p>
@@ -44,7 +44,7 @@
                         <i class="fa-solid fa-pills nav-item__icon"></i>
                         <p class="nav-item__text">Medicines</p>
                     </a>
-                </li> -->
+                </li> 
                 
                 <li class="navbar-nav__item">
                     <a href="appointments.php" class="nav-item__link text-primary">

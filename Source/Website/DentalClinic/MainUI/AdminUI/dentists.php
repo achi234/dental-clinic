@@ -129,7 +129,7 @@
                                         ?> 
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="../../Controller/AdminController/delete_dentist.php?id=<?php  echo $dentist['SDT_NS']?>" 
+                                                <a href="../../Controller/AdminController/delete_dentist.php?sdt=<?php  echo $dentist['SDT_NS']?>" 
                                                     class="btn-control btn-control-delete">
                                                         <i class="fa-solid fa-trash-can btn-control-icon"></i>
                                                         Delete

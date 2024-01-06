@@ -8,7 +8,7 @@
     if(isset($_POST['btn-updateDentist']))
     {
         $dentist_phone = $_POST['dentist_phone'];
-        if(empty($_POST['dentist_name']))
+        if(empty($_POST['dentist_name']) || empty($_POST['dentist_status'])  )
         {
             redirect('../../MainUI/AdminUI/update_dentists.php?id='.$dentist_phone, 'All fields are required.', '');
             exit(0);
@@ -19,6 +19,7 @@
             $dentist_name = $_POST['dentist_name'];
             $dentist_phone = $_POST['dentist_phone'];
             $dentist_password = $_POST['password'];
+            $dentist_status = $_POST['dentist_status'];
 
             $password = "";
             if(!empty($dentist_password))
@@ -33,6 +34,7 @@
 
             $dataAccount = [
                 'MatKhau' => $password,
+                'isActive'  => $dentist_status,
             ];
 
             $dataUser = [

@@ -16,20 +16,14 @@
         }
         else
         {
-            //echo "Here";
-            //echo $dentist['query'];
-
-            //$deletedentist = delete('dentist', 'ID_Dentist', $dentist_id);
-            //$deleteUser = delete('USER_DENTAL', 'ID_User', $dentist_id);
-
-            //echo $deletedentist['query'];
-            //echo $deleteUser['query'];
             $dataAccount = [
-                'isActive' => 'No',
+                'isActive' => 'NO',
             ];
 
             $updateAccount = updatebyKeyValue('TAIKHOAN', 'SDT', $dentist['data']['SDT'], $dataAccount);
 
+            //echo $updateAccount['query'];
+            
             if($updateAccount['status'])
             {
                 redirect('../../MainUI/AdminUI/dentists.php', '', "You've deleted dentist {$dentist['data']['HoTen_NS']} !");

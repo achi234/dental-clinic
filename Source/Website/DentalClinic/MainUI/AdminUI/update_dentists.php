@@ -35,7 +35,24 @@ $dentist_detail = getbyKeyValue('NHASI', 'SDT_NS', $dentist_phone);
                                             <label for="" class="form-col__label">Dentist Name</label>
                                             <input type="text" name="dentist_name" class="form-control" value="<?php echo $dentist_detail['data']['HoTen_NS']?>">
                                         </div>
-
+                                        <div class="form-col">
+                                            <label for="" class="form-col__label">Status</label>
+                                            <select name="dentist_status"  class="form-cotrol">
+                                            <?php if($dentist['data']['isActive'] == 'NO')
+                                                { ?>
+                                                    <option value="YES" >Yes</option>
+                                                    <option value="NO" selected>No</option>
+                                                <?php 
+                                                } 
+                                                else
+                                                { ?>
+                                                    <option value="YES" selected>Yes</option>
+                                                    <option value="NO" >No</option>
+                                                <?php 
+                                                } 
+                                                ?> 
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr class="navbar__divider">

@@ -6,7 +6,7 @@
     if(isset($_POST['btn-updateStaff']))
     {
         $staff_phone = $_POST['staff_phone'];
-        if(empty($_POST['staff_name']))
+        if(empty($_POST['staff_name']) || empty($_POST['staff_status']))
         {
             redirect('../../MainUI/AdminUI/update_staffs.php?id='.$staff_phone, 'All fields are required.', '');
             exit(0);
@@ -16,11 +16,13 @@
             $staff_phone = $_POST['staff_phone'];
             $staff_name = $_POST['staff_name'];
             $staff_password = $_POST['password'];
+            $staff_status = $_POST['staff_status'];
 
             $password = "";
             if(!empty($staff_password))
             {
                 $password = $staff_password;
+                
             }
             else
             {
@@ -30,6 +32,7 @@
 
             $dataAccount = [
                 'MatKhau' => $password,
+                'isActive'  => $staff_status,
             ];
 
             $dataUser = [

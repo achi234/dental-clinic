@@ -130,7 +130,7 @@ $staffs = getAllWithPagination('NHANVIEN', $pageSize, $pageNumber, 'SDT_NV');
                                         ?>  
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                            <a href="../../Controller/AdminController/delete_staff.php?id=<?php  echo $staff['SDT_NV']?>" 
+                                            <a href="../../Controller/AdminController/delete_staff.php?sdt=<?php  echo $staff['SDT_NV']?>" 
                                                     class="btn-control btn-control-delete">
                                                         <i class="fa-solid fa-trash-can btn-control-icon"></i>
                                                         Delete

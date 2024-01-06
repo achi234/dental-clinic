@@ -14,7 +14,7 @@ $staff_detail = getbyKeyValue('NHANVIEN', 'SDT_NV', $staff_phone);
 <body>
     <!-- Sidebar -->
     <?php
-        require_once('./partials/_sidebar.php');
+     require_once('./partials/_sidebar.php');
     ?>
     <!-- Main content -->
     <div class="main-content">
@@ -40,7 +40,24 @@ $staff_detail = getbyKeyValue('NHANVIEN', 'SDT_NV', $staff_phone);
                                             <label for="" class="form-col__label">Staff Name</label>
                                             <input type="text" name="staff_name" class="form-control" value="<?php echo $staff_detail['data']['HoTen_NV']?>">
                                         </div>
-
+                                        <div class="form-col">
+                                            <label for="" class="form-col__label">Status</label>
+                                            <select name="staff_status"  class="form-cotrol">
+                                            <?php if($staff['data']['isActive'] == 'NO')
+                                                { ?>
+                                                    <option value="YES" >Yes</option>
+                                                    <option value="NO" selected>No</option>
+                                                <?php 
+                                                } 
+                                                else
+                                                { ?>
+                                                    <option value="YES" selected>Yes</option>
+                                                    <option value="NO" >No</option>
+                                                <?php 
+                                                } 
+                                                ?> 
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr class="navbar__divider">

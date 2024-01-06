@@ -5,42 +5,42 @@
 
     if(isset($_POST['btn-add-prescribe']))
     {
-        $select_id = $_POST['select_id'];
+        $record_id = $_POST['record_id'];
         $medicine_id = $_POST['medicine_id'];
         $quantity = $_POST['quantity'];
-        // $unit_price = $_POST['unit_price'];
-        // $total_price = $_POST['total_price'];
         
-        if(!empty($select_id) && !empty($medicine_id) && 
+        // echo $record_id;
+        // echo $medicine_id;
+        // echo $quantity;
+
+        if(!empty($record_id) && !empty($medicine_id) && 
          !empty($quantity))
         {
             $dataPrescribe = [
-                'ID_Select' => $select_id,
-                'ID_Medicine' => $medicine_id,
-                'Quantity' => $quantity,
-                // 'UnitPrice' => $unit_price,
-                // 'TotalPrice' => $total_price,
+                'ID_HoSo' => $record_id,
+                'ID_Thuoc' => $medicine_id,
+                'SOLUONG' => $quantity,
             ];
 
-            $addPrescribe = insert('PRESCRIBE', $dataPrescribe);
+            $addPrescribe = insert('KEDON', $dataPrescribe);
 
             echo $addPrescribe['query'];
 
             if($addPrescribe['status'])
             {
                 echo "You've added choose treatment successfully!";
-                redirect('../../MainUI/StaffUI/update_treatmentplans.php?id='.$select_id, '', "You've added prescribe successfully!");
+                redirect('../../MainUI/StaffUI/update_patients.php?id='.$record_id, '', "You've added prescribe successfully!");
             }
             else
             {
                 echo "Something went wrong! Please enter again...";
-                redirect('../../MainUI/StaffUI/add_precribes.php?id='.$select_id, 'Something went wrong! Please enter again...', "");
+                redirect('../../MainUI/StaffUI/add_precribes.php?id='.$record_id, 'Something went wrong! Please enter again...', "");
             }                            
         }
         else
         {
             echo "All fields are required.";
-            redirect('../../MainUI/StaffUI/add_precribes.php?id='.$select_id, 'All fields are required.', '');
+            redirect('../../MainUI/StaffUI/add_precribes.php?id='.$record_id, 'All fields are required.', '');
             exit(0);                            
         }
     }

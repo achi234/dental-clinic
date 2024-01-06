@@ -5,7 +5,7 @@ require_once('./partials/_head.php');
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$appointments = getAllWithPagination('APPOINTMENT', $pageSize, $pageNumber, 'ID_Appointment');
+$appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_CuocHen');
 ?>
 
 <body>
@@ -62,11 +62,11 @@ $appointments = getAllWithPagination('APPOINTMENT', $pageSize, $pageNumber, 'ID_
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $appointments = searchByKeyword('APPOINTMENT', $strKeyword);
+                                    $appointments = searchByKeyword('CUOCHEN', $strKeyword);
                                 }
                                 else
                                 {
-                                    $appointments = getAllWithPagination('APPOINTMENT', $pageSize, $pageNumber, 'ID_Appointment');
+                                    $appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_CuocHen');
                                 }
                             ?>
                             <div class="container__heading-search">
@@ -82,14 +82,13 @@ $appointments = getAllWithPagination('APPOINTMENT', $pageSize, $pageNumber, 'ID_
                             <table class="table">
                                 <thead class="thead-light"> 
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">Id</th> 
+                                        <th class="text-column-emphasis" scope="col">Appointment Id</th> 
                                         <th class="text-column" scope="col">Dentist</th> 
-                                        <th class="text-column" scope="col">Customer</th> 
-                                        <th class="text-column" scope="col">Room</th> 
+                                        <th class="text-column" scope="col">Customer</th>
                                         <th class="text-column" scope="col">Date</th> 
                                         <th class="text-column" scope="col">Time</th> 
                                         <th class="" scope="col"></th> 
-                                        <th class="text-column" scope="col">Status</th> 
+                                        <!-- <th class="text-column" scope="col">Status</th>  -->
                                         <th class="text-column" scope="col">ACTIONS</th> 
                                     </tr>
                                 </thead>
@@ -102,22 +101,22 @@ $appointments = getAllWithPagination('APPOINTMENT', $pageSize, $pageNumber, 'ID_
                                     ?>
                                         <?php  foreach($appointments['data'] as $appointment) 
                                         {  
-                                            $dentist = getbyKeyValue('USER_DENTAL','ID_User', $appointment['ID_Dentist']);
-                                            $customer = getbyKeyValue('CUSTOMER','ID_Customer', $appointment['ID_Customer']);
+                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $appointment['SDT_NS']);
+                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $appointment['SDT_KH']);
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $appointment['ID_Appointment']?></th>
-                                        <th class="text-column" scope="row"><?php echo $dentist['data']['Fullname']?></th>
-                                        <th class="text-column" scope="row"><?php echo $customer['data']['Fullname']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $appointment['ID_Room']?></th> 
+                                        <th class="text-column-emphasis" scope="row"><?php echo $appointment['ID_CuocHen']?></th>
+                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
                                         <?php
-                                            $appt_date = $appointment['Date_Appt']->format('d-m-Y');
-                                            $appt_time = $appointment['Time_Appt']->format('H:i');
+                                            $appt_date = $appointment['Ngay']->format('d-m-Y');
+                                            $appt_time = $appointment['Gio']->format('H:i');
                                         ?>
                                         <th class="text-column" scope="row"><?php echo $appt_date?></th>   
                                         <th class="text-column" scope="row"><?php echo $appt_time?></th>                                        
                                         <th class="text-column" scope="row">
-                                        <?php if($appointment['Status_Appt'] == 'New') 
+                                        
+                                        <?php /*if($appointment['Status_Appt'] == 'New') 
                                         {?>
                                             <th class="text-column" scope="row">
                                                 <span class="badge badge-success">New</span>
@@ -132,15 +131,10 @@ $appointments = getAllWithPagination('APPOINTMENT', $pageSize, $pageNumber, 'ID_
                                             </th> 
                                             <?php
                                             }
-                                        ?>
+                                        */?> 
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="../../Controller/StaffController/delete_appointment.php?id=<?php  echo $appointment['ID_Appointment']?>" 
-                                                    class="btn-control btn-control-delete">
-                                                        <i class="fa-solid fa-trash-can btn-control-icon"></i>
-                                                        Delete
-                                                    </a>
-                                                <a href="update_appointments.php?id=<?php  echo $appointment['ID_Appointment']?>" class="btn-control btn-control-edit">
+                                                <a href="update_appointments.php?id=<?php  echo $appointment['ID_CuocHen']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-calendar-day btn-control-icon"></i>
                                                     Update
                                                 </a>
@@ -162,11 +156,11 @@ $appointments = getAllWithPagination('APPOINTMENT', $pageSize, $pageNumber, 'ID_
                         </div>
                     </div>
                 </div>
-            </div>
             <!-- Footer -->
             <?php 
             require_once('./partials/_footer.php'); 
             ?>
+            </div>
         </div>
     </div>
 

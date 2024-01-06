@@ -1,11 +1,11 @@
 <?php
-    $page_title = "Smile - Paitent List";
+    $page_title = "Smile - Patient Record List";
     require_once('./partials/_head.php');
 
     $pageSize = 20;
     $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $paitents = getAllWithPagination('CUSTOMER', $pageSize, $pageNumber, 'ID_Customer');
+    $patients = getAllWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo');
 ?>
 
 <body>
@@ -24,14 +24,14 @@
                 <div class="container-recent">
                     <form action="" method="POST" class="container-recent-inner">
                         <div class="container-recent__heading heading__button">
-                            <a href="add_paitents.php" class="btn-control btn-control-add">
+                            <a href="add_patients.php" class="btn-control btn-control-add">
                                 <i class="fa-solid fa-bed-pulse btn-control-icon"></i>
-                                Add new patient
+                                Add new record
                             </a>
 
                             <div class="pagination">
                                 <?php
-                                    $totalPages = ceil($paitents['total'] / $pageSize);
+                                    $totalPages = ceil($patients['total'] / $pageSize);
                                     $maxPagesToShow = 4;
                                     $halfMax = floor($maxPagesToShow / 2);
 
@@ -61,17 +61,17 @@
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $paitents = searchByKeyword('CUSTOMER', $strKeyword);
+                                    $patients = searchByKeyword('HOSOKHACHHANG', $strKeyword);
 
-                                    if($paitents['status'] == 'No Data Found')
+                                    if($patients['status'] == 'No Data Found')
                                     {
-                                        $_SESSION['status'] = $paitents['status'];
-                                        $paitents = getAllWithPagination('CUSTOMER', $pageSize, $pageNumber, 'ID_Customer');
+                                        $_SESSION['status'] = $patients['status'];
+                                        $patients = getAllWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo');
                                     }
                                 }
                                 else
                                 {
-                                    $paitents = getAllWithPagination('CUSTOMER', $pageSize, $pageNumber, 'ID_Customer');
+                                    $patients = getAllWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo');
                                 }
                             ?>
                             <div class="container__heading-search">
@@ -88,44 +88,40 @@
                                 <thead class="thead-light"> 
                                     <tr>
                                         <th class="text-column-emphasis" scope="col">Patient Id</th> 
-                                        <th class="text-column" scope="col">FULL NAME</th> 
-                                        <th class="text-column" scope="col">Gender</th> 
-                                        <th class="text-column" scope="col">Phone Number</th> 
-                                        <th class="text-column" scope="col">Address</th> 
-                                        <!-- <th class="text-column" scope="col">DOB</th>  -->
+                                        <th class="text-column" scope="col">Dentist</th> 
+                                        <th class="text-column" scope="col">Customer</th> 
+                                        <th class="text-column" scope="col">Date created</th> 
+                                        <!-- <th class="text-column" scope="col">PhiKham</th> 
+                                        <th class="text-column" scope="col">Service_ID</th> 
+                                        <th class="text-column" scope="col">Medincine Fee</th>  -->
+                                        <th class="text-column" scope="col">Total</th> 
                                         <th class="text-column" scope="col">ACTION</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($paitents['data']);
-                                    //echo $paitents['data'];
+                                    $count = sizeof($patients['data']);
+                                    //echo $patients['data'];
                                     if($count > 0)
                                     {
                                     ?>
-                                        <?php  foreach($paitents['data'] as $paitent) 
-                                        {  
+                                        <?php  foreach($patients['data'] as $patient) 
+                                        { 
+                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $patient['SDT_NS']);
+                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $patient['SDT_KH']);
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $paitent['ID_Customer']?></th>
-                                        <th class="text-column" scope="row"><?php echo $paitent['Fullname']?></th>
-                                        <?php if($paitent['Gender'] == 'F')
-                                            {?>
-                                                <th class="text-column" scope="row">Female</th> 
-                                            <?php
-                                            }
-                                            else
-                                            {
-                                            ?>
-                                                <th class="text-column" scope="row">Male</th> 
-                                            <?php
-                                            }
-                                        ?>
-                                        <th class="text-column" scope="row"><?php echo $paitent['PhoneNumber']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $paitent['CurrAddress']?></th> 
+                                        <th class="text-column-emphasis" scope="row"><?php echo $patient['ID_HoSo']?></th>
+                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $patient['NgayTaoHoSo']->format('d-m-Y')?></th> 
+                                        <!-- <th class="text-column" scope="row"><?php //echo $patient['PhiKham']?></th> 
+                                        <th class="text-column" scope="row"><?php //echo $patient['ID_DichVu']?></th> 
+                                        <th class="text-column" scope="row"><?php //echo $patient['TongTienThuoc']?></th>  -->
+                                        <th class="text-column" scope="row"><?php echo $patient['TongTien']?></th> 
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="update_paitents.php?id=<?php  echo $paitent['ID_Customer']?>" class="btn-control btn-control-edit">
+                                                <a href="update_patients.php?id=<?php  echo $patient['ID_HoSo']?>" class="btn-control btn-control-edit">
                                                     <i class="fa-solid fa-user-pen btn-control-icon"></i>
                                                     View Detail
                                                 </a>

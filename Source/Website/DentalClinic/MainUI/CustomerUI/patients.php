@@ -1,11 +1,11 @@
 <?php
-$page_title = "Smile - Staff List";
-require_once('./partials/_head.php');
+    $page_title = "Smile - Patient Record List";
+    require_once('./partials/_head.php');
 
-$pageSize = 20;
-$pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $pageSize = 20;
+    $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$invoices = getAllWithPagination('INVOICE', $pageSize, $pageNumber, 'ID_Invoice');
+    $patients = getAllWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo');
 ?>
 
 <body>
@@ -13,7 +13,6 @@ $invoices = getAllWithPagination('INVOICE', $pageSize, $pageNumber, 'ID_Invoice'
     <?php
     require_once('./partials/_sidebar.php');
     ?>
-    <!-- Main content -->
     <div class="main-content">
         <div class="content">
             <!-- Top navbar -->
@@ -25,14 +24,14 @@ $invoices = getAllWithPagination('INVOICE', $pageSize, $pageNumber, 'ID_Invoice'
                 <div class="container-recent">
                     <form action="" method="POST" class="container-recent-inner">
                         <div class="container-recent__heading heading__button">
-                            <a href="add_invoices.php" class="btn-control btn-control-add">
-                                <i class="fa-solid fa-file-invoice btn-control-icon"></i>
-                                Add new invoice
+                            <a href="add_patients.php" class="btn-control btn-control-add">
+                                <i class="fa-solid fa-bed-pulse btn-control-icon"></i>
+                                Add new record
                             </a>
-                            
+
                             <div class="pagination">
                                 <?php
-                                    $totalPages = ceil($invoices['total'] / $pageSize);
+                                    $totalPages = ceil($patients['total'] / $pageSize);
                                     $maxPagesToShow = 4;
                                     $halfMax = floor($maxPagesToShow / 2);
 
@@ -62,76 +61,72 @@ $invoices = getAllWithPagination('INVOICE', $pageSize, $pageNumber, 'ID_Invoice'
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $invoices = searchByKeyword('INVOICE', $strKeyword);
-                                    
-                                    if($invoices['status'] == 'No Data Found')
+                                    $patients = searchByKeyword('HOSOKHACHHANG', $strKeyword);
+
+                                    if($patients['status'] == 'No Data Found')
                                     {
-                                        $_SESSION['status'] = $invoices['status'];
-                                        $invoices = getAllWithPagination('INVOICE', $pageSize, $pageNumber, 'ID_Invoice');
+                                        $_SESSION['status'] = $patients['status'];
+                                        $patients = getAllWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo');
                                     }
                                 }
                                 else
                                 {
-                                    $invoices = getAllWithPagination('INVOICE', $pageSize, $pageNumber, 'ID_Invoice');
+                                    $patients = getAllWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo');
                                 }
                             ?>
                             <div class="container__heading-search">
-                                <input type="text" class="heading-search__area" placeholder="Search by code, date, time..." name="search_text" value="<?php echo $strKeyword;?>">
+                                <input type="text" class="heading-search__area" placeholder="Search by code, name..." name="search_text" value="<?php echo $strKeyword;?>">
                                 <button class="btn-control btn-control-search" name="btn-search">
                                     <i class="fa-solid fa-magnifying-glass btn-control-icon"></i>
                                     Search
-                                </button>                        
+                                </button>      
                             </div>
                         </div>
 
                         <div class="table-responsive">
                             <table class="table">
-                                <thead class="thead-light">
+                                <thead class="thead-light"> 
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">Invoice Id</th> 
-                                        <th class="text-column" scope="col">Select Treatment</th> 
-                                        <th class="text-column" scope="col">Patient Name</th>                                         
-                                        <th class="text-column" scope="col">Payment</th> 
-                                        <th class="text-column" scope="col">Total ($)</th> 
-                                        <th class="text-column" scope="col">Time</th> 
-                                        <th class="text-column" scope="col">ACTIONS</th> 
+                                        <th class="text-column-emphasis" scope="col">Patient Id</th> 
+                                        <th class="text-column" scope="col">Dentist</th> 
+                                        <th class="text-column" scope="col">Customer</th> 
+                                        <th class="text-column" scope="col">Date created</th> 
+                                        <!-- <th class="text-column" scope="col">PhiKham</th> 
+                                        <th class="text-column" scope="col">Service_ID</th> 
+                                        <th class="text-column" scope="col">Medincine Fee</th>  -->
+                                        <th class="text-column" scope="col">Total</th> 
+                                        <th class="text-column" scope="col">ACTION</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($invoices['data']);
-                                    //echo $invoices['data'];
+                                    $count = sizeof($patients['data']);
+                                    //echo $patients['data'];
                                     if($count > 0)
                                     {
                                     ?>
-                                        <?php  foreach($invoices['data'] as $invoice) 
-                                        {  
+                                        <?php  foreach($patients['data'] as $patient) 
+                                        { 
+                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $patient['SDT_NS']);
+                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $patient['SDT_KH']);
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $invoice['ID']?></th>
-                                        <th class="text-column" scope="row"><?php echo $invoice['ID_Select']?></th>
-                                        <?php
-                                            $selects = getbyKeyValue('SELECT_TREATMENT', 'ID_Select', $invoice['ID_Select']);
-                                            $customers = getbyKeyValue('CUSTOMER', 'ID_Customer', $selects['data']['ID_Customer']);
-                                            $customer_name = $customers['data']['Fullname'];
-                                            $payment = getbyKeyValue('PAYMENT_METHOD', 'ID_Payment', $invoice['ID_Payment']);
-                                            $payment_method = $payment['data']['PaymentMethod'];
-                                        ?>
-                                        <th class="text-column" scope="row"><?php echo $customer_name?></th>
-                                        <th class="text-column" scope="row"><?php echo $payment_method?></th>
-                                        <th class="text-column" scope="row"><?php echo $invoice['Total']?></th> 
-                                        <?php
-                                            $invoice_time = $invoice['InvoiceTime']->format(' H:i:s Y-m-d');
-                                        ?>
-                                        <th class="text-column" scope="row"><?php echo $invoice_time?></th>                                        
+                                        <th class="text-column-emphasis" scope="row"><?php echo $patient['ID_HoSo']?></th>
+                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
+                                        <th class="text-column" scope="row"><?php echo $patient['NgayTaoHoSo']->format('d-m-Y')?></th> 
+                                        <!-- <th class="text-column" scope="row"><?php //echo $patient['PhiKham']?></th> 
+                                        <th class="text-column" scope="row"><?php //echo $patient['ID_DichVu']?></th> 
+                                        <th class="text-column" scope="row"><?php //echo $patient['TongTienThuoc']?></th>  -->
+                                        <th class="text-column" scope="row"><?php echo $patient['TongTien']?></th> 
                                         <th class="text-column" scope="row">
                                             <div class="text-column__action">
-                                                <a href="invoice_detail.php?id=<?php  echo $invoice['ID_Invoice']?>" class="btn-control btn-control-edit">
-                                                    <i class="fa-solid fa-file-lines btn-control-icon"></i>
+                                                <a href="update_patients.php?id=<?php  echo $patient['ID_HoSo']?>" class="btn-control btn-control-edit">
+                                                    <i class="fa-solid fa-user-pen btn-control-icon"></i>
                                                     View Detail
                                                 </a>
                                             </div>
-                                        </th>
+                                        </th> 
                                     </tr>
                                     <?php
                                         }
@@ -142,7 +137,6 @@ $invoices = getAllWithPagination('INVOICE', $pageSize, $pageNumber, 'ID_Invoice'
                                     <?php    
                                     }
                                     ?>
-
                                 </tbody>
                             </table>
 

@@ -1,7 +1,7 @@
 <?php
     require_once('./partials/_head.php');
     global $conn;
-    $sql = "SELECT * FROM NHANVIEN WHERE SDT_NV = {$_SESSION['sdt']['sdt']}";
+    $sql = "SELECT * FROM ADMINISTRATOR WHERE SDT_Admin = {$_SESSION['sdt']['sdt']}";
     $result = sqlsrv_query($conn, $sql);
     
     //echo $sql;
@@ -10,8 +10,8 @@
     if(sqlsrv_has_rows($result))
     {
         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-        $name = $row['HoTen_NV'];
-        $sdt = $row['SDT_NV'];
+        $name = $row['HoTen_Admin'];
+        $sdt = $row['SDT_Admin'];
     }
 ?>
 
@@ -44,7 +44,7 @@
                             </div>
                             
                             <div class="container-recent__body card__body-form">
-                                <form method="POST" action="../../Controller/StaffController/change_profile.php">
+                                <form method="POST" action="../../Controller/AdminController/change_profile.php">
                                     <div class="form-row">
                                         <h6 class="heading-small text-muted margin-0">User Information</h6>
                                         
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <p class="recent__heading-title margin-0">System Staff</p>
+                                <p class="recent__heading-title margin-0">System Admin</p>
                                 <div class="text__profile-email">
                                     <?php echo $name?>
                                 </div>

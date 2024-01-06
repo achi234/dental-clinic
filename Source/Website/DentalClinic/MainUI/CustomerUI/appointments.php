@@ -1,11 +1,11 @@
 <?php
-$page_title = "Smile - Staff List";
+$page_title = "Smile - Appointment List";
 require_once('./partials/_head.php');
 
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNumber, 'ID_User');
+$appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_CuocHen');
 ?>
 
 <body>
@@ -23,14 +23,16 @@ $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNu
             <!-- Page content -->
             <div class="container">
                 <div class="container-recent">
-                <form action="" method="POST" class="container-recent-inner">
-                    <div class="container-recent-inner">
-                        <div class="container-recent__heading">
-                            <p class="recent__heading-title">Staff Records</p>
+                    <form action="" method="POST" class="container-recent-inner">
+                        <div class="container-recent__heading heading__button">
+                            <a href="add_appointments.php" class="btn-control btn-control-add">
+                                <i class="fa-regular fa-calendar-plus btn-control-icon"></i>
+                                Add new appointment
+                            </a>
 
                             <div class="pagination">
                                 <?php
-                                    $totalPages = ceil($staffs['total'] / $pageSize);
+                                    $totalPages = ceil($appointments['total'] / $pageSize);
                                     $maxPagesToShow = 4;
                                     $halfMax = floor($maxPagesToShow / 2);
 
@@ -60,21 +62,15 @@ $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNu
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $staffs = searchUserByKeyword('USER_DENTAL', $strKeyword, 'Staff');
-                                    if($staffs['status'] == 'No Data Found')
-                                    {
-                                        $_SESSION['status'] = $staffs['status'];
-                                        $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNumber, 'ID_User');
-                                    }
+                                    $appointments = searchByKeyword('CUOCHEN', $strKeyword);
                                 }
                                 else
                                 {
-                                    $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNumber, 'ID_User');
+                                    $appointments = getAllWithPagination('CUOCHEN', $pageSize, $pageNumber, 'ID_CuocHen');
                                 }
                             ?>
-                            
                             <div class="container__heading-search">
-                                <input type="text" class="heading-search__area" placeholder="Search by code, name..." name="search_text" value="<?php echo $strKeyword;?>">
+                                <input type="text" class="heading-search__area" placeholder="Search by code, room..." name="search_text" value="<?php echo $strKeyword;?>">
                                 <button class="btn-control btn-control-search" name="btn-search">
                                     <i class="fa-solid fa-magnifying-glass btn-control-icon"></i>
                                     Search
@@ -84,50 +80,46 @@ $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNu
 
                         <div class="table-responsive">
                             <table class="table">
-                                <thead class="thead-light">
+                                <thead class="thead-light"> 
                                     <tr>
-                                        <th class="text-column-emphasis" scope="col">ID</th> 
-                                        <th class="text-column" scope="col">Username</th> 
-                                        <th class="text-column" scope="col">FULL NAME</th> 
-                                        <th class="text-column" scope="col">Gender</th> 
-                                        <th class="text-column" scope="col">Phone Number</th> 
-                                        <th class="text-column" scope="col">Address</th> 
-                                        <th class="text-column" scope="col">Status</th>  
+                                        <th class="text-column-emphasis" scope="col">Appointment Id</th> 
+                                        <th class="text-column" scope="col">Dentist</th> 
+                                        <th class="text-column" scope="col">Customer</th>
+                                        <th class="text-column" scope="col">Date</th> 
+                                        <th class="text-column" scope="col">Time</th> 
+                                        <th class="" scope="col"></th> 
+                                        <!-- <th class="text-column" scope="col">Status</th>  -->
+                                        <th class="text-column" scope="col">ACTIONS</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($staffs['data']);
-                                    //echo $staffs['data'];
+                                    $count = sizeof($appointments['data']);
+                                    //echo $appointments['data'];
                                     if($count > 0)
                                     {
                                     ?>
-                                        <?php  foreach($staffs['data'] as $staff) 
+                                        <?php  foreach($appointments['data'] as $appointment) 
                                         {  
+                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $appointment['SDT_NS']);
+                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $appointment['SDT_KH']);
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $staff['ID']?></th>
-                                        <th class="text-column" scope="row"><?php echo $staff['Username']?></th>
-                                        <th class="text-column" scope="row"><?php echo $staff['Fullname']?></th> 
-                                        <?php if($staff['Gender'] == 'F')
-                                            {?>
-                                                <th class="text-column" scope="row">Female</th> 
-                                            <?php
-                                            }
-                                            else
-                                            {
-                                            ?>
-                                                <th class="text-column" scope="row">Male</th> 
-                                            <?php
-                                            }
+                                        <th class="text-column-emphasis" scope="row"><?php echo $appointment['ID_CuocHen']?></th>
+                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
+                                        <?php
+                                            $appt_date = $appointment['Ngay']->format('d-m-Y');
+                                            $appt_time = $appointment['Gio']->format('H:i');
                                         ?>
-                                        <th class="text-column" scope="row"><?php echo $staff['PhoneNumber']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $staff['CurrAddress']?></th>
-                                        <?php  $staff_status = getbyKeyValue('ACCOUNT', 'Username', $staff['Username']);
-                                            if($staff_status['data']['isActive'] == 'Yes') 
+                                        <th class="text-column" scope="row"><?php echo $appt_date?></th>   
+                                        <th class="text-column" scope="row"><?php echo $appt_time?></th>                                        
+                                        <th class="text-column" scope="row">
+                                        
+                                        <?php /*if($appointment['Status_Appt'] == 'New') 
                                         {?>
                                             <th class="text-column" scope="row">
-                                                <span class="badge badge-success">Active</span>
+                                                <span class="badge badge-success">New</span>
                                             </th> 
                                         <?php
                                         }
@@ -135,11 +127,19 @@ $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNu
                                             {
                                             ?>
                                             <th class="text-column" scope="row">
-                                                <span class="badge badge-unsuccess">Deleted</span>
+                                                <span class="badge badge-unsuccess">Reassess</span>
                                             </th> 
                                             <?php
                                             }
-                                        ?>  
+                                        */?> 
+                                        <th class="text-column" scope="row">
+                                            <div class="text-column__action">
+                                                <a href="update_appointments.php?id=<?php  echo $appointment['ID_CuocHen']?>" class="btn-control btn-control-edit">
+                                                    <i class="fa-solid fa-calendar-day btn-control-icon"></i>
+                                                    Update
+                                                </a>
+                                            </div>
+                                        </th> 
                                     </tr>
                                     <?php
                                         }
@@ -149,19 +149,18 @@ $staffs = getByUserTypeWithPagination('USER_DENTAL', 'Staff', $pageSize, $pageNu
                                        <th class="text-column" scope="row"><?php echo 'No Data Found'?></th> 
                                     <?php    
                                     }
-                                    ?>
+                                    ?>                                
                                 </tbody>
                             </table>
 
-                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
             <!-- Footer -->
             <?php 
             require_once('./partials/_footer.php'); 
             ?>
+            </div>
         </div>
     </div>
 

@@ -46,8 +46,10 @@ $records = getTopRecordbyDentist('10', $dentist_phone);
                                     //echo $appointments['data'];
                                     // if($count > 0)
                                     $status = $appointments['status'];
+                                    //echo $appointments['query'];
                                     if($status != 'No Data Found')
                                     {
+                                    
                                     ?>
                                         <?php  foreach($appointments['data'] as $appointment) 
                                         {  

@@ -37,13 +37,13 @@ $patients = getAll('KHACHHANG');
                                             <label for="" class="form-col__label">Dentist Phone</label>
                                             <input type="text" name="dentist_phone" class="form-control" value="<?php echo $dentists['data']['SDT_NS'];?>" readonly>
                                         </div>
-
                                         <div class="form-col">
                                             <label for="" class="form-col__label">Patient Name</label>
                                             <select name="customer_phone" class="form-control">
                                                 <?php foreach ($patients['data'] as $patient) 
                                                 { 
-                                                    if($patients['SDT_KH'] == $appointment['data']['SDT_KH'])
+                                                   
+                                                    if($patient['SDT_KH'] == $appointment['data']['SDT_KH'])
                                                     {?>
                                                     <option value="<?php echo $patient['SDT_KH']; ?>" selected> <?php echo $patient['HoTen_KH'];
                                                                                                               echo " (PhoneNum = {$patient['SDT_KH']})" ?></option>

@@ -7,7 +7,7 @@
     {
         $customer_phone = $_POST['customer_phone'];
         $dentist_phone = $_POST['dentist_phone'];
-        $ngaytaohoso = $_POST['ngay_tao'];
+        //$ngaytaohoso = $_POST['ngay_tao'];
         $phikham = $_POST['phi_kham'];
         $id_dichvu = $_POST['id_dichvu'];
         //$tongtienthuoc = $_POST['tongtien_thuoc'];
@@ -20,12 +20,12 @@
         // echo $id_dichvu;
         
         if(!empty($customer_phone) && !empty($dentist_phone)  && !empty($phikham)
-        && !empty($ngaytaohoso) && !empty($id_dichvu))
+         && !empty($id_dichvu))
         {
             $dataPatient = [
                 'SDT_KH' => $customer_phone,
                 'SDT_NS' => $dentist_phone,
-                'NgayTaoHoSo' => $ngaytaohoso,
+                //'NgayTaoHoSo' => $ngaytaohoso,
                 'PhiKham' => $phikham,
                 'ID_DichVu' => $id_dichvu,
                 //'TongTienThuoc' => $tongtienthuoc,

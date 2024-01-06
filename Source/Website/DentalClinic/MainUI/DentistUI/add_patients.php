@@ -67,10 +67,6 @@ $dentist_phone = $_SESSION['sdt']['sdt'];
                                 <div class="form-row">
                                     <div class="form-row__flex">
                                         <div class="form-col">
-                                            <label for="" class="form-col__label">Date Created</label>
-                                            <input type="date" name="ngay_tao" placeholder="dd/mm/yyyy" class="form-control">
-                                        </div>
-                                        <div class="form-col">
                                             <label for="" class="form-col__label">Service</label>
                                             <select name="id_dichvu" class="form-cotrol">
                                             <option>Enter service</option>

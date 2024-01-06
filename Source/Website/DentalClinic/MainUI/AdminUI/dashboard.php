@@ -2,8 +2,10 @@
 require_once('./partials/_head.php');
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$appointments = getTopAppt('10');
-$records = getTopRecord('10');
+// $appointments = getTopAppt('10');
+// $records = getTopRecord('10');
+$dentists = getTopDentist('10');
+$staffs = getTopStaff('10');
 ?>
 
 <body>
@@ -23,53 +25,64 @@ $records = getTopRecord('10');
                 <div class="container-recent">
                     <div class="container-recent-inner">
                         <div class="container-recent__heading">
-                            <p class="recent__heading-title">Recent Appointments</p>
-                            <a href="appointments.php" class="btn-control btn-control-search">See all</a>
+                            <p class="recent__heading-title">Dentist List</p>
+                            <a href="dentists.php" class="btn-control btn-control-search">See all</a>
                         </div>
 
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                    <th class="text-column-emphasis" scope="col">Appointment Id</th> 
-                                        <th class="text-column" scope="col">Dentist</th> 
-                                        <th class="text-column" scope="col">Customer</th>
-                                        <th class="text-column" scope="col">Date</th> 
-                                        <th class="text-column" scope="col">Time</th> 
+                                        <th class="text-column-emphasis" scope="col">Phone Number</th> 
+                                        <th class="text-column" scope="col">FULL NAME</th> 
+                                        <th class="text-column" scope="col">STATUS</th> 
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($appointments['data']);
-                                    //echo $appointments['data'];
+                                    $count = sizeof($dentists['data']);
+                                    //echo $dentists['data'];
                                     if($count > 0)
                                     {
                                     ?>
-                                        <?php  foreach($appointments['data'] as $appointment) 
+                                        <?php  foreach($dentists['data'] as $dentist) 
                                         {  
-                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $appointment['SDT_NS']);
-                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $appointment['SDT_KH']);
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $appointment['ID_CuocHen']?></th>
-                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
-                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
                                         <?php
-                                            $appt_date = $appointment['Ngay']->format('d-m-Y');
-                                            $appt_time = $appointment['Gio']->format('H:i');
+                                        //$dentist_phone = $dentists['data']['ID_Payment'];
+                                        $dentist_detail = getbyKeyValue('NHASI', 'SDT_NS', $dentist['SDT_NS']);
                                         ?>
-                                        <th class="text-column" scope="row"><?php echo $appt_date?></th>   
-                                        <th class="text-column" scope="row"><?php echo $appt_time?></th>                                        
+                                        <th class="text-column-emphasis" scope="row"><?php echo $dentist_detail['data']['SDT_NS']?></th>
+                                        <th class="text-column" scope="row"><?php echo $dentist_detail['data']['HoTen_NS']?></th> 
+                                        <?php  $dentist_status = getbyKeyValue('TAIKHOAN', 'SDT', $dentist['SDT_NS']);
+                                            if($dentist_status['data']['isActive'] == 'YES') 
+                                        {?>
+                                            <th class="text-column" scope="row">
+                                                <span class="badge badge-success">Active</span>
+                                            </th> 
+                                        <?php
+                                        }
+                                            else
+                                            {
+                                            ?>
+                                            <th class="text-column" scope="row">
+                                                <span class="badge badge-unsuccess">Deleted</span>
+                                            </th> 
+                                            <?php
+                                            }
+                                        ?> 
                                     </tr>
                                     <?php
                                         }
                                     }
                                     else
-                                    {?>
-                                       <th class="text-column" scope="row"><?php echo 'No Data Found'?></th> 
-                                    <?php    
+                                    {
+                                        ?>
+                                        <th class="text-column" scope="row"><?php echo 'No Data Found'?></th> 
+                                        <?php
                                     }
-                                    ?>                                
+                                    ?>
                                 </tbody>
                             </table>
 
@@ -83,42 +96,52 @@ $records = getTopRecord('10');
                 <div class="container-recent">
                     <div class="container-recent-inner">
                         <div class="container-recent__heading">
-                            <p class="recent__heading-title">Recent Patient Record</p>
-                            <a href="patients.php" class="btn-control btn-control-search">See all</a>
+                            <p class="recent__heading-title">Staff List</p>
+                            <a href="staffs.php" class="btn-control btn-control-search">See all</a>
                         </div>
 
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                    <th class="text-column-emphasis" scope="col">Patient Id</th> 
-                                        <th class="text-column" scope="col">Dentist</th> 
-                                        <th class="text-column" scope="col">Customer</th> 
-                                        <th class="text-column" scope="col">Date created</th> 
-                                        <th class="text-column" scope="col">Total</th> 
+                                        <th class="text-column-emphasis" scope="col">Phone</th> 
+                                        <th class="text-column" scope="col">FULL NAME</th> 
+                                        <th class="text-column" scope="col">Status</th>  
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($records['data']);
-                                    //echo $records['data'];
+                                    $count = sizeof($staffs['data']);
+                                    //echo $staffs['data'];
                                     if($count > 0)
                                     {
                                     ?>
-                                        <?php  foreach($records['data'] as $record) 
-                                        { 
-                                            $dentist = getbyKeyValue('NHASI','SDT_NS', $record['SDT_NS']);
-                                            $customer = getbyKeyValue('KHACHHANG','SDT_KH', $record['SDT_KH']);
+                                        <?php  foreach($staffs['data'] as $staff) 
+                                        {  
                                         ?>
                                     <tr>
-                                        <th class="text-column-emphasis" scope="row"><?php echo $record['ID_HoSo']?></th>
-                                        <th class="text-column" scope="row"><?php echo $dentist['data']['HoTen_NS']?></th>
-                                        <th class="text-column" scope="row"><?php echo $customer['data']['HoTen_KH']?></th> 
-                                        <th class="text-column" scope="row"><?php echo $record['NgayTaoHoSo']->format('d-m-Y')?></th> 
-                                        <!-- <th class="text-column" scope="row"><?php //echo $record['PhiKham']?></th> 
-                                        <th class="text-column" scope="row"><?php //echo $record['ID_DichVu']?></th> 
-                                        <th class="text-column" scope="row"><?php //echo $record['TongTienThuoc']?></th>  -->
-                                        <th class="text-column" scope="row"><?php echo $record['TongTien']?></th> 
+                                        <?php
+                                        $staff_detail = getbyKeyValue('NHANVIEN', 'SDT_NV', $staff['SDT_NV']);
+                                        ?>
+                                        <th class="text-column-emphasis" scope="row"><?php echo $staff_detail['data']['SDT_NV']?></th>
+                                        <th class="text-column" scope="row"><?php echo $staff_detail['data']['HoTen_NV']?></th> 
+                                        <?php  $staff_status = getbyKeyValue('TAIKHOAN', 'SDT', $staff['SDT_NV']);
+                                            if($staff_status['data']['isActive'] == 'YES') 
+                                        {?>
+                                            <th class="text-column" scope="row">
+                                                <span class="badge badge-success">Active</span>
+                                            </th> 
+                                        <?php
+                                        }
+                                            else
+                                            {
+                                            ?>
+                                            <th class="text-column" scope="row">
+                                                <span class="badge badge-unsuccess">Deleted</span>
+                                            </th> 
+                                            <?php
+                                            }
+                                        ?>  
                                     </tr>
                                     <?php
                                         }
@@ -132,6 +155,7 @@ $records = getTopRecord('10');
                                 </tbody>
                             </table>
 
+                            </div>
                         </div>
                     </div>
                 </div>

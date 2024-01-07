@@ -1,4 +1,5 @@
 <?php
+$page_title = "Smile - Staff Dashboard ";
 require_once('./partials/_head.php');
 $pageSize = 20;
 $pageNumber = isset($_GET['page']) ? (int)$_GET['page'] : 1;

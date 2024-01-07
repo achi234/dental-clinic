@@ -42,9 +42,9 @@ $records = getTopRecordbyCustomer('10', $customer_phone);
                                 </thead>
                                 <tbody class="table-body">
                                 <?php
-                                    $count = sizeof($appointments['data']);
+                                    //$count = sizeof($appointments['data']);
                                     //echo $appointments['data'];
-                                    if($count > 0)
+                                    if($appointments['status'] == 'Data Found')
                                     {
                                     ?>
                                         <?php  foreach($appointments['data'] as $appointment) 

@@ -531,7 +531,7 @@
         $phoneNum = validate($phoneNum);
 
         $query = "SELECT TOP $count *
-                FROM KHACHHANG
+                FROM HOSOKHACHHANG
                 WHERE SDT_KH = '$phoneNum'
                 ORDER BY NgayTaoHoSo DESC";
         $result = sqlsrv_query($conn, $query);
@@ -736,6 +736,58 @@
                 $response = [
                     'status' => 'Data Found',
                     'data' => $data,
+                    'query' => $query,
+                ];
+            } else {
+                $response = [
+                    'status' => 'No Data Found',
+                ];
+            }
+    
+            return $response;
+        } else {
+            $response = [
+                'status' => 'Something went wrong! Please try again.',
+            ];
+            return $response;
+        }
+    }
+    function searchByKeywordandKeyValue($tableName, $value, $key, $condition)
+    {
+        global $conn;
+    
+        $table = validate($tableName);
+        $value = validate($value);
+    
+        $query = "SELECT * FROM $table WHERE ";
+        $columns = getTableColumns($tableName);
+    
+        $conditions = [];
+        foreach ($columns as $column) {
+            $conditions[] = "$column LIKE '%$value%'";
+        }
+    
+        $query = "SELECT * FROM $tableName WHERE ";
+        $query = str_pad($query, strlen($query) + 1, "(");
+        $query .= implode(" OR ", $conditions);
+        $query = str_pad($query, strlen($query) + 1, ")");
+        
+        $query .= "AND ".$key."=".$condition;
+        // Thực hiện truy vấn chính
+        $result = sqlsrv_query($conn, $query);
+        
+        if ($result) {
+            $data = array();
+    
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+    
+            if (!empty($data)) {
+                $response = [
+                    'status' => 'Data Found',
+                    'data' => $data,
+                    'query' => $query,
                 ];
             } else {
                 $response = [

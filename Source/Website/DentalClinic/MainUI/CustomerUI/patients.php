@@ -58,17 +58,19 @@
                                 if(isset($_POST["btn-search"]))
                                 {
                                     $strKeyword = $_POST["search_text"];
-                                    $patients = searchByKeyword('HOSOKHACHHANG', $strKeyword);
-
+                                    $patients = searchByKeywordandKeyValue('HOSOKHACHHANG', $strKeyword,"SDT_KH",$customer_phone);
+                                    //echo $patients['query'];
                                     if($patients['status'] == 'No Data Found')
                                     {
                                         $_SESSION['status'] = $patients['status'];
                                         $patients = getbyKeyValueWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo', 'SDT_KH', $_SESSION['sdt']['sdt']);
+                                        //echo "here";
                                     }
                                 }
                                 else
                                 {
                                     $patients = getbyKeyValueWithPagination('HOSOKHACHHANG', $pageSize, $pageNumber, 'ID_HoSo', 'SDT_KH', $_SESSION['sdt']['sdt']);
+                                    //echo "here";
                                 }
                             ?>
                             <div class="container__heading-search">

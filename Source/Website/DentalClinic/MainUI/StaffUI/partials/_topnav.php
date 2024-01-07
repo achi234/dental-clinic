@@ -10,7 +10,13 @@
         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
         $name = $row['HOTEN_NV'];
     }
-
+    else
+    {
+        // echo "here";
+        // echo $sql;
+        // echo  $_SESSION['sdt']['vaitro'];
+    }
+    
 ?>
 <div class="navbar navbar-top navbar-expand-md">
     <div class="container container-header">

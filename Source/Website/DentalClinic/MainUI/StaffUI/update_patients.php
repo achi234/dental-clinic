@@ -39,7 +39,7 @@ $services = getAll('DICHVU');
                                                 <option>Select customer</option>
                                                 <?php foreach ($patients['data'] as $patient) 
                                                 { 
-                                                    if($patients['SDT_KH'] == $record['data']['SDT_KH'])
+                                                    if($patient['SDT_KH'] == $record['data']['SDT_KH'])
                                                     {?>
                                                     <option value="<?php echo $patient['SDT_KH']; ?>" selected> <?php echo $patient['HoTen_KH'];
                                                                                                               echo " (PhoneNum = {$patient['SDT_KH']})" ?></option>
